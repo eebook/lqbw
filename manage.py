@@ -5,6 +5,15 @@ import os
 from app import create_app
 from flask_script import Manager, Server
 
+import sys
+
+reload(sys)
+base_path = unicode(os.getcwd())
+
+# Python早期版本可以直接用sys.setdefaultencoding('utf-8')，新版本需要先reload一下
+sys.setdefaultencoding('utf-8')
+sys.setrecursionlimit(100000)  # 为BS解析知乎上的长答案增加递归深度限制
+
 app = create_app(os.getenv('EEBOOK_CONFIG') or 'default')
 manager = Manager(app)
 

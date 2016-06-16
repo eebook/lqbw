@@ -210,3 +210,10 @@ test.html
 
 eebookorg_nginx.conf
 eebookorg_uwsgi.ini
+
+ZHIHUTOKEN.pkl
+
+e-books_produced/
+e-books_tmp_source/
+
+*.sqlite
