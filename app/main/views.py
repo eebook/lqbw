@@ -1,21 +1,14 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, send_from_directory
 from .forms import UrlForm
 from . import main
 
 from ..eebook.src.main import EEBook
-from ..eebook.src.tools.debug import Debug
-from ..eebook.src.constants import __version__
-from ..eebook.src.utils import log
 from ..eebook.src.tools.match import Match
-from ..eebook.src.login import Login
-from ..eebook.src.constants import url_info
 
-import getopt
-import sys  # 修改默认编码
-import os   # 添加系统路径
+import sys
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -29,6 +22,12 @@ def index():
             print("Unsupported type!\n Please try again.")
             sys.exit()
         game = EEBook(recipe_kind=recipe_kind, url=url, debug=True)
-        game.begin()
-        return redirect(url_for('.index'))
+        file_name = game.begin()[0]
+        ebooks_produced_path = '/Users/Frank/Documents/Dev/Python/flask/eebookorg/e-books_produced/'
+        print u"file_name:" + str(file_name)
+        file_name += '.epub'
+        return send_from_directory(ebooks_produced_path, file_name, as_attachment=True)
+        # return redirect(url_for('.index'))
     return render_template('index.html', form=form)
+
+
