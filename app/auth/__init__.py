@@ -10,6 +10,6 @@ auth.add_url_rule('/login/', 'login', views.login, methods=['GET', 'POST'])
 auth.add_url_rule('/register/', 'register', views.register, methods=['GET', 'POST'])
 auth.add_url_rule('/unconfirmed', 'unconfirmed', views.unconfirmed)
 auth.add_url_rule('/logout', 'logout', views.logout)
-auth.add_url_rule('/confirm/<token>', 'confirmtoken', views.confirm)
-auth.add_url_rule('/confirm/', 'confirm', views.resend_confirmation)
+auth.add_url_rule('/confirm/<token>', 'confirm', views.confirm)
+auth.add_url_rule('/confirm/', 'resend_confirmation', views.resend_confirmation)
 

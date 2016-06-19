@@ -7,6 +7,6 @@ from wtforms.validators import DataRequired
 
 
 class UrlForm(Form):
-    url = StringField(u'请输入网址', validators=[DataRequired()])
-    submit = SubmitField(u'开始制作')
+    url = StringField(u'', validators=[DataRequired()], render_kw={"placeholder": u"在这输入网址"})
+    submit = SubmitField(u'开始制作', render_kw={"class": "btn btn-default pull-right"})
 

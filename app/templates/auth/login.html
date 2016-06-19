@@ -1,15 +1,38 @@
-{% extends "base.html" %}
+{% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %} EE-Book - Login {% endblock %}
+{% block title %} EE-Book - Login{% endblock %}
 
-{% block page_content %}
-<div class="page-header">
-    <h1>登录</h1>
+{% block head %}
+{{ super() }}
+  <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/layout.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% for message in get_flashed_messages() %}
+  <div class="alert alert-warning">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ message }}
+  </div>
+{% endfor %}
+
+{% block content %}
+<div class="container" id="body">
+  <form class="form-signin" action="" method="POST">
+    {% for field in form %}
+      {{ field() }}
+    {% endfor %}
+
+    <div class="enroll">
+    新用户？<a href="{{ url_for('auth.register') }}">点击注册</a>
+    </div>
+  </form>
 </div>
-<div class="col-md-4">
-    {{ wtf.quick_form(form) }}
-    <br>
-    <p>新用户？<a href="{{ url_for('auth.register') }}">点击注册</a></p>
-</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
 {% endblock %}

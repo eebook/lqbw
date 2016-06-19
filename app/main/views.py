@@ -1,8 +1,9 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
+
 from flask import render_template, send_from_directory, flash
-from flask_login import login_required, current_user
+from flask_login import current_user
 from .forms import UrlForm
 
 from ..eebook.src.main import EEBook

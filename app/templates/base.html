@@ -3,8 +3,8 @@
 {% block title %} EE-Book {% endblock %}
 
 {% block head %}
-{{ super() }}
 <link rel="icon" type="image/x-ico" href="{{ url_for('static', filename='img/favicon.ico') }}">
+{{ super() }}
 
 {% endblock %}
 
@@ -21,13 +21,22 @@
     <a class="navbar-brand" href="{{ url_for('main.index') }}">EE-Book</a>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-          {% if current_user.is_authenticated %}
-          <li><a href="{{ url_for('auth.logout') }}">登出</a></li>
-          {% else %}
-          <li><a href="{{ url_for('auth.login') }}">登录</a></li>
-          {% endif %}
-      </ul>
+      {% if current_user.is_authenticated %}
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="{{ url_for('auth.logout') }}">退出</a>
+          </li>
+        </ul>
+      {% else %}
+        <form class="navbar-form navbar-right">
+          <div class="form-group">
+            <a class="btn btn-default" href="{{ url_for('auth.login') }}">登录</a>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-primary" href="{{ url_for('auth.register') }}">注册</a>
+          </div>
+        </form>
+      {% endif %}
     </div>
   </div>
 </div>
