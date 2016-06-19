@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import json
+import sys
 import datetime
 
 from zhihu_oauth import ZhihuClient
+from zhihu_oauth.exception import NeedLoginException
 
 from ..tools.db import DB
 from ..tools.http import Http
@@ -15,11 +17,30 @@ from page_worker import PageWorker
 
 
 client = ZhihuClient()
-client.load_token(Path.pwd_path + str(u'/ZHIHUTOKEN.pkl'))
+
+__all__ = [
+    "QuestionWorker",
+    "AuthorWorker",
+    "CollectionWorker",
+    "TopicWorker",
+    "ColumnWorker",
+]
+
+
+def _client_load_token():
+    try:
+        client.load_token(Path.pwd_path + str(u'/ZHIHUTOKEN.pkl'))
+    except IOError:
+        print u"没有找到登录信息文件，请先登录"
+        sys.exit()
+    except NeedLoginException:
+        print u"登录信息过期，请重新登录"
+        sys.exit()
 
 
 def get_answer_dict(answer={}, item=None):
-    answer['author_id'] = 'from *** worker, this is a bug'    # 如果用 item.author.id, 存的是 hash 值
+    answer['author_id'] = item.author.id    # 如果用 item.author.id, 存的是 hash 值
+    # 所以,目前 Author 部分不能用
     answer['author_sign'] = item.author.headline
     answer['author_logo'] = item.author.avatar_url
     answer['author_name'] = item.author.name
@@ -42,6 +63,7 @@ class QuestionWorker(PageWorker):
     def catch_info(self, target_url):
         if target_url in self.info_url_complete_set:
             return
+        _client_load_token()
         self.question_id = Match.question(target_url).group('question_id')
         self.info_url_complete_set.add(target_url)
         self.catch_content()
@@ -72,12 +94,14 @@ class AuthorWorker(PageWorker):
     def catch_info(self, target_url):
         if target_url in self.info_url_complete_set:
             return
+        _client_load_token()
         self.author_id = Match.author(target_url).group('author_id')
         self.people_oauth = client.people(self.author_id)
         info = dict()
-        info['author_id'] = self.author_id   # 这里需要改 zhihu-oauth 源代码才能解决
+
         # info['hash'] = self.people_oauth.id
         info['name'] = self.people_oauth.name
+        info['author_id'] = self.people_oauth.id   # zhihu-oauth, issues #4
         info['sign'] = self.people_oauth.headline
         info['logo'] = self.people_oauth.avatar_url
         info['description'] = self.people_oauth.description
@@ -128,7 +152,7 @@ class CollectionWorker(PageWorker):
     def catch_info(self, target_url):
         if target_url in self.info_url_complete_set:
             return
-
+        _client_load_token()
         self.collection_id = Match.collection(target_url).group('collection_id')
         self.collection_oauth = client.collection(int(self.collection_id))
         info = dict()
@@ -195,6 +219,7 @@ class TopicWorker(PageWorker):
     def catch_info(self, target_url):
         if target_url in self.info_url_complete_set:
             return
+        _client_load_token()
         self.topic_id = Match.topic(target_url).group('topic_id')
         self.topic_oauth = client.topic(int(self.topic_id))
 

@@ -8,5 +8,5 @@ from wtforms.validators import DataRequired
 
 class UrlForm(Form):
     url = StringField(u'请输入网址', validators=[DataRequired()])
-    submit = SubmitField(u'提交')
+    submit = SubmitField(u'开始制作')
 

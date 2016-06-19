@@ -218,3 +218,5 @@ e-books_tmp_source/
 app/eebook/
 
 *.sqlite
+
+migrations/

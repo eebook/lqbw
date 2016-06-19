@@ -5,6 +5,7 @@ import getopt
 import sys  # 修改默认编码
 import os   # 添加系统路径
 
+from app.eebook.src.exception import UnsupportTypeException
 from app.eebook.src.main import EEBook
 from app.eebook.src.tools.debug import Debug
 from app.eebook.src.constants import __version__
@@ -81,9 +82,11 @@ def main():
             # sys.exit(app.exec_())
         elif option in ('-l', '--login'):
             url = args
-            recipe_kind = Match.get_url_kind(url)
-            if recipe_kind != 'zhihu':
-                print("Unsupport type! Only zhihu are supported now.\nPlease try again.")
+            try:
+                recipe_kind = Match.get_url_kind(url)
+            except UnsupportTypeException, e:
+                print e
+                print u"Please try again."
                 sys.exit()
             zhihu = EEBook(recipe_kind=recipe_kind)    # Init path, e.g. config, only zhihu are supported now
             login = Login(recipe_kind=recipe_kind)
@@ -91,9 +94,11 @@ def main():
             sys.exit()
         elif option in ('-u', '--url'):
             url = args
-            recipe_kind = Match.get_website_kind(url)
-            if recipe_kind == 'Unsupport type':
-                print("Unsupported type!\n Please try again.")
+            try:
+                recipe_kind = Match.get_website_kind(url)
+            except UnsupportTypeException, e:
+                print e
+                print u"Please check url."
                 sys.exit()
             game = EEBook(recipe_kind=recipe_kind, url=url, debug=debug)
             game.begin()
@@ -180,9 +185,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
 
 
