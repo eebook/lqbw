@@ -43,6 +43,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
   {% for message in get_flashed_messages() %}
   <div class="alert alert-warning">
@@ -50,8 +51,16 @@
   {{ message }}
   </div>
   {% endfor %}
-
   {% block page_content %}{% endblock %}
+</div>
+
+<hr>
+<div id="footer" class="container">
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <p class="copyright text-muted">Copyright &copy; knarfeh 2016
+  </div>
+</div>
 </div>
 {% endblock %}
 

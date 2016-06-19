@@ -11,6 +11,7 @@
     "article_order_by": "update_date", 
     "max_thread": 10, 
     "sql_extend_answer_filter": "", 
+    "max_blog": 10, 
     "max_answer": 600, 
     "timeout_download_picture": 10, 
     "remember_account_set": true, 

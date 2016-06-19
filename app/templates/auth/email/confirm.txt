@@ -1,4 +1,4 @@
-亲爱的{{ user.username }}:
+{{ user.username }}:
 
 感谢注册<a href="http://www.ee-book.org">EE-Book</a>，点击下面的链接完成安全验证。
 
