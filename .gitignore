@@ -215,7 +215,6 @@ ZHIHUTOKEN.pkl
 
 e-books_produced/
 e-books_tmp_source/
-app/eebook/
 
 *.sqlite
 
