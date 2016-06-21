@@ -23,7 +23,7 @@ def index():
                 return render_template('index.html', form=form)
             game = EEBook(recipe_kind=recipe_kind, url=url, debug=True)
             file_name = game.begin()[0]
-            ebooks_produced_path = '/Users/Frank/Documents/Dev/Python/flask/eebookorg/e-books_produced/'
+            ebooks_produced_path = '/var/www/eebookorg/e-books_produced/'
             file_name += '.epub'
             return send_from_directory(ebooks_produced_path, file_name, as_attachment=True)
         else:
