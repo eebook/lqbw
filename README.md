@@ -1,6 +1,6 @@
 # eebookorg
 
-见 [ee-book.org](http://www.ee-book.org)
+见 [ee-book.org](http://ee-book.org)
 
 
 # License
