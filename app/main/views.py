@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
-from flask import render_template, flash
+from flask import render_template, flash, current_app
 from flask_login import current_user
+from flask_mail import Message
 from .forms import UrlForm
 
 from ..eebook.src.tools.match import Match
@@ -21,12 +22,19 @@ def index():
             except UnsupportTypeException:
                 flash(u"Oops....不支持的网站类型")
                 return render_template('index.html', form=form)
-            send_async_email_with_book.delay(recipe_kind, url, debug=False)
-            # game = EEBook(recipe_kind=recipe_kind, url=url, debug=True)
-            # file_name = game.begin()[0]
-            # ebooks_produced_path = '/var/www/eebookorg/e-books_produced/'
-            # file_name += '.epub'
-            # return send_from_directory(ebooks_produced_path, file_name, as_attachment=True)
+            flash(u"提交成功，稍后将以邮件的方式将电子书发给您，请注意查收")
+
+            to = current_user.email
+            subject = u"请查收电子书"
+            template = 'auth/email/send_book'
+
+            app = current_app._get_current_object()
+            msg = Message(app.config['EEBOOK_MAIL_SUBJECT_PREFIX'] + ' ' + subject,
+                          sender=app.config['EEBOOK_MAIL_SENDER'], recipients=[to])
+            msg.body = render_template(template + '.txt', user=current_user)
+            msg.html = render_template(template + '.html', user=current_user)
+
+            send_async_email_with_book.delay(recipe_kind, url, msg=msg, book_path=app.config['BOOK_PATH'])
         else:
             flash(u"请登录后执行操作")
     return render_template('index.html', form=form)

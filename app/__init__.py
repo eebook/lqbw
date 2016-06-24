@@ -3,17 +3,17 @@
 
 import os
 
-from flask import Flask, current_app
+from smtplib import SMTPServerDisconnected
+
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_mail import Mail
+from flask_mail import Mail, Message
 from config import config
 from celery import Celery
 
 from .eebook.src.main import EEBook
-
-
 
 app = Flask(__name__)
 
@@ -60,24 +60,34 @@ def send_async_email(msg):
     with app.app_context():
         from . import mail
         app.config.from_object(config[os.getenv('EEBOOK_CONFIG') or 'default'])
-        config[config[os.getenv('EEBOOK_CONFIG') or 'default']].init_app(app)
+        config[os.getenv('EEBOOK_CONFIG') or 'default'].init_app(app)
+
         mail.init_app(app)
         mail.send(msg)
 
 
 @celery.task
-def send_async_email_with_book(recipe_kind, url, debug=True):
+def send_async_email_with_book(recipe_kind, url, msg, book_path):
     with app.app_context():
         import sys
         reload(sys)
-        base_path = unicode(os.getcwd())
-
         # Python早期版本可以直接用sys.setdefaultencoding('utf-8')，新版本需要先reload一下
         sys.setdefaultencoding('utf-8')
         sys.setrecursionlimit(100000)  # 为BS解析知乎上的长答案增加递归深度限制
         
-        game = EEBook(recipe_kind=recipe_kind, url=url, debug=True)
+        game = EEBook(recipe_kind=recipe_kind, url=url, debug=False)
         file_name = game.begin()[0]
-        # ebooks_produced_path = '/var/www/eebookorg/e-books_produced/'
-        ebooks_produced_path = '/Users/Frank/Documents/Dev/Python/flask/eebookorg/e-books_produced/'
+        ebooks_produced_path = book_path
         file_name += '.epub'
+
+        with app.open_resource(ebooks_produced_path + file_name) as fp:
+            msg.attach("book.epub", 'application/epub+zip', fp.read())
+
+        try:
+            send_async_email(msg)
+        except SMTPServerDisconnected:
+            send_async_email(msg)
+        except:
+            print u"发送失败"
+            print u"url:" + str(url)
+            print u"user.email:" + str(msg.body)
