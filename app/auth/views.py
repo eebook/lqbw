@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 
-from flask import render_template, redirect, request, url_for, flash
+from app import send_async_email
+from flask import render_template, redirect, request, url_for, flash, current_app
+from flask_mail import Message
 from flask_login import login_user, login_required, current_user, logout_user
 from . import auth
 from .. import db
 from ..models import User
-from ..email import send_email
 from .forms import LoginForm, RegistrationForm
 
 
@@ -51,8 +52,19 @@ def register():
         user = User(email=form.email.data, username=form.username.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
+
+        app = current_app._get_current_object()
         token = user.generate_confirmation_token()
-        send_email(user.email, u'安全确认', 'auth/email/confirm', user=user, token=token)
+        to = user.email
+        subject = u"安全确认"
+        template = 'auth/email/confirm'
+
+        msg = Message(app.config['EEBOOK_MAIL_SUBJECT_PREFIX'] + ' ' + subject,
+                      sender=app.config['EEBOOK_MAIL_SENDER'], recipients=[to])
+        msg.body = render_template(template + '.txt', user=current_user, token=token)
+        msg.html = render_template(template + '.html', user=current_user, token=token)
+
+        send_async_email.delay(msg)
         flash(u"确认邮件已经发送到您的邮箱中，请查收。")
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
@@ -72,7 +84,18 @@ def confirm(token):
 @login_required
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
-    send_email(current_user.email, u'确认账户', 'auth/email/confirm', user=current_user, token=token)
+
+    to = current_user.email
+    subject = u"确认账户"
+    template = 'auth/email/confirm'
+
+    app = current_app._get_current_object()
+    msg = Message(app.config['EEBOOK_MAIL_SUBJECT_PREFIX'] + ' ' + subject,
+                  sender=app.config['EEBOOK_MAIL_SENDER'], recipients=[to])
+    msg.body = render_template(template + '.txt', user=current_user, token=token)
+    msg.html = render_template(template + '.html', user=current_user, token=token)
+
+    send_async_email.delay(msg)
     flash(u'新的确认邮件已经发送到您的邮箱中')
     return redirect(url_for('main.index'))
 
