@@ -4,10 +4,6 @@
 import os
 import sys
 
-
-import eventlet
-eventlet.monkey_patch()
-
 from celery import Celery
 from app import create_app, db
 from app.models import User, Role
@@ -41,5 +37,5 @@ manager.add_command('runserver', Server(
 manager.add_command('db', MigrateCommand)
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=8080, debug=False)
-    manager.run()
+    app.run(host='0.0.0.0', port=8080, debug=False)
+    # manager.run()

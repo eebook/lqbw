@@ -66,7 +66,7 @@ def send_async_email(msg):
         mail.send(msg)
 
 
-@celery.task
+@celery.task(max_retries=2)
 def send_async_email_with_book(recipe_kind, url, msg, book_path):
     with app.app_context():
         import sys
