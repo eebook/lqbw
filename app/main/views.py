@@ -38,3 +38,7 @@ def index():
         else:
             flash(u"请登录后执行操作")
     return render_template('index.html', form=form)
+
+
+def comments():
+    return render_template('comments.html')

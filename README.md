@@ -2,7 +2,7 @@
 
 见 [ee-book.org](http://ee-book.org)
 
-[EE-Book](https://www.github.com/knarfeh/EE-Book)的网页版，基于 Flask 框架，使用[celery](http://docs.celeryproject.org/en/latest/)进行任务队列管理，目前支持的网站：  
+[EE-Book](https://www.github.com/knarfeh/EE-Book) 的网页版，基于 Flask 框架，使用 [celery](http://docs.celeryproject.org/en/latest/) 进行任务队列管理，目前支持的网站：  
 
 
 | 名称 | 主页                               | 支持类型                          |

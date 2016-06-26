@@ -6,7 +6,89 @@
 {% block page_content %}
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
-    {{ wtf.quick_form(form) }}
+  {{ wtf.quick_form(form) }}
+  <hr>
+  <div class="panel panel-default" id="website-info">
+    <div class="panel-heading">
+        支持的网站类型
+    <a class="pull-right" data-target="#website-info .area" data-toggle="collapse">
+      <span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+    </a>
+    </div>
+    <!--<div id="website-info" class="panel-body collapse in" aria-expanded="true" style="">-->
+      <table class="table table-striped table-hover area collapse in" aria-expanded="true" style="">
+        <tbody aria-expanded="true">
+          <tr>
+            <th width="15%">名称</th>
+            <th width="5%">主页</th>
+            <th width="65%">支持类型</th>
+            <th width="15%">主要维护者</th>
+          </tr>
+          <tr>
+            <td>知乎</td>
+            <td><a href="http://www.zhihu.com">www.zhihu.com</a></td>
+            <td>
+              <p><strong>问题：</strong> zhihu.com/question/{question_id}</p>
+              <p><strong>答案：</strong> zhihu.com/question/{question_id}/answer/{answer_id}</p>
+              <p><strong>话题：</strong> zhihu.com/topic/{topic_id}</p>
+              <p><strong>用户的全部回答：</strong> zhihu.com/people/{people_id}</p>
+                <p>or zhihu.com/people/{people_id}/answers</p>
+              <p><strong>收藏夹：</strong> zhihu.com/collection/{collection_id}</p>
+              <p><strong>专栏：</strong> zhuanlan.zhihu.com/{zhuanlan_id}</p>
+            </td>
+            <td>
+              <p><a href="https://github.com/YaoZeyuan">YaoZeyuan</a></p>
+              <p><a href="http://github.com/knarfeh">knarfeh</a></p>
+            </td>
+          </tr>
+          <tr>
+            <td>简书</td>
+            <td><a href="http://www.jianshu.com">www.jianshu.com</a></td>
+            <td>
+              <p><strong>用户的所有文章：</strong> jianshu.com/users/{people_id}/latest_articles</p>
+              <p><strong>专题：</strong> jianshu.com/collection/{collection_id}</p>
+              <p><strong>文集：</strong> jianshu.com/notebooks/{notebooks_id}/latest or jianshu.com/notebooks/{notebooks_id}/top</p>
+            </td>
+            <td>
+              <p><a href="http://github.com/knarfeh">knarfeh</a></p>
+            </td>
+          </tr>
+          <tr>
+            <td>csdn博客</td>
+            <td><a href="http://blog.csdn.net">blog.csdn.net</a></td>
+            <td>
+              <p><strong>用户的所有文章：</strong> blog.sina.com.cn/u/{people_id}</p>
+            </td>
+            <td><a href="http://github.com/knarfeh">knarfeh</a></td>
+          </tr>
+          <tr>
+            <td>新浪博客</td>
+            <td><a href="http://blog.sina.com.cn/">blog.sina.com.cn</a></td>
+            <td><strong>用户的所有文章：</strong> blog.csdn.net/{people_id}</td>
+            <td><a href="http://github.com/knarfeh">knarfeh</a></td>
+          </tr>
+          <tr>
+            <td>博客园</td>
+            <td><a href="http://www.cnblogs.com/">www.cnblogs.com</a></td>
+            <td><strong>用户的所有文章：</strong> cnblogs.com/{people_id}/</td>
+            <td><a href="http://github.com/knarfeh">knarfeh</a></td>
+          </tr>
+          <tr>
+            <td>易百教程</td>
+            <td><a href="http://www.yiibai.com/">www.yiibai.com</a></td>
+            <td><strong>某个教程的文章：</strong> yiibai.com/{tutorial_kind}</td>
+            <td><a href="http://github.com/knarfeh">knarfeh</a></td>
+          </tr>
+          <tr>
+            <td>Talk Python To Me</td>
+            <td><a href="https://www.talkpython.fm">www.talkpython.fm</a></td>
+            <td><strong>文稿：</strong> https://talkpython.fm/episodes/all/</td>
+            <td><a href="http://github.com/knarfeh">knarfeh</a></td>
+          </tr>
+        </tbody>
+      </table>
+    <!--</div>-->
+  </div>
 </div>
 <div class="col-sm-2"></div>
 {% endblock %}

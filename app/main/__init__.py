@@ -8,6 +8,7 @@ from . import errors
 main = Blueprint('main', __name__)
 
 main.add_url_rule('/', 'index', views.index, methods=['GET', 'POST'])
+main.add_url_rule('/comments', 'comments', views.comments)
 main.errorhandler(404)(errors.page_not_found)
 main.errorhandler(500)(errors.internal_server_error)
 
