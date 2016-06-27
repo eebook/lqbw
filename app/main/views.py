@@ -42,3 +42,11 @@ def index():
 
 def comments():
     return render_template('comments.html')
+
+
+def faq():
+    return render_template('faq.html')
+
+
+def about():
+    return render_template('about.html')
