@@ -50,3 +50,7 @@ def faq():
 
 def about():
     return render_template('about.html')
+
+
+def store():
+    return render_template('store.html')
