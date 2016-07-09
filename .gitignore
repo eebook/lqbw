@@ -221,3 +221,6 @@ e-books_tmp_source/
 migrations/
 
 about_md_2_html.html
+
+*.cookies
+ReadList.txt
