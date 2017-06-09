@@ -1,17 +1,54 @@
 {
-  "name": "eebookorg",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
   "dependencies": {
-    "body-parser": "~1.17.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
-    "morgan": "~1.8.1",
-    "pug": "~2.0.0-beta11",
-    "serve-favicon": "~2.4.2"
-  }
+    "ejs": "^2.5.6",
+    "gulp": "^3.9.1",
+    "json-stringify": "^1.0.0",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-csrf": "^3.0.5",
+    "koa-logger": "^2.0.0",
+    "koa-morgan": "^1.0.1",
+    "koa-onerror": "^3.1.0",
+    "koa-qs": "^2.0.0",
+    "koa-router": "^7.0.1",
+    "koa-send": "^4.0.0",
+    "koa-session": "^5.0.0",
+    "koa-static": "^3.0.0",
+    "koa-validate": "^1.0.7",
+    "koa-views": "^6.0.2",
+    "koa-webpack": "^0.3.1",
+    "lodash": "^4.17.4",
+    "request": "^2.81.0",
+    "request-debug": "^0.2.0",
+    "request-promise": "^4.2.0",
+    "request-promise-native": "^1.0.3",
+    "rotating-file-stream": "^1.2.2",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.64",
+    "@types/node": "^7.0.22",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babili-webpack-plugin": "0.0.2",
+    "webpack": "^2.2.1"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist && mkdir ./dist",
+    "build:prod": "npm run clean && cp -rf ./src/public && cp -rf ./src/templates ./dist/templates && tsc",
+    "watch": "npm run clean && cp -rf ./src/public ./dist/public && cp -rf ./src/templates ./dist/templates  && tsc -w",
+    "start": "pm2 start ./dist/index.js --watch",
+    "start:prod": "pm2 start ./dist/index.js -i 4"
+  },
+  "name": "eebookorg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "knarfeh@outlook.com",
+  "license": "BSD",
+  "description": "Source code of ee-book.org"
 }
