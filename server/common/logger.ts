@@ -17,3 +17,4 @@ var logger = log4js.getLogger('eebook');
 logger.level = (config.debug && env != 'test' ? 'DEBUG' : 'ERROR')
 
 module.exports = logger;
+export {logger}
