@@ -6,7 +6,7 @@
     "apps": [
         {
             "root": "client",
-            "outDir": "dist/publit",
+            "outDir": "dist/public",
             "assets": [
                 "assets",
                 "assets/favicon.ico"

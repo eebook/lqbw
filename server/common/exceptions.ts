@@ -1,10 +1,10 @@
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 class EEBookBaseException extends Error {
     constructor() {
         super();
         if (this.constructor === EEBookBaseException) {
-            throw new TypeError('Abstract class cannot be instantiated directly.')
+            throw new TypeError('Abstract class cannot be instantiated directly.');
         }
     }
 }
@@ -16,10 +16,17 @@ class EEBookErrorResponse extends EEBookBaseException {
     constructor(errors, status_code) {
         super();
         this.errors = [];
-        let self = this;
+        const self = this;
 
         _.forEach(errors, (error) => {
+            self.errors.push(_.pick(error, ['code', 'source', 'message', 'fields']));
+            self.message = error.message;
         });
+        this.status = status_code;
+    }
+
+    data() {
+        return this.errors;
     }
 }
 

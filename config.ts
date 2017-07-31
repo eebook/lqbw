@@ -39,6 +39,6 @@ const config = {
 
     // Otherwise, you can only login with github.
     ALLOW_SIGN_UP: true,
-}
+};
 
 export default config;

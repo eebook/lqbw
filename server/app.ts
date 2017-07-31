@@ -11,13 +11,13 @@ import * as bodyParser from 'body-parser';
 import config from '../config';
 import eebLogger from './logger/logger';
 import * as index from './routes/index';
-import * as users from './routes/users';
+import * as people from './routes/people';
 
-
+const logger = eebLogger.logger;
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../public'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 
@@ -26,10 +26,10 @@ app.engine('html', require('ejs').renderFile);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/people', people);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -51,9 +51,9 @@ app.use('/users', users);
 
 if (!module.parent) {
   app.listen(config.PORT, function () {
-    eebLogger.logger.info('eebook listening on port', config.PORT);
-    eebLogger.logger.info('May the force be with you...');
-    eebLogger.logger.info('You can debug your app with http://' + config.HOST + ':' + config.PORT);
+    logger.info('eebook listening on port', config.PORT);
+    logger.info('May the force be with you...');
+    logger.info('You can debug your app with http://' + config.HOST + ':' + config.PORT);
   });
 }
 

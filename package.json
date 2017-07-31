@@ -18,7 +18,7 @@
     "build": "ng build",
     "start": "node dist/server/app.js",
     "predev": "tsc -p server",
-    "dev": "concurrently \"tsc -w -p server\" \"nodemon dist/server/app.js\" \"copyfiles server/**/*.json server/**/*.html dist/\" ",
+    "dev": "concurrently \"tsc -w -p server\" \"nodemon dist/server/app.js\" ",
     "test": "ng test",
     "lint": "ng lint",
     "lintbe": "tslint server/**/**.ts{,x}",
@@ -41,6 +41,8 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "log4js": "^1.1.1",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
     "rxjs": "^5.1.0"
   },
   "devDependencies": {
