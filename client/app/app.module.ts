@@ -3,17 +3,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
+import { UserComponent } from './user/user.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { appRoutes } from './app.routes';
+// import { UserRegisterComponent } from './user/user-register/user-register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRegisterComponent
+    UserComponent,
+    UserRegisterComponent,
+    // UserRegisterComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule,
+    // RouterModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
