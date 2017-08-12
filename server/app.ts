@@ -12,6 +12,7 @@ import config from '../config';
 import eebLogger from './logger/logger';
 import * as index from './routes/index';
 import * as people from './routes/people';
+import * as auth from './routes/account';
 
 const logger = eebLogger.logger;
 const app = express();
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/', index);
 app.use('/people', people);
+app.use('/auth', auth);
 app.use('*', index);
 
 // catch 404 and forward to error handler

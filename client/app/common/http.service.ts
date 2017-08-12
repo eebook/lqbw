@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptionsArgs, URLSearchParams, Response } from '@angular/http';
 import { TimeoutError } from 'rxjs/util/TimeoutError';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/timeout';
+import 'rxjs/add/operator/topromise';
 
 const TIMEOUT_IN_MS = 30000;   // 30 seconds
 
@@ -18,7 +21,7 @@ interface ErrorResponse {
 }
 
 
-function safeErrorReponseJson(response: Response): { errors: [any] } {
+function safeErrorResponseJson(response: Response): { errors: [any] } {
   try {
     return response.json();
   } catch (e) {
@@ -40,7 +43,7 @@ export class HttpService {
     return urlSearchParams;
   }
 
-  constructor(private http: Http, ) {
+  constructor(public http: Http, ) {
   }
 
   /**
@@ -53,13 +56,31 @@ export class HttpService {
    * @param options
    * @returns {Promise<any>}
    */
-  return(url: string, options: RequestOptionsArgs = { method: 'GET' }): Promise<any> {
-      return this.http.request(url, options)
-        .timeout(TIMEOUT_IN_MS)
-        .toPromise()
-        .then(res => res.json())
-        .catch(error => {
-
+  public request(url: string, options: RequestOptionsArgs = { method: 'GET' }): Promise<any> {
+    return this.http.request(url, options)
+      .timeout(TIMEOUT_IN_MS)
+      .toPromise()
+      .then(res => res.json())
+      .catch(error => {
+        let errors: ErrorResponse['errors'];
+        if (error instanceof Response) {
+          if (error.status === 0) {
+            errors = [{ code: 'network_issue' }];
+          } else {
+            errors = safeErrorResponseJson(error).errors;
+          }
+        } else if (error instanceof TimeoutError) {
+          errors = [{ code: 'timeout_error' }];
+          if (options.method !== 'GET') {
+            // this.toast.showMessageToast({
+            //   type: ToastType.Error,
+            //   message: this.translate.get('timeout_error')
+            // });
+          }
+        } else {
+          errors = [{ code: 'unknown_issue', message: error.toString() }];
+        }
+        throw errors;
       });
   }
 }

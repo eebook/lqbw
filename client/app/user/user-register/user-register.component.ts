@@ -1,22 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injector} from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { FieldBase, Textbox, Image } from '../../common/dynamic-form/form-field';
+import { fadeIn } from '../../animations/fade-in';
+import { HttpService } from '../../common/http.service';
 
 
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.scss']
+  styleUrls: ['./user-register.component.scss'],
+  animations: [ fadeIn ],
+  providers: [ HttpService ]
 })
 
 export class UserRegisterComponent implements OnInit {
   submitting = false;
   public form: FormGroup;
 
-  get registerDisabled() {
-    return !this.form.valid || this.submitting;
+  constructor(
+    private injector: Injector,
+    private http: HttpService,
+    // public http: Http,
+    private activateRoute: ActivatedRoute,
+    private router: Router,
+  ) {
   }
 
   @Input() fields: FieldBase<any>[] = [
@@ -37,22 +48,26 @@ export class UserRegisterComponent implements OnInit {
       type: 'password',
       id: 'password',
       key: 'password',
-      validators: [Validators.required, Validators.email]
+      validators: [Validators.required]
     })
   ];
-
-  constructor(public router: Router,
-    public activateRoute: ActivatedRoute ) {
-  }
 
   ngOnInit() {
     this.form = this.toFormGroup(this.fields);
 
     this.activateRoute.params.subscribe(
       params => {
-        console.log(params);
+        console.log('activateRoute params: ', params);
       }
     );
+  }
+
+  protected get injectorInstance() {
+    return this.injector;
+  }
+
+  get registerDisabled() {
+    return !this.form.valid || this.submitting;
   }
 
   toFormGroup(fields: FieldBase<any>[]) {
@@ -66,12 +81,35 @@ export class UserRegisterComponent implements OnInit {
   }
 
   register() {
+    console.log('Registering...');
     if (this.registerDisabled) {
       return;
     }
     this.submitting = true;
 
-    console.log(this.form);
-    console.log(this.form.value);
+    // this.http.request('/auth/register', { method: 'POST', body: this.form.value })
+    //   .subscribe(
+    //     data => {
+    //       console.log(data);
+    //     },
+    //     error => {
+    //       console.error(error);
+    //     }
+    //   );
+    this.submitting = false;
+    this.http.request('/auth/register', {
+      method: 'POST',
+      body: this.form.value
+    }).then(() => {
+      console.log('Successfully registerd...');
+      return this.router.navigate(['register']);
+    }).catch(errors => {
+      if (errors instanceof Array) {
+        console.log(errors);
+      }
+    }).then(() => {
+      console.log('Submitting is false now');
+      this.submitting = false;
+    });
   }
 }

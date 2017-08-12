@@ -5,6 +5,7 @@ export class FieldBase<T> {
     label: string;
     controlType: string;
     placeholder: string;
+    formControlName: string;
     validators: Array<T>;
 
     constructor(options: {

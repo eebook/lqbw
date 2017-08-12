@@ -13,7 +13,7 @@ export function Request(option) {
         return res;
     }).catch(function (err) {
         logger.error(`requesing, method: ${option.method}, url: ${option.url}` +
-        `headers: ${JSON.stringify(option.headers)} error: ${err.statusCode} `);
+        `, headers: ${JSON.stringify(option.headers)} error: ${err.statusCode} `);
         throw err;
     });
 }
@@ -38,6 +38,7 @@ export function EEBookRequest(ctx: any, method, path, args?) {
     if (_.get(args, 'data')) {
         option['body'] = args.data;
     }
+    logger.debug('option???', option);
     // Request(option).then(function (data) {
     //     return data;
     // }).catch(function (err){

@@ -7,5 +7,3 @@ router.get('/knarfeh', function(req, res, next) {
 });
 
 module.exports = router;
-
-export { router };
