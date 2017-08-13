@@ -57,7 +57,7 @@ export class UserRegisterComponent implements OnInit {
 
     this.activateRoute.params.subscribe(
       params => {
-        console.log('activateRoute params: ', params);
+        console.log('User registering, activateRoute params: ', params);
       }
     );
   }
@@ -86,17 +86,6 @@ export class UserRegisterComponent implements OnInit {
       return;
     }
     this.submitting = true;
-
-    // this.http.request('/auth/register', { method: 'POST', body: this.form.value })
-    //   .subscribe(
-    //     data => {
-    //       console.log(data);
-    //     },
-    //     error => {
-    //       console.error(error);
-    //     }
-    //   );
-    this.submitting = false;
     this.http.request('/auth/register', {
       method: 'POST',
       body: this.form.value

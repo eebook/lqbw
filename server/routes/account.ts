@@ -7,22 +7,58 @@ const logger = eebLogger.logger;
 const router = express.Router();
 
 router.post('/register', function(req, res, next) {
-    logger.debug('req.body??????', req.body);
-
-    EEBookRequest(req, 'POST', '/auth/register', {'data': req.body}).then(function (result) {
-        // return { 'result': result };
-        res.send({'result': result });
-    }).catch(function (err) {
-        throw err;
-    });
+  logger.debug('Registring, req.body: ', req.body);
+  EEBookRequest(req, 'POST', '/auth/register', {'data': req.body}).then(function (result) {
+    res.send({'result': result });
+  }).catch(function (err) {
+    throw err;
+  });
 });
 
-router.post('/signin', function(req, res, next) {
-    EEBookRequest(req, 'POST', '/auth/generate-api-token').then(function (result) {
-        res.send('TODO: signin');
+router.post('/login', function(req, res, next) {
+  logger.debug('User login, req.body: ', req.body);
+  EEBookRequest(req, 'POST', '/auth/generate-api-token', {'data': req.body}).then(function (result) {
+  // res.send({'result': result });
+    logger.debug('result from api: ', result);
+    req.session.regenerate(function(err) {
+      if (err) {
+      }
+      if (!req.session.user) {
+        req.session.user = {};
+      }
+      req.session.user['username'] = result.username;
+        logger.debug('req session loginUser: ', req.session);
+        // res.json({'1': '2'});
+            // next();
+        res.send({'result': result});
+      });
     }).catch(function (err) {
         throw err;
     });
+    // const result = EEBookRequest(req, 'POST', '/auth/generate-api-token', {'data': req.body});
+    // logger.debug('result from eebook: ', result);
+    // if (result) {
+    //     req.session.regenerate(function(err) {
+    //         if (err) {
+
+    //         }
+    //         if (!req.session.user) {
+    //             req.session.user = {};
+    //         }
+    //         req.session.user['username'] = result.username;
+    //         logger.debug('req session loginUser: ', req.session);
+    //         res.json({'1': '2'});
+    //         next();
+    //     });
+    // }
+});
+
+router.get('/logout', function(req, res, next){
+  logger.debug('User logout...');
+  logger.debug('User session user: ', req.session.user);
+  logger.debug('User session: ', req.session);
+  req.session.destroy();
+  res.send({'': ''});
 });
 
 module.exports = router;

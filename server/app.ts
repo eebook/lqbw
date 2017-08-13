@@ -7,6 +7,10 @@ import * as express from 'express';
 import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
+import * as session from 'express-session';
+const RedisStore = require('connect-redis')(session);
+// import * as FileStore from 'session-file-store';
+// let FileStore = require('session-file-store')(session);
 
 import config from '../config';
 import eebLogger from './logger/logger';
@@ -29,9 +33,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+// const fileStore = FileStore(session);
+
+app.use(session({
+  secret: 'sessionsecret',
+  // store: TODO: store in redis?
+  store: new RedisStore(),
+  resave: false,
+  saveUninitialized: true
+}));
+
 app.use('/', index);
 app.use('/people', people);
-app.use('/auth', auth);
+app.use('/ajax/auth', auth);
 app.use('*', index);
 
 // catch 404 and forward to error handler

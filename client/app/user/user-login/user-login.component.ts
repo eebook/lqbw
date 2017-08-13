@@ -1,4 +1,4 @@
-import { Textbox } from './../../common/dynamic-form/form-field/textbox';
+import { CommonModule } from './../../common/common.module';
 import { Component, OnInit, Input, Injector } from '@angular/core';
 import { Http, Response} from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,6 +19,7 @@ import { HttpService } from '../../common/http.service';
 
 
 export class UserLoginComponent implements OnInit {
+  submitting = false;
   public form: FormGroup;
 
   constructor(
@@ -32,17 +33,20 @@ export class UserLoginComponent implements OnInit {
     new Textbox({
       label: 'username',
       key: 'username',
+      value: 'knarfeh',
       validators: [Validators.required]
     }),
     new Textbox({
       label: 'email',
       key: 'email',
+      value: 'knarfeh@outlook.com',
       Validators: [Validators.required]
     }),
     new Textbox({
       label: 'password',
       key: 'password',
       type: 'password',
+      value: 'knarfehknarfeh',
       Validators: [Validators.required]
     })
   ];
@@ -72,8 +76,32 @@ export class UserLoginComponent implements OnInit {
     return this.injector;
   }
 
-  login() {
-    console.log('The user is landing...');
+  get loginDisabled() {
+    return !this.form.valid || this.submitting;
   }
 
+  login() {
+    console.log('The user is landing...');
+    if (this.loginDisabled) {
+      return;
+    }
+    this.submitting = true;
+
+    this.http.request('/ajax/auth/login', {
+      method: 'POST',
+      body: this.form.value
+    }).then(({ result }) => {
+      console.log('Login result: ', result);
+      console.log('Successfully login...');
+      localStorage.setItem('currentUser', result.username);
+      return this.router.navigate(['register']);
+    }).catch(errors => {
+      if (errors instanceof Array) {
+        console.log(errors);
+      }
+    }).then(() => {
+      console.log('Submitting is false now');
+      this.submitting = false;
+    });
+  }
 }

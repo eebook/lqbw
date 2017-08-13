@@ -1,3 +1,4 @@
+import { AuthService } from './common/auth.service';
 import { Component, HostListener, ElementRef, Renderer, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 import 'rxjs/add/operator/merge';
@@ -13,6 +14,20 @@ import { Message } from 'primeng/primeng';
 export class AppComponent {
   public msgs: Message[] = [];
   private globalClickCallbackFn: Function;
-  private loginSuccessCallbackFn: Function;
 
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+  ) {}
+
+  public doLogout(): void {
+    this.authService.logout();
+    this.msgs = [];
+    this.msgs.push({
+      severity: 'success',
+      summary: 'Success Message',
+      detail: 'Successfully log out'
+    });
+    this.router.navigateByUrl('');
+  }
 }

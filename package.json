@@ -37,16 +37,19 @@
     "@angular/router": "^5.0.0-beta.3",
     "body-parser": "~1.17.1",
     "bootstrap": "^3.3.7",
+    "connect-redis": "^3.3.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "ejs-mate": "2.3.0",
     "express": "~4.15.2",
+    "express-session": "^1.15.5",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "log4js": "^1.1.1",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
-    "rxjs": "^5.4.3"
+    "rxjs": "^5.4.3",
+    "session-file-store": "^1.1.2"
   },
   "devDependencies": {
     "@angular/cli": "^1.2.6",
