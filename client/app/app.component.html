@@ -28,6 +28,18 @@
                 <li routerLinkActive="active">
                     <a routerLink="register">注册</a>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Me
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a routerLink="settings">Settings</a></li>
+                        <li><a href="#">Sign out</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -42,12 +54,16 @@
     </div>
 </div>
 
-<div class="footer bs-footer">
-    <div class="container">
-        <div class="row">
-            <p>
-                Powered by <a href="https://github.com/knarfeh" target="_blank">knarfeh</a>
-            </p>
-        </div>
+<div class="container-lg px-3" role="contentinfo">
+    <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light">
+        <ul class="list-style-none d-flex flex-wrap">
+            <li class="mr-3">
+                © 2017
+                <span>knarfeh</span>
+            </li>
+            <li class="mr-3"><a href="#" >Contact</a></li>
+            <li class="mr-3"><a href="#" >About</a></li>
+            <li class="mr-3"><a href="#" >Blog</a></li>
+        </ul>
     </div>
 </div>

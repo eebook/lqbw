@@ -16,6 +16,7 @@ import { CommonModule } from './common/common.module';
 import { AuthService } from './common/auth.service';
 import { HttpService } from './common/http.service';
 import { BookstoreComponent } from './bookstore/bookstore.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { BookstoreComponent } from './bookstore/bookstore.component';
     FormControlComponent,
     UserLoginComponent,
     BookstoreComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

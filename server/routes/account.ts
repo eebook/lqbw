@@ -1,9 +1,9 @@
 import * as express from 'express';
 
 import { EEBookRequest } from '../common/request';
-import eebLogger from '../logger/logger';
+import eebookLogger from '../logger/logger';
 
-const logger = eebLogger.logger;
+const logger = eebookLogger.logger;
 const router = express.Router();
 
 router.post('/register', function(req, res, next) {
@@ -35,22 +35,6 @@ router.post('/login', function(req, res, next) {
     }).catch(function (err) {
         throw err;
     });
-    // const result = EEBookRequest(req, 'POST', '/auth/generate-api-token', {'data': req.body});
-    // logger.debug('result from eebook: ', result);
-    // if (result) {
-    //     req.session.regenerate(function(err) {
-    //         if (err) {
-
-    //         }
-    //         if (!req.session.user) {
-    //             req.session.user = {};
-    //         }
-    //         req.session.user['username'] = result.username;
-    //         logger.debug('req session loginUser: ', req.session);
-    //         res.json({'1': '2'});
-    //         next();
-    //     });
-    // }
 });
 
 router.get('/logout', function(req, res, next){

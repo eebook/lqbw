@@ -4,7 +4,7 @@
  */
 
 const PATH = require('path');
-const EEBOOK_COMPONENT = 'eebookorg'
+const EEBOOK_COMPONENT = 'eebookorg';
 
 const config = {
     DEBUG: true,
@@ -30,7 +30,7 @@ const config = {
         callbackURL: 'http://localhost:3001/auth/github/callback'
     },
 
-    API_SERVER_URL: 'http://localhost:8082/',
+    API_SERVER_URL: 'http://192.168.199.121:8083/',
     API_VERSION: 'v1',
 
     LOGGERCONFIG:  {
