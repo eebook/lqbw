@@ -19,3 +19,9 @@ redis-server
 ```
 npm run dev
 ```
+
+### generate messages.xlf
+
+```
+./node_modules/.bin/ng-xi18n  --i18nFormat=xlf  --outFile=./client/locale/messages.xlf
+```

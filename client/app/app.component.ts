@@ -1,7 +1,6 @@
 import { AuthService } from './common/auth.service';
 import { Component, HostListener, ElementRef, Renderer, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
-import 'rxjs/add/operator/merge';
 import { Message } from 'primeng/primeng';
 
 
@@ -29,5 +28,10 @@ export class AppComponent {
       detail: 'Successfully log out'
     });
     this.router.navigateByUrl('');
+  }
+
+  changeLang(lang: string): void {
+    localStorage.setItem('lang', lang);
+    window.location.reload();
   }
 }
