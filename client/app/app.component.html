@@ -1,71 +1,69 @@
 <div class="navbar navbar-fixed-top main-nav">
-    <div class="container">
-        <p-growl [(value)]="msgs"></p-growl>
-        <div class="navbar-header">
-            <button #button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse" (click)="toggle(button)">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar">aa</span>
-                <span class="icon-bar">bb</span>
-                <span class="icon-bar">cc</span>
-            </button>
+  <div class="container">
+    <p-growl [(value)]="msgs"></p-growl>
+      <div class="navbar-header">
+        <button #button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse" (click)="toggle(button)">
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar">aa</span>
+          <span class="icon-bar">bb</span>
+          <span class="icon-bar">cc</span>
+        </button>
             <!-- <a class="navbar-brand navbar-brand-my">EEBook</a> -->
-        </div>
-        <div class="collapse navbar-collapse navbar-responsive-collapse" aria-expanded="false">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#">EEBook</a>
-                </li>
+      </div>
+      <div class="collapse navbar-collapse navbar-responsive-collapse" aria-expanded="false">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#">EEBook</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li routerLinkActive="active">
+            <a routerLink="bookstore" i18n="bookstore|Bookstore@@bookstore">bookstore</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="login" i18n="login|Login on the home page@@login">login</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="register" i18n="register|Register on the home page@@register">register</a>
+          </li>
+          <li class="dropdown">
+            <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+              TODO: My home page
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#" i18n="profile|profile@profile">Profile</a></li>
+              <li class="divider"></li>
+              <li><a routerLink="settings" i18n="settings|Settings on the home page@@settings">Settings</a></li>
+              <li><a href='javascript:void(0);' (click)='doLogout()' i18n="logout|Logout of the site@@logout">Logout</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li routerLinkActive="active">
-                    <a routerLink="bookstore">书店</a>
-                </li>
-                <li routerLinkActive="active">
-                    <a routerLink="login">登录</a>
-                </li>
-                <li routerLinkActiva="active">
-                    <a href='javascript:void(0);' (click)='doLogout()'>登出</a>
-                <li routerLinkActive="active">
-                    <a routerLink="register">注册</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Me
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a routerLink="settings">Settings</a></li>
-                        <li><a href="#">Sign out</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+          </li>
+        </ul>
+      </div>
+  </div>
 </div>
 
 <!-- 主体内容区域 -->
 <div class="container main-container">
-    <div class="row">
-        <div class="col-md-12">
-            <router-outlet></router-outlet>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
     </div>
+  </div>
 </div>
 
 <div class="container-lg px-3" role="contentinfo">
-    <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light">
-        <ul class="list-style-none d-flex flex-wrap">
-            <li class="mr-3">
-                © 2017
-                <span>knarfeh</span>
-            </li>
-            <li class="mr-3"><a href="#" >Contact</a></li>
-            <li class="mr-3"><a href="#" >About</a></li>
-            <li class="mr-3"><a href="#" >Blog</a></li>
-            <li class="mr-3"><a (click)="changeLang('zh')">zh</a></li>
-            <li class="mr-3"><a (click)="changeLang('en-US')">en-US</a></li>
-        </ul>
-    </div>
+  <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light">
+    <ul class="list-style-none d-flex flex-wrap">
+      <li class="mr-3">
+        © 2017
+        <span>knarfeh</span>
+      </li>
+      <li class="mr-3"><a href="#" >Contact</a></li>
+      <li class="mr-3"><a href="#" >About</a></li>
+      <li class="mr-3"><a href="#" >Blog</a></li>
+      <li class="mr-3"><a (click)="changeLang('zh')">zh</a></li>
+      <li class="mr-3"><a (click)="changeLang('en-US')">en-US</a></li>
+    </ul>
+  </div>
 </div>

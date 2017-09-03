@@ -23,7 +23,7 @@
     "lint": "ng lint",
     "lintbe": "tslint server/**/**.ts{,x}",
     "e2e": "ng e2e",
-    "i18n": "ng xi18n --i18nFormat=xlf  --outFile=./client/locale/messages.xlf"
+    "i18n": "ng xi18n --i18nFormat=xlf  --outFile=./assets/i18n/messages.xlf"
   },
   "dependencies": {
     "@angular/animations": "^4.4.0-RC.0",
