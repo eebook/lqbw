@@ -93,8 +93,8 @@ export class UserLoginComponent implements OnInit {
     }).then(({ result }) => {
       console.log('Login result: ', result);
       console.log('Successfully login...');
-      localStorage.setItem('currentUser', result.username);
-      return this.router.navigate(['register']);
+      localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
+      return this.router.navigate(['bookstore']);
     }).catch(errors => {
       if (errors instanceof Array) {
         console.log(errors);

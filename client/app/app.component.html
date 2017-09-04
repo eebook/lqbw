@@ -16,23 +16,33 @@
             <a href="#">EEBook</a>
           </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li routerLinkActive="active">
-            <a routerLink="bookstore" i18n="bookstore|Bookstore@@bookstore">bookstore</a>
-          </li>
+        <ul *ngIf="!currentUser?.userName" class="nav navbar-nav navbar-right">
           <li routerLinkActive="active">
             <a routerLink="login" i18n="login|Login on the home page@@login">login</a>
           </li>
           <li routerLinkActive="active">
             <a routerLink="register" i18n="register|Register on the home page@@register">register</a>
           </li>
+        </ul>
+        <ul *ngIf="currentUser?.userName" class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="/" class="dropdown-toggle" data-toggle="dropdown">
-              TODO: My home page
+            <a href="/bookstore" class="dropdown-toggle" data-toggle="dropdown">
+              Books
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" i18n="profile|profile@profile">Profile</a></li>
+              <li><a href="bookstore" i18n="bookstore|bookstore@@bookstore">Bookstore</a></li>
+              <li><a href="/job/config/list" i18n="job|job@@job">Job</a></li>
+              <li><a href="/job/history/list" i18n="job-history|job-history@@job-history">Job History</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="/people/{{currentUser?.userName}}" class="dropdown-toggle" data-toggle="dropdown">
+              {{currentUser?.userName}}
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/people/{{currentUser?.userName}}" i18n="profile|profile@profile">Profile</a></li>
               <li class="divider"></li>
               <li><a routerLink="settings" i18n="settings|Settings on the home page@@settings">Settings</a></li>
               <li><a href='javascript:void(0);' (click)='doLogout()' i18n="logout|Logout of the site@@logout">Logout</a></li>

@@ -13,7 +13,7 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { FormControlComponent } from './common/dynamic-form/form-control.component';
 import { appRoutes } from './app.routes';
 import { CommonModule } from './common/common.module';
-import { AuthService } from './common/auth.service';
+import { AuthService, AuthGuard } from './common/auth.service';
 import { HttpService } from './common/http.service';
 import { BookstoreComponent } from './bookstore/bookstore.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -38,7 +38,13 @@ import { SettingsComponent } from './settings/settings.component';
     GrowlModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, HttpService],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    HttpService,
+    AuthGuard
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

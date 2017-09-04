@@ -25,3 +25,7 @@ npm run dev
 ```
 ./node_modules/.bin/ng-xi18n  --i18nFormat=xlf  --outFile=./client/locale/messages.xlf
 ```
+
+### Konwn issues
+
+* login/logout need refresh manually
