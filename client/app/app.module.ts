@@ -17,6 +17,12 @@ import { AuthService, AuthGuard } from './common/auth.service';
 import { HttpService } from './common/http.service';
 import { BookstoreComponent } from './bookstore/bookstore.component';
 import { SettingsComponent } from './settings/settings.component';
+import { JobComponent } from './job/job.component';
+import { ConfigComponent } from './job/config/config.component';
+import { HistoryComponent } from './job/history/history.component';
+import { ListComponent } from './job/config/list/list.component';
+import { CreateComponent } from './job/config/create/create.component';
+import { DetailComponent } from './job/history/detail/detail.component';
 
 
 @NgModule({
@@ -28,6 +34,12 @@ import { SettingsComponent } from './settings/settings.component';
     UserLoginComponent,
     BookstoreComponent,
     SettingsComponent,
+    JobComponent,
+    ConfigComponent,
+    HistoryComponent,
+    ListComponent,
+    CreateComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,

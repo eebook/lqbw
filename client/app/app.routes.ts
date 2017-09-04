@@ -1,3 +1,4 @@
+import { JobComponent } from './job/job.component';
 import { AuthGuard } from './common/auth.service';
 import { RouterModule, CanActivate } from '@angular/router';
 
@@ -25,5 +26,9 @@ export const appRoutes = [
     {
         path: 'bookstore',
         component: BookstoreComponent
+    },
+    {
+        path: 'job',
+        component: JobComponent
     }
 ];
