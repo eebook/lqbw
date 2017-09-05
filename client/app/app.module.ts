@@ -18,11 +18,10 @@ import { HttpService } from './common/http.service';
 import { BookstoreComponent } from './bookstore/bookstore.component';
 import { SettingsComponent } from './settings/settings.component';
 import { JobComponent } from './job/job.component';
-import { ConfigComponent } from './job/config/config.component';
-import { HistoryComponent } from './job/history/history.component';
-import { ListComponent } from './job/config/list/list.component';
-import { CreateComponent } from './job/config/create/create.component';
-import { DetailComponent } from './job/history/detail/detail.component';
+import { JobHistoryDetailComponent } from './job/history/job-history-detail/job-history-detail.component';
+import { JobHistoryListComponent } from './job/history/job-history-list/job-history-list.component';
+import { JobConfigCreateComponent } from './job/config/job-config-create/job-config-create.component';
+import { JobConfigListComponent } from './job/config/job-config-list/job-config-list.component';
 
 
 @NgModule({
@@ -35,11 +34,10 @@ import { DetailComponent } from './job/history/detail/detail.component';
     BookstoreComponent,
     SettingsComponent,
     JobComponent,
-    ConfigComponent,
-    HistoryComponent,
-    ListComponent,
-    CreateComponent,
-    DetailComponent,
+    JobHistoryDetailComponent,
+    JobHistoryListComponent,
+    JobConfigCreateComponent,
+    JobConfigListComponent,
   ],
   imports: [
     BrowserModule,

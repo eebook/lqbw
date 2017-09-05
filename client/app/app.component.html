@@ -13,7 +13,7 @@
       <div class="collapse navbar-collapse navbar-responsive-collapse" aria-expanded="false">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#">EEBook</a>
+            <a href="/">EEBook</a>
           </li>
         </ul>
         <ul *ngIf="!currentUser?.userName" class="nav navbar-nav navbar-right">
@@ -42,7 +42,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="/people/{{currentUser?.userName}}" i18n="profile|profile@profile">Profile</a></li>
+              <li><a href="/people/{{currentUser?.userName}}" i18n="profile|profile@@profile">Profile</a></li>
               <li class="divider"></li>
               <li><a routerLink="settings" i18n="settings|Settings on the home page@@settings">Settings</a></li>
               <li><a href='javascript:void(0);' (click)='doLogout()' i18n="logout|Logout of the site@@logout">Logout</a></li>
