@@ -15,6 +15,7 @@ import { appRoutes } from './app.routes';
 import { CommonModule } from './common/common.module';
 import { AuthService, AuthGuard } from './common/auth.service';
 import { HttpService } from './common/http.service';
+import { JobService } from './job/job.service';
 import { BookstoreComponent } from './bookstore/bookstore.component';
 import { SettingsComponent } from './settings/settings.component';
 import { JobComponent } from './job/job.component';
@@ -51,6 +52,7 @@ import { JobConfigListComponent } from './job/config/job-config-list/job-config-
   providers: [
     AuthService,
     HttpService,
+    JobService,
     AuthGuard
   ],
   bootstrap: [
