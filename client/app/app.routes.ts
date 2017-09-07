@@ -51,6 +51,7 @@ export const appRoutes = [
           { path: 'detail', component: JobHistoryDetailComponent }
         ]
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   }
 ];

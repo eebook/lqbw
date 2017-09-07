@@ -17,6 +17,7 @@ import eebLogger from './logger/logger';
 import * as index from './routes/index';
 import * as people from './routes/people';
 import * as auth from './routes/account';
+import * as job_configs from './routes/job_configs';
 
 const logger = eebLogger.logger;
 const app = express();
@@ -46,6 +47,7 @@ app.use(session({
 app.use('/', index);
 app.use('/people', people);
 app.use('/ajax/auth', auth);
+app.use('/ajax/job_configs', job_configs);
 app.use('*', index);
 
 // catch 404 and forward to error handler

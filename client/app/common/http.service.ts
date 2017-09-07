@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptionsArgs, URLSearchParams, Response } from '@angular/http';
+import { Http, RequestMethod, RequestOptionsArgs, URLSearchParams, Response } from '@angular/http';
 import { TimeoutError } from 'rxjs/util/TimeoutError';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/timeout';
@@ -30,9 +30,6 @@ function safeErrorResponseJson(response: Response): { errors: [any] } {
 }
 
 
-/**
- * Utility function for fetching XHL requests
- */
 @Injectable()
 export class HttpService {
   static buildURLSearchParams(params: any): URLSearchParams {
@@ -85,5 +82,13 @@ export class HttpService {
   }
 }
 
+@Injectable()
+export class SimpleRequest {
+  constructor(public http: Http) {
 
+  }
+  request(url: string, options: RequestOptionsArgs = { method: 'GET' }) {
+    return this.http.request(url, options);
+  }
+}
 
