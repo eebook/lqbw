@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+          <trans-unit id="bookstore" datatype="html">
+        <source>bookstore</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">Bookstore</note>
+        <note priority="1" from="meaning">bookstore</note>
+      </trans-unit>
+      <trans-unit id="login" datatype="html">
+        <source>login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <note priority="1" from="description">Login on the home page</note>
+        <note priority="1" from="meaning">login</note>
+      </trans-unit>
+      <trans-unit id="register" datatype="html">
+        <source>register</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">Register on the home page</note>
+        <note priority="1" from="meaning">register</note>
+      </trans-unit>
+      <trans-unit id="5f8e6014b09c0c8b9f4d980da74d7c6036d3a38d" datatype="html">
+        <source>Profile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">profile@profile</note>
+        <note priority="1" from="meaning">profile</note>
+      </trans-unit>
+      <trans-unit id="settings" datatype="html">
+        <source>Settings</source>
+        <target>设置</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">Settings on the home page</note>
+        <note priority="1" from="meaning">settings</note>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Logout</source>
+        <target>退出登录</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <note priority="1" from="description">Logout of the site</note>
+        <note priority="1" from="meaning">logout</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
