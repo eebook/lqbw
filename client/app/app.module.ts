@@ -23,6 +23,7 @@ import { JobHistoryDetailComponent } from './job/history/job-history-detail/job-
 import { JobHistoryListComponent } from './job/history/job-history-list/job-history-list.component';
 import { JobConfigCreateComponent } from './job/config/job-config-create/job-config-create.component';
 import { JobConfigListComponent } from './job/config/job-config-list/job-config-list.component';
+import { SearchingComponent } from './searching/searching.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { JobConfigListComponent } from './job/config/job-config-list/job-config-
     JobHistoryListComponent,
     JobConfigCreateComponent,
     JobConfigListComponent,
+    SearchingComponent,
   ],
   imports: [
     BrowserModule,
