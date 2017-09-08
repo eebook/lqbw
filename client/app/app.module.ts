@@ -1,6 +1,7 @@
+import { GithubService } from './searching/search.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,6 +25,8 @@ import { JobHistoryListComponent } from './job/history/job-history-list/job-hist
 import { JobConfigCreateComponent } from './job/config/job-config-create/job-config-create.component';
 import { JobConfigListComponent } from './job/config/job-config-list/job-config-list.component';
 import { SearchingComponent } from './searching/searching.component';
+import { SearchFormComponent } from './searching/search-form/search-form.component';
+import { SearchResultComponent } from './searching/search-result/search-result.component';
 
 
 @NgModule({
@@ -41,10 +44,13 @@ import { SearchingComponent } from './searching/searching.component';
     JobConfigCreateComponent,
     JobConfigListComponent,
     SearchingComponent,
+    SearchFormComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     BrowserAnimationsModule,
     // RouterModule,
@@ -55,6 +61,7 @@ import { SearchingComponent } from './searching/searching.component';
     AuthService,
     HttpService,
     JobService,
+    GithubService,
     AuthGuard
   ],
   bootstrap: [

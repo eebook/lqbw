@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Search } from './model/search-model';
+import { GithubService } from './search.service';
 
 @Component({
   selector: 'app-searching',
   templateUrl: './searching.component.html',
   styleUrls: ['./searching.component.scss']
 })
-export class SearchingComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+export class SearchingComponent {
+  public searchModel1: Search;
 
+  constructor() {
+    this.searchModel1 = new Search('', '');
   }
-  public searchBooks() {
-    console.log('searching!!!');
-  }
-
 }
