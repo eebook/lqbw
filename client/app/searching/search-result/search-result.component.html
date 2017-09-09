@@ -1,0 +1,26 @@
+<div class="m-x-auto"  *ngIf="searchModel.searchResult == '' && (searchModel.searchString && searchModel.searchString.length > 0)">
+        <div class="starter-template text-xs-center">
+            <h5>User Profile not found.</h5>
+            <p class="lead">Please enter a different <b>username</b>.</p>
+        </div>
+    </div>
+    <div class="m-x-auto"  *ngIf="(searchModel.searchString.length == 0)">
+        <div class="starter-template text-xs-center">
+            <h5>Search any user</h5>
+            <p class="lead">Please enter a <b>username</b>.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div *ngIf="searchModel && searchModel.searchResult && (searchModel.searchString && searchModel.searchString.length > 0)">
+              <ul class="list-group">
+                <li class="list-group-item"><b>Username: </b> {{searchModel.searchResult.login}}</li>
+                <li class="list-group-item"><b>Location: </b> {{searchModel.searchResult.location}}</li>
+                <li class="list-group-item"><b>E-Mail: </b> {{searchModel.searchResult.email}}</li>
+                <li class="list-group-item"><b>Blog Link: </b> {{searchModel.searchResult.blog}}</li>
+                <li class="list-group-item"><b>Member Since: </b> {{searchModel.searchResult.created_at}}</li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    

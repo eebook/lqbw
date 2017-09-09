@@ -11,26 +11,15 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { SettingsComponent } from './settings/settings.component';
 import { BookstoreComponent } from './bookstore/bookstore.component';
+import { SearchingComponent } from './searching/searching.component';
 
 
 export const appRoutes = [
-  {
-    path: 'register',
-    component: UserRegisterComponent
-  },
-  {
-    path: 'login',
-    component: UserLoginComponent
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'bookstore',
-    component: BookstoreComponent
-  },
+  { path: '', component: SearchingComponent },
+  { path: 'register', component: UserRegisterComponent },
+  { path: 'login', component: UserLoginComponent },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'bookstore', component: BookstoreComponent },
   {
     path: 'job',
     children: [
