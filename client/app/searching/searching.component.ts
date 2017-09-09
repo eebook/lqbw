@@ -10,9 +10,9 @@ import { GithubService } from './search.service';
 
 
 export class SearchingComponent {
-  public searchModel1: Search;
+  public searchModelFromDad: Search;
 
   constructor() {
-    this.searchModel1 = new Search('', '');
+    this.searchModelFromDad = new Search('', '');
   }
 }
