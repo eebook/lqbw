@@ -1,8 +1,9 @@
+import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 import { JobHistoryDetailComponent } from './job/history/job-history-detail/job-history-detail.component';
 import { JobHistoryListComponent } from './job/history/job-history-list/job-history-list.component';
 import { JobConfigListComponent } from './job/config/job-config-list/job-config-list.component';
 import { JobConfigCreateComponent } from './job/config/job-config-create/job-config-create.component';
-import { JobComponent } from './job/job.component';
+// import { JobComponent } from './job/job.component';
 import { AuthGuard } from './common/auth.service';
 import { RouterModule, CanActivate } from '@angular/router';
 
@@ -29,6 +30,7 @@ export const appRoutes = [
         children: [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
           { path: 'list', component: JobConfigListComponent },
+          { path: 'detail/:jobConfigName', component: JobConfigDetailComponent},
           { path: 'create', component: JobConfigCreateComponent },
         ]
       },

@@ -7,11 +7,9 @@ const LOGGER = eebookLogger.logger;
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
-  const user = req.session.user;
-  req.user = req.session.user;
   LOGGER.debug('Get job config list');
-  EEBookRequest(req, 'GET', '/job_configs').then(function (result) {
-    LOGGER.debug('result??????', result);
+  req.user = req.session.user;
+  EEBookRequest(req, 'GET', '/job_configs', req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
       throw err;

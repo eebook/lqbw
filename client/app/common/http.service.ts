@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestMethod, RequestOptionsArgs, URLSearchParams, Response } from '@angular/http';
 import { TimeoutError } from 'rxjs/util/TimeoutError';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/timeout';
-import 'rxjs/add/operator/topromise';
+import 'rxjs/add/operator/toPromise';
 
 const TIMEOUT_IN_MS = 30000;   // 30 seconds
 
@@ -46,7 +45,6 @@ export class HttpService {
   /**
    * Wraps Angular http service:
    *   - Add new headers
-   *   - Map Observable to Promise
    *   - Handle exceptions
    *   - Handle timeout
    * @param url
@@ -64,6 +62,7 @@ export class HttpService {
           if (error.status === 0) {
             errors = [{ code: 'network_issue' }];
           } else {
+            console.log('Got error from server: ', errors);
             errors = safeErrorResponseJson(error).errors;
           }
         } else if (error instanceof TimeoutError) {

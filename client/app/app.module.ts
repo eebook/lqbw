@@ -1,9 +1,11 @@
+import { JobModule } from './job/job.module';
 import { GithubService } from './searching/search.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { GrowlModule } from 'primeng/components/growl/growl';
 
@@ -15,7 +17,7 @@ import { FormControlComponent } from './common/dynamic-form/form-control.compone
 import { appRoutes } from './app.routes';
 import { CommonModule } from './common/common.module';
 import { AuthService, AuthGuard } from './common/auth.service';
-import { HttpService } from './common/http.service';
+import { HttpService, SimpleRequest } from './common/http.service';
 import { JobService } from './job/job.service';
 import { BookstoreComponent } from './bookstore/bookstore.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -27,6 +29,7 @@ import { JobConfigListComponent } from './job/config/job-config-list/job-config-
 import { SearchingComponent } from './searching/searching.component';
 import { SearchFormComponent } from './searching/search-form/search-form.component';
 import { SearchResultComponent } from './searching/search-result/search-result.component';
+import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 
 
 @NgModule({
@@ -43,6 +46,7 @@ import { SearchResultComponent } from './searching/search-result/search-result.c
     JobHistoryListComponent,
     JobConfigCreateComponent,
     JobConfigListComponent,
+    JobConfigDetailComponent,
     SearchingComponent,
     SearchFormComponent,
     SearchResultComponent,
@@ -53,8 +57,10 @@ import { SearchResultComponent } from './searching/search-result/search-result.c
     FormsModule,
     CommonModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
     // RouterModule,
     GrowlModule,
+    // JobModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
@@ -62,6 +68,7 @@ import { SearchResultComponent } from './searching/search-result/search-result.c
     HttpService,
     JobService,
     GithubService,
+    SimpleRequest,
     AuthGuard
   ],
   bootstrap: [

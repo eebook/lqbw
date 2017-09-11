@@ -29,6 +29,8 @@ export class SearchFormComponent implements OnInit {
       console.log('Not going to search');
       this.searchModel.searchResult = '';
     } else {
+      // TODO: trim searchString.
+      // TODO: use distinctUntilChanged() of Observable to avoid Press the button that does not change value
       this._searchService.updateUser(this.searchModel.searchString);
       this.getSearchResult();
     }
@@ -38,6 +40,8 @@ export class SearchFormComponent implements OnInit {
     console.log('Getting search result');
     console.log('Got searchString: ' + this.searchModel.searchString);
     this._searchService.getUser().subscribe(user => {
+      // TODO: Fix continued triggering of async requests when typing. Take up too much resource, bad UX.
+      // Reference: https://stackoverflow.com/questions/32051273/angular-and-debounce
       this.searchModel.searchResult = user;
       this.searchUpdated.emit(this.searchModel);
       console.log('result: ', this.searchModel.searchResult);
@@ -45,6 +49,8 @@ export class SearchFormComponent implements OnInit {
       console.log('err:' + err);
       this.searchModel.searchResult = '';
       // TODO: HTTP request are asynchronous, the UX here is not very good, need to add a regular interval query.
+      // Use flatMapLatest
+      // Reference: https://segmentfault.com/a/1190000007562818
     }, () => {
       console.log('Done');
     });
