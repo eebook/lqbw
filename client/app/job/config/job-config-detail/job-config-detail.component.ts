@@ -1,5 +1,7 @@
+import { JobConfig } from './../../model/job-model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { JobService } from '../../job.service';
 
 @Component({
   selector: 'app-job-config-detail',
@@ -7,19 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-config-detail.component.scss']
 })
 export class JobConfigDetailComponent implements OnInit {
+  public job_config: JobConfig = new JobConfig();
 
-  constructor(public activeRoute: ActivatedRoute ) {
-    console.log('Constructor of JobConfigDetail');
+  constructor(
+    public activeRoute: ActivatedRoute,
+    private job_service: JobService,
+  ) {
   }
 
   ngOnInit() {
     this.activeRoute.params.subscribe(
-      params => console.log(params['jobConfigName'])
+      params => this.getJobConfigDetail(params['jobConfigName'])
     );
+
   }
 
   public getJobConfigDetail(name: string) {
-    console.log('TODO');
+    this.job_service
+      .getConfigByName(name)
+      .subscribe(data => {
+        this.job_config = data.json();
+        console.log('data json???', data.json());
+      });
   }
-
 }

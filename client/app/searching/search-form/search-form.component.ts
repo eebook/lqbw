@@ -51,6 +51,7 @@ export class SearchFormComponent implements OnInit {
       // TODO: HTTP request are asynchronous, the UX here is not very good, need to add a regular interval query.
       // Use flatMapLatest
       // Reference: https://segmentfault.com/a/1190000007562818
+      // Reference: NiceFish postlist.service.ts
     }, () => {
       console.log('Done');
     });

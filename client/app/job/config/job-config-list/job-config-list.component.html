@@ -23,8 +23,8 @@
   <tbody>
     <tr *ngFor="let jobConfig of asyncJobConfigs | async | paginate: { id: 'server', itemsPerPage: 5, currentPage: p, totalItems: total }">
       <td>
-        <a>
-          {{ jobConfig.config_name}}
+        <a [routerLink]="['/job/config/detail', jobConfig.config_name]">
+          {{ jobConfig.config_name }}
         </a>
       </td>
       <td>
@@ -37,14 +37,16 @@
         {{ jobConfig.last_job}}
       </td>
       <td>
-        <button>
-          1
+        <button (click)="startClicked()">
+          start
         </button>
         <button>
-          2
+          update
         </button>
-        <button>
-          3 
+        <p-growl [value]="msgs"></p-growl>
+        <p-confirmDialog></p-confirmDialog>
+        <button (click)="deleteClicked()" label="Delete">
+          delete
         </button>
       </td>
     </tr>

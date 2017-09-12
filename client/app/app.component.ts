@@ -44,8 +44,8 @@ export class AppComponent implements OnInit {
       summary: 'Success Message',
       detail: 'Successfully log out'
     });
+    // TODO: navigate to index
     this.router.navigate(['bookstore']);
-    console.log('WTF is this');
   }
 
   changeLang(lang: string): void {

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpService, SimpleRequest } from './../../../common/http.service';
 import { JobService } from './../../job.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ConfirmationService, ConfirmDialogModule, Message } from 'primeng/primeng';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -23,7 +24,11 @@ interface IServerResponse {
   selector: 'app-job-config-list',
   templateUrl: './job-config-list.component.html',
   styleUrls: ['./job-config-list.component.scss'],
-  providers: [ HttpService, SimpleRequest ]
+  providers: [
+    HttpService,
+    SimpleRequest,
+    ConfirmationService
+  ]
 })
 
 export class JobConfigListComponent implements OnInit, OnDestroy {
@@ -32,11 +37,11 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   asyncJobConfigs: Observable<any[]>;
   total: number;
   p = 1;
+  msgs: Message[] = [];
 
   constructor(
-    private job_service: JobService,
-    // private http: SimpleRequest,
-    private http: Http,
+    public job_service: JobService,
+    private confirmationService: ConfirmationService,
   ) {
   }
 
@@ -55,11 +60,12 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     console.log('now this.p?' + this.p);
     // TODO: Auto reload
     // Observable.interval(10000).takeWhile(_ => this.p !== page).subscribe(x => {
-      this.asyncJobConfigs = this.jobConfigResult(page)
+      this.asyncJobConfigs = this.job_service.getConfigList(5, page)
       .do(res => {
         this.total = res.json()['count'];
         this.p = page;
         this.loading = false;
+        console.log('this.res: ', res);
         console.log('this.total: ', this.total);
         console.log('this.p', this.p);
         console.log('this.loading', this.loading);
@@ -69,7 +75,22 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     // });
    }
 
-  jobConfigResult(page: number): Observable<Response> {
-    return this.http.request('/ajax/job_configs?page_size=5&page=' + page);
-  }
+   public deleteClicked() {
+     console.log('deleteClicked');
+     this.confirmationService.confirm({
+       message: 'Are you sure to delete this job config?',
+       header: 'Delete Confirmation',
+       icon: 'fa fa-trash',
+       accept: () => {
+        this.msgs = [{severity: 'info', summary: 'Confirmed', detail: 'Record deleted'}];
+       },
+       reject: () => {
+        this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
+       }
+     });
+   }
+
+   public startClicked() {
+     console.log('startClicked');
+   }
 }

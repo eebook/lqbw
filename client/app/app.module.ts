@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { GrowlModule } from 'primeng/components/growl/growl';
+import { ConfirmDialogModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -60,6 +61,7 @@ import { JobConfigDetailComponent } from './job/config/job-config-detail/job-con
     NgxPaginationModule,
     // RouterModule,
     GrowlModule,
+    ConfirmDialogModule,
     // JobModule,
     RouterModule.forRoot(appRoutes)
   ],

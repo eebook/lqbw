@@ -87,6 +87,7 @@ export class SimpleRequest {
 
   }
   request(url: string, options: RequestOptionsArgs = { method: 'GET' }) {
+    console.log('??????');
     return this.http.request(url, options);
   }
 }
