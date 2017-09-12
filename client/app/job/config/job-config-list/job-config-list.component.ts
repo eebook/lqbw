@@ -1,9 +1,9 @@
+import { ModalService } from './../../../shared/modal/modal.service';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpService, SimpleRequest } from './../../../common/http.service';
 import { JobService } from './../../job.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ConfirmationService, ConfirmDialogModule, Message } from 'primeng/primeng';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -27,7 +27,6 @@ interface IServerResponse {
   providers: [
     HttpService,
     SimpleRequest,
-    ConfirmationService
   ]
 })
 
@@ -37,11 +36,11 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   asyncJobConfigs: Observable<any[]>;
   total: number;
   p = 1;
-  msgs: Message[] = [];
+  // msgs: Message[] = [];
 
   constructor(
     public job_service: JobService,
-    private confirmationService: ConfirmationService,
+    private modalService: ModalService,
   ) {
   }
 
@@ -73,24 +72,18 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       })
       .map(res => res.json()['results']);
     // });
-   }
+  }
 
-   public deleteClicked() {
-     console.log('deleteClicked');
-     this.confirmationService.confirm({
-       message: 'Are you sure to delete this job config?',
-       header: 'Delete Confirmation',
-       icon: 'fa fa-trash',
-       accept: () => {
-        this.msgs = [{severity: 'info', summary: 'Confirmed', detail: 'Record deleted'}];
-       },
-       reject: () => {
-        this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
-       }
-     });
-   }
+  public deleteClicked(jobConfig) {
+    const value = jobConfig.config_name;
+    console.log('value???', value);
+    this.modalService
+      .confirm('Delete', 'Are you sure you want to do this?')
+      .subscribe(res => console.log(res));
+  }
 
-   public startClicked() {
-     console.log('startClicked');
-   }
+  public startClicked() {
+    console.log('startClicked');
+  }
 }
+

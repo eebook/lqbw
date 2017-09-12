@@ -1,3 +1,5 @@
+import { ComponentsModule } from './shared/components/components.module';
+import { SharedModule } from './shared/shared.module';
 import { JobModule } from './job/job.module';
 import { GithubService } from './searching/search.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { GrowlModule } from 'primeng/components/growl/growl';
-import { ConfirmDialogModule } from 'primeng/primeng';
+// import { ConfirmDialogModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -31,6 +33,8 @@ import { SearchingComponent } from './searching/searching.component';
 import { SearchFormComponent } from './searching/search-form/search-form.component';
 import { SearchResultComponent } from './searching/search-result/search-result.component';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
+import { MaterialModule } from '@angular/material';
+import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 
 
 @NgModule({
@@ -51,6 +55,7 @@ import { JobConfigDetailComponent } from './job/config/job-config-detail/job-con
     SearchingComponent,
     SearchFormComponent,
     SearchResultComponent,
+    // ConfirmBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +66,10 @@ import { JobConfigDetailComponent } from './job/config/job-config-detail/job-con
     NgxPaginationModule,
     // RouterModule,
     GrowlModule,
-    ConfirmDialogModule,
     // JobModule,
+    MaterialModule,
+    SharedModule,
+    ComponentsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

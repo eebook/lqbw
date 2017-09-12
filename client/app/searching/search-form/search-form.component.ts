@@ -52,6 +52,7 @@ export class SearchFormComponent implements OnInit {
       // Use flatMapLatest
       // Reference: https://segmentfault.com/a/1190000007562818
       // Reference: NiceFish postlist.service.ts
+      // Error handlering, reference: https://hackernoon.com/using-rxjs-to-handle-http-requests-what-ive-learned-4640aaf4646c
     }, () => {
       console.log('Done');
     });

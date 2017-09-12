@@ -1,0 +1,22 @@
+<!-- <p>{{ title }}</p>
+<div class="confirm-box-container">
+  <div class="content-container">
+    <div class="fa fa-question-circle">
+    </div>
+    <div class="content">
+      {{ message }}
+    </div>
+  </div>
+</div>
+<div class="rb-form-footer">
+  <div class="rb-form-footer-buttons">
+    <button type="button" md-raised-button (click)="dialogRef.close(true)" class="ui button rb-btn-default">Confirm</button>
+    <button type="button" md-button (click)="dialogRef.close()" class="ui button rb-btn-primary">Cancel</button>
+  </div>
+</div> -->
+
+<p>{{ title }}</p>
+<p>{{ message }}</p>
+
+<button type="button" md-raised-button (click)="dialogRef.close(true)">Confirm</button>
+<button type="button" md-button (click)="dialogRef.close()">Cancel</button>
