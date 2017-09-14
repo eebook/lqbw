@@ -29,3 +29,6 @@ npm run dev
 ### Konwn issues
 
 * login/logout need refresh manually
+
+## License
+GPLv3

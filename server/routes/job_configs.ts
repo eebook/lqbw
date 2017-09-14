@@ -18,6 +18,14 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   LOGGER.debug('Create job config');
+  LOGGER.debug('req.body.data?', req.body.data);
+  LOGGER.debug('req.body %j', req.body);
+  EEBookRequest(req, 'POST', '/job_configs/', {data: req.body}).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    LOGGER.error('Exception catched');
+    throw err;
+  });
 });
 
 router.get('/:config_name', function(req, res, next) {

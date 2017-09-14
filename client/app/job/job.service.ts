@@ -20,4 +20,9 @@ export class JobService {
   public deleteConfigByName(name): Observable<Response> {
     return this.http.delete('/ajax/job_configs/' + name);
   }
+
+  public createConfig(payload): Observable<Response> {
+    console.log('WTF????');
+    return this.http.post('/ajax/job_configs/', payload);
+  }
 }

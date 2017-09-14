@@ -1,7 +1,7 @@
 {
   "name": "eebookorg",
   "version": "0.0.1",
-  "license": "MIT",
+  "license": "GPLv3",
   "author": "knarfeh@outlook.com",
   "readme": "ERROR: No README data found!",
   "repository": {
@@ -38,7 +38,8 @@
     "@angular/platform-browser-dynamic": "^4.4.0-RC.0",
     "@angular/platform-server": "^4.4.0-RC.0",
     "@angular/router": "^4.4.0-RC.0",
-    "body-parser": "~1.17.1",
+    "angular2-schema-form": "^1.0.1",
+    "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "connect-redis": "^3.3.0",
     "cookie-parser": "~1.4.3",

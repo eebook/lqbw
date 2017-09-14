@@ -10,6 +10,7 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
   ]
 })
 export class ConfirmBoxComponent {
+  // https://medium.com/@tarik.nzl/making-use-of-dialogs-in-material-2-mddialog-7533d27df41
   public title: string;
   public message: string;
 

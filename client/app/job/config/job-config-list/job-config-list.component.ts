@@ -39,7 +39,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   // msgs: Message[] = [];
 
   constructor(
-    public job_service: JobService,
+    public jobService: JobService,
     private modalService: ModalService,
   ) {
   }
@@ -58,8 +58,9 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     console.log('now page???' + page);
     console.log('now this.p?' + this.p);
     // TODO: Auto reload
+    // Reference: https://stackoverflow.com/questions/35419062/how-to-stop-and-resume-observable-interval-emiting-ticks
     // Observable.interval(10000).takeWhile(_ => this.p !== page).subscribe(x => {
-      this.asyncJobConfigs = this.job_service.getConfigList(5, page)
+      this.asyncJobConfigs = this.jobService.getConfigList(5, page)
       .do(res => {
         this.total = res.json()['count'];
         this.p = page;

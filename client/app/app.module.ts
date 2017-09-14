@@ -35,6 +35,7 @@ import { SearchResultComponent } from './searching/search-result/search-result.c
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 import { MaterialModule } from '@angular/material';
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
+import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box
     MaterialModule,
     SharedModule,
     ComponentsModule,
+    SchemaFormModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
@@ -78,7 +80,8 @@ import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box
     JobService,
     GithubService,
     SimpleRequest,
-    AuthGuard
+    AuthGuard,
+    {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
   ],
   bootstrap: [
     AppComponent
