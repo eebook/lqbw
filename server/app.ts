@@ -8,16 +8,19 @@ import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as session from 'express-session';
+const methodOverride = require('method-override');
 const RedisStore = require('connect-redis')(session);
 // import * as FileStore from 'session-file-store';
 // let FileStore = require('session-file-store')(session);
 
 import config from '../config';
 import eebLogger from './logger/logger';
+import EEBookErrorResponse from './common/exceptions';
 import * as index from './routes/index';
 import * as people from './routes/people';
 import * as auth from './routes/account';
 import * as job_configs from './routes/job_configs';
+import * as job from './routes/jobs';
 
 const logger = eebLogger.logger;
 const app = express();
@@ -32,6 +35,7 @@ app.engine('html', require('ejs').renderFile);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // const fileStore = FileStore(session);
@@ -48,7 +52,9 @@ app.use('/', index);
 app.use('/people', people);
 app.use('/ajax/auth', auth);
 app.use('/ajax/job_configs', job_configs);
+app.use('/ajax/jobs', job);
 app.use('*', index);
+
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -58,15 +64,17 @@ app.use('*', index);
 // });
 
 // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  // res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = err;
 
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+  // render the error page
+  res.status(err.statusCode || 500);
+  res.send(JSON.stringify(new EEBookErrorResponse(
+    [err.error], 400)));
+});
 
 if (!module.parent) {
   app.listen(config.PORT, function () {

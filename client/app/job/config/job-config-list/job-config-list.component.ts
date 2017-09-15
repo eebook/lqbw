@@ -1,7 +1,7 @@
 import { ModalService } from './../../../shared/modal/modal.service';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { HttpService, SimpleRequest } from './../../../common/http.service';
+import { SimpleRequest } from './../../../common/http.service';
 import { JobService } from './../../job.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import 'rxjs/add/observable/of';
@@ -15,17 +15,12 @@ interface JobConfigResponse {
   items: string[];
   total: number;
 }
-interface IServerResponse {
-  items: string[];
-  total: number;
-}
 
 @Component({
   selector: 'app-job-config-list',
   templateUrl: './job-config-list.component.html',
   styleUrls: ['./job-config-list.component.scss'],
   providers: [
-    HttpService,
     SimpleRequest,
   ]
 })

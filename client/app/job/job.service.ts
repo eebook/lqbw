@@ -25,4 +25,24 @@ export class JobService {
     console.log('WTF????');
     return this.http.post('/ajax/job_configs/', payload);
   }
+
+  public getJobList(name): Observable<Response> {
+    console.log('Get job list');
+    return this.http.get('/ajax/jobs/');
+  }
+
+  public startJob(payload): Observable<Response> {
+    console.log('Start a job');
+    return this.http.post('/ajax/jobs/', payload);
+  }
+
+  public getJobDetail(job_uuid): Observable<Response> {
+    console.log('Get a job detail');
+    return this.http.get('/ajax/jobs/' + job_uuid);
+  }
+
+  public stopJob(job_uuid): Observable<Response> {
+    console.log('Update a job');
+    return this.http.put('/ajax/jobs/', job_uuid);
+  }
 }

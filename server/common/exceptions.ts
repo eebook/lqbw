@@ -10,15 +10,16 @@ class EEBookBaseException extends Error {
 }
 
 // TODO: Error messages spec url
-class EEBookErrorResponse extends EEBookBaseException {
+export class EEBookErrorResponse extends EEBookBaseException {
     errors: Array<any>;
     status: number;
-    constructor(errors, status_code) {
+    constructor(_errors, status_code) {
         super();
         this.errors = [];
         const self = this;
+        console.log('_error? %j', _errors);
 
-        _.forEach(errors, (error) => {
+        _.forEach(_errors, (error) => {
             self.errors.push(_.pick(error, ['code', 'source', 'message', 'fields']));
             self.message = error.message;
         });
@@ -30,4 +31,4 @@ class EEBookErrorResponse extends EEBookBaseException {
     }
 }
 
-export { EEBookErrorResponse };
+export default EEBookErrorResponse;

@@ -14,7 +14,7 @@ export function Request(option) {
     }).catch(function (err) {
         logger.debug('Request got err...');
         logger.error(`requesing, method: ${option.method}, url: ${option.url}` +
-        `, headers: ${JSON.stringify(option.headers)} error: ${err.statusCode} `);
+        `, headers: ${JSON.stringify(option.headers)} error: ${err.statusCode} error json: ${JSON.stringify(err)} `);
         throw err;
     });
 }

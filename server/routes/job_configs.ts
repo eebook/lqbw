@@ -24,7 +24,8 @@ router.post('/', function(req, res, next) {
     res.send(result);
   }).catch(function (err) {
     LOGGER.error('Exception catched');
-    throw err;
+    // throw err;
+    return next(err);
   });
 });
 

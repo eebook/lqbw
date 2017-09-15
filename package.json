@@ -53,6 +53,7 @@
     "hammerjs": "^2.0.8",
     "jquery": "^3.2.1",
     "log4js": "^1.1.1",
+    "method-override": "^2.3.9",
     "ngx-pagination": "^3.0.1",
     "primer-core": "^6.3.0",
     "primer-css": "^9.3.0",

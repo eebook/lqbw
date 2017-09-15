@@ -1,6 +1,7 @@
 import { JobService } from './../../job.service';
 import { WidgetRegistry, Validator } from 'angular2-schema-form';
 import { Component, OnInit } from '@angular/core';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-job-config-create',
@@ -42,6 +43,7 @@ export class JobConfigCreateComponent implements OnInit {
 
   constructor(
     public jobService: JobService,
+    private snackBar: MdSnackBar,
   ) {
     this.actions['create'] = (property, options) => {
       console.log('WTF');
@@ -72,10 +74,12 @@ export class JobConfigCreateComponent implements OnInit {
             console.log(data.json());
           },
           (error) => {
-            console.log(error);
+            console.log('what the fuck', error.json().message);
+            this.snackBar.open(error.json().message, 'Create', {
+              duration: 2000,
+            });
           }
         );
-
     };
     // console.log(this.actions);
   }
