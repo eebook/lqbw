@@ -26,9 +26,11 @@ export class JobService {
     return this.http.post('/ajax/job_configs/', payload);
   }
 
-  public getJobList(name): Observable<Response> {
+  public getJobList(page_size: number, page_num: number, name = ''): Observable<Response> {
     console.log('Get job list');
-    return this.http.get('/ajax/jobs/');
+    let url = '/ajax/jobs?page_size=' + page_size + '&page=' + page_num;
+    url = name.length > 0 ? url + '&config_name=' + name : url;
+    return this.http.get(url);
   }
 
   public startJob(payload): Observable<Response> {

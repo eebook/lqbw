@@ -46,56 +46,16 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
 
   getPage(page: number) {
     this.loading = true;
+    this.asyncJobs = this.jobService.getJobList(5, page)
+      .do(res => {
+        this.total = res.json()['count'];
+        this.p = page;
+        this.loading = false;
+        console.log('this.res: ', res);
+        console.log('this.total: ', this.total);
+        console.log('this.p', this.p);
+        console.log('this.items', res.json()['results']);
+      })
+      .map(res => res.json()['results']);
   }
-  private generateMeals(): string[] {
-    const meals = [];
-    const dishes = [
-        'noodles',
-        'sausage',
-        'beans on toast',
-        'cheeseburger',
-        'battered mars bar',
-        'crisp butty',
-        'yorkshire pudding',
-        'wiener schnitzel',
-        'sauerkraut mit ei',
-        'salad',
-        'onion soup',
-        'bak choi',
-        'avacado maki'
-    ];
-    const sides = [
-        'with chips',
-        'a la king',
-        'drizzled with cheese sauce',
-        'with a side salad',
-        'on toast',
-        'with ketchup',
-        'on a bed of cabbage',
-        'wrapped in streaky bacon',
-        'on a stick with cheese',
-        'in pitta bread'
-    ];
-    for (let i = 1; i <= 100; i++) {
-      const dish = dishes[Math.floor(Math.random() * dishes.length)];
-      const side = sides[Math.floor(Math.random() * sides.length)];
-      meals.push('meal ' + i + ': ' + dish + ' ' + side);
-    }
-    return meals;
-  }
-}
-
-/**
- * Simulate an async HTTP call with a delayed observable.
- */
-function serverCall(meals: string[], page: number): Observable<IServerResponse> {
-    const perPage = 10;
-    const start = (page - 1) * perPage;
-    const end = start + perPage;
-
-    return Observable
-        .of({
-            items: meals.slice(start, end),
-            total: 100
-        }).delay(1000);
 }

@@ -8,6 +8,12 @@ const router = express.Router();
 
 router.get('/', function(req, res, next) {
   LOGGER.debug('Get job list');
+  req.user = req.session.user;
+  EEBookRequest(req, 'GET', '/jobs', req).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    throw err;
+  });
 });
 
 router.post('/', function(req, res, next) {
