@@ -18,7 +18,8 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { FormControlComponent } from './common/dynamic-form/form-control.component';
 import { appRoutes } from './app.routes';
-import { CommonModule } from './common/common.module';
+import { CommonModule } from '@angular/common';
+
 import { AuthService, AuthGuard } from './common/auth.service';
 import { HttpService, SimpleRequest } from './common/http.service';
 import { JobService } from './job/job.service';

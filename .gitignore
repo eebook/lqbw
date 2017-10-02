@@ -61,3 +61,5 @@ config.js
 dist/
 
 dump.rdb
+
+.env

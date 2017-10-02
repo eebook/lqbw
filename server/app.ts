@@ -23,6 +23,8 @@ import * as auth from './routes/auth';
 import * as account from './routes/account';
 import * as job_configs from './routes/job_configs';
 import * as job from './routes/jobs';
+require('dotenv').config();
+
 
 const logger = eebLogger.logger;
 const app = express();

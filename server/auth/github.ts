@@ -15,6 +15,7 @@ function(req, accessToken, refreshToken, profile, done) {
   logger.debug('refreshtoken???%s', refreshToken);
   logger.debug('profile???%j', profile);
   req.session.regenerate(function(err) {
+    logger.debug('WTF is this');
     if (err) {
       logger.debug('????');
     }
