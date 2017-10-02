@@ -8,6 +8,7 @@ import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as session from 'express-session';
+import * as passport from 'passport';
 const methodOverride = require('method-override');
 const RedisStore = require('connect-redis')(session);
 // import * as FileStore from 'session-file-store';
@@ -18,7 +19,8 @@ import eebLogger from './logger/logger';
 import EEBookErrorResponse from './common/exceptions';
 import * as index from './routes/index';
 import * as people from './routes/people';
-import * as auth from './routes/account';
+import * as auth from './routes/auth';
+import * as account from './routes/account';
 import * as job_configs from './routes/job_configs';
 import * as job from './routes/jobs';
 
@@ -47,14 +49,44 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  done(null, id);
+});
 
 app.use('/', index);
 app.use('/people', people);
-app.use('/ajax/auth', auth);
+app.use('/auth', auth);
+app.use('/ajax/auth', account);
 app.use('/ajax/job_configs', job_configs);
 app.use('/ajax/jobs', job);
 app.use('*', index);
 
+
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

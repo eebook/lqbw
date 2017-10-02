@@ -33,7 +33,7 @@ export function EEBookRequest(ctx: any, method, path, args?) {
     };
 
     if (_.get(ctx, 'session.user')) {
-        option.headers['Authorization'] = `Bearer ${_.get(ctx.session, 'user.token')}`;
+        option.headers['Authorization'] = `TOKEN ${_.get(ctx.session, 'user.token')}`;
     }
 
     if (_.get(args, 'data')) {

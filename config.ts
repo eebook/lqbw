@@ -19,7 +19,7 @@ const config = {
     STATICCONF: __dirname + '/public',
 
     // The port that the program runs.
-    PORT: 8084,
+    PORT: 18084,
     // Domain name
     HOST: 'localhost',
 

@@ -36,6 +36,7 @@ import { JobConfigDetailComponent } from './job/config/job-config-detail/job-con
 import { MaterialModule } from '@angular/material';
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
+import { AccountComponent } from './account/account.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular
     SearchingComponent,
     SearchFormComponent,
     SearchResultComponent,
+    AccountComponent,
     // ConfirmBoxComponent,
   ],
   imports: [

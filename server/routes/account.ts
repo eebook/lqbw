@@ -43,4 +43,9 @@ router.get('/logout', function(req, res, next){
   res.send({'': ''});
 });
 
+
+router.post('/auth/github', function(req, res, next){
+
+});
+
 module.exports = router;

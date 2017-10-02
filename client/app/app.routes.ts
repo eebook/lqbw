@@ -1,3 +1,4 @@
+import { AccountComponent } from './account/account.component';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 import { JobHistoryDetailComponent } from './job/history/job-history-detail/job-history-detail.component';
 import { JobHistoryListComponent } from './job/history/job-history-list/job-history-list.component';
@@ -21,6 +22,7 @@ export const appRoutes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'bookstore', component: BookstoreComponent },
+  { path: 'account/auth/github', component: AccountComponent },
   {
     path: 'job',
     children: [

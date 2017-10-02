@@ -18,6 +18,7 @@ import { HttpService } from '../../common/http.service';
 })
 
 export class UserRegisterComponent implements OnInit {
+  githubClientId = 'd14320cfeb8f9c399e59';
   submitting = false;
   public form: FormGroup;
 
@@ -92,6 +93,27 @@ export class UserRegisterComponent implements OnInit {
     }).then(() => {
       console.log('Successfully registerd...');
       return this.router.navigate(['register']);
+    }).catch(errors => {
+      if (errors instanceof Array) {
+        console.log(errors);
+      }
+    }).then(() => {
+      console.log('Submitting is false now');
+      this.submitting = false;
+    });
+  }
+
+  loginWithGithub() {
+    console.log('The user is landing...');
+    this.submitting = true;
+
+    this.http.request('/auth/github/', {
+      method: 'GET',
+    }).then(({ result }) => {
+      console.log('Login result: ', result);
+      console.log('Successfully login...');
+      localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
+      return this.router.navigate(['bookstore']);
     }).catch(errors => {
       if (errors instanceof Array) {
         console.log(errors);
