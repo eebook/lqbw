@@ -3,6 +3,8 @@
 * A better loading page
 * use karma to run unit test
 
+* cp server/logger/default_config to dist
+
 ## notes
 
 nodejs version: v6.11.1

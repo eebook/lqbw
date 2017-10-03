@@ -1,26 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
-* {
-    font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+// Custom style for loading elements without height
+.will-load {
+    min-height: 80px;
+}
+// Href line height wasn't right for md-icon-button
+a[md-icon-button] {
+    line-height: 36px;
 }
 
-body {
-    font-family: '微软雅黑', 'Microsoft YaHei', '宋体', Tahoma, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
+// Capitalize
+.text-capital {
+  text-transform: capitalize;
 }
 
-html {
-  min-height: 100%;
-  position: relative;
-  padding-bottom: 162px;
+// Lighter font weight in sub-toolbars
+td-layout-manage-list .mat-toolbar {
+    font-weight: 400;
 }
-
-@import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~font-awesome/css/font-awesome.min.css";
-@import "/assets/css/primeng-themes-my/primeng.min.css";
-@import "/assets/css/primeng-themes-my/themes/bootstrap/theme.css";
-@import "/assets/css/primer-css-my/build.css";
-@import "/assets/css/lqbw/layout-default.scss";
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";

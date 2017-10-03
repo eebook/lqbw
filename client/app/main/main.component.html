@@ -1,0 +1,28 @@
+<td-layout>
+  <td-navigation-drawer flex sidenavTitle="EEBook" name="Firstname Lastname" email="firstname.lastname@company.com">
+    <md-nav-list>
+      <a *ngFor="let item of routes" md-list-item><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+    </md-nav-list>
+  </td-navigation-drawer>
+  
+  <td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <button md-icon-button td-menu-button tdLayoutToggle>
+        <md-icon>menu</md-icon>
+      </button>
+      <span [routerLink]="['/']" class="cursor-pointer">EEBook</span>
+      <span flex></span>
+      <a md-icon-button mdTooltip="Docs" href="https://teradata.github.io/covalent/" target="_blank"><md-icon>chrome_reader_mode</md-icon></a>
+      <a md-icon-button mdTooltip="Github" href="https://github.com/teradata/covalent" target="_blank"><md-icon svgIcon="assets:github"></md-icon></a>
+    </div>
+
+    <router-outlet></router-outlet>
+
+    <td-layout-footer>
+      <div layout="row" layout-align="start center">
+        <span class="md-caption">Copyright &copy; 2017 knarfeh. All rights reserved</span>
+      </div>
+    </td-layout-footer>
+
+  </td-layout-nav>
+</td-layout>

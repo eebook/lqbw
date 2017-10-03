@@ -39,6 +39,14 @@ import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 import { AccountComponent } from './account/account.component';
 
+import { CovalentLayoutModule, CovalentStepsModule /*, any other modules */ } from '@covalent/core';
+// (optional) Additional Covalent Modules imports
+import { CovalentHttpModule } from '@covalent/http';
+import { CovalentHighlightModule } from '@covalent/highlight';
+import { CovalentMarkdownModule } from '@covalent/markdown';
+import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
+import { MainComponent } from './main/main.component';
+
 
 @NgModule({
   declarations: [
@@ -59,6 +67,7 @@ import { AccountComponent } from './account/account.component';
     SearchFormComponent,
     SearchResultComponent,
     AccountComponent,
+    MainComponent,
     // ConfirmBoxComponent,
   ],
   imports: [
@@ -66,6 +75,13 @@ import { AccountComponent } from './account/account.component';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    CovalentLayoutModule,
+    CovalentStepsModule,
+    // (optional) Additional Covalent Modules imports
+    CovalentHttpModule.forRoot(),
+    CovalentHighlightModule,
+    CovalentMarkdownModule,
+    CovalentDynamicFormsModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
     // RouterModule,

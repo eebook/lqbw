@@ -18,14 +18,34 @@ import { MainComponent } from './main/main.component';
 
 
 export const appRoutes = [
-  { path: 'search', component: SearchingComponent },
+  { path: '', component: MainComponent },
+  { path: 'register', component: UserRegisterComponent },
+  { path: 'login', component: UserLoginComponent },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'bookstore', component: BookstoreComponent },
+  { path: 'account/auth/github', component: AccountComponent },
   {
-    path: '', component: MainComponent,
+    path: 'job',
     children: [
+      { path: '', redirectTo: 'config/list', pathMatch: 'full' },
       {
-        component: SearchingComponent,
-        path: '',
+        path: 'config',
+        children: [
+          { path: '', redirectTo: 'list', pathMatch: 'full' },
+          { path: 'list', component: JobConfigListComponent },
+          { path: 'detail/:jobConfigName', component: JobConfigDetailComponent},
+          { path: 'create', component: JobConfigCreateComponent },
+        ]
+      },
+      {
+        path: 'history',
+        children: [
+          { path: '', redirectTo: 'list', pathMatch: 'full' },
+          { path: 'list', component: JobHistoryListComponent },
+          { path: 'detail', component: JobHistoryDetailComponent }
+        ]
       }
-    ]
-  },
+    ],
+    canActivate: [AuthGuard]
+  }
 ];

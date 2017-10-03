@@ -1,4 +1,3 @@
-import { CommonModule } from './../../common/common.module';
 import { Component, OnInit, Input, Injector } from '@angular/core';
 import { Http, Response} from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
