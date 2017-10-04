@@ -21,7 +21,7 @@ export class GithubService {
 
   getUser() {
       if (this.searchString) {
-          return this._http.get('http://api.github.com/users/' + this.searchString + '?access_token=' + this.access_token)
+          return this._http.get('/ajax/search/book?q=' + this.searchString)
             .map(res => res.json())
             .catch(this.handleError);
       }

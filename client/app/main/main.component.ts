@@ -2,6 +2,7 @@ import { AuthService } from './../common/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user/model/user-model';
+import { CovalentSearchModule } from '@covalent/core';
 
 @Component({
   selector: 'app-main',
@@ -15,19 +16,19 @@ export class MainComponent implements OnInit {
     icon: 'dashboard',
   }, {
     title: 'Bookstore',
-    route: '/',
+    route: '/bookstore',
     icon: 'view_quilt',
   }, {
     title: 'Jobs',
-    route: '/',
+    route: '/job/config/list',
     icon: 'receipt',
   }, {
     title: 'Settings',
-    route: '/',
+    route: '/settings',
     icon: 'people',
   }, {
     title: 'About',
-    route: '/',
+    route: '/about',
     icon: 'info'
   }];
   public currentUser: User;

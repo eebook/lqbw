@@ -11,8 +11,14 @@ router.get('/autocomplete', function(req, res, next) {
   LOGGER.debug('Get autocomplete items');
 });
 
-router.get('/search', function(req, res, next) {
-  LOGGER.debug('Get search result');
+router.get('/book', function(req, res, next) {
+  LOGGER.debug('Search books');
+  req.user = req.session.user;
+  EEBookRequest(req, 'GET', '/search/book', req).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    throw err;
+  });
 });
 
 module.exports = router;

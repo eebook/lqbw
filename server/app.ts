@@ -23,6 +23,7 @@ import * as auth from './routes/auth';
 import * as account from './routes/account';
 import * as job_configs from './routes/job_configs';
 import * as job from './routes/jobs';
+import * as search from './routes/search';
 require('dotenv').config();
 
 
@@ -67,6 +68,7 @@ app.use('/auth', auth);
 app.use('/ajax/auth', account);
 app.use('/ajax/job_configs', job_configs);
 app.use('/ajax/jobs', job);
+app.use('/ajax/search', search);
 app.use('*', index);
 
 

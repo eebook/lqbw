@@ -3,13 +3,13 @@ import { Search } from './model/search-model';
 import { GithubService } from './search.service';
 
 @Component({
-  selector: 'app-searching',
-  templateUrl: './searching.component.html',
-  styleUrls: ['./searching.component.scss']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
 
 
-export class SearchingComponent {
+export class SearchComponent {
   public searchModelFromDad: Search;
 
   constructor() {

@@ -1,7 +1,8 @@
+import { SearchModule } from './search/search.module';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
 import { JobModule } from './job/job.module';
-import { GithubService } from './searching/search.service';
+import { GithubService } from './search/search.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -30,22 +31,24 @@ import { JobHistoryDetailComponent } from './job/history/job-history-detail/job-
 import { JobHistoryListComponent } from './job/history/job-history-list/job-history-list.component';
 import { JobConfigCreateComponent } from './job/config/job-config-create/job-config-create.component';
 import { JobConfigListComponent } from './job/config/job-config-list/job-config-list.component';
-import { SearchingComponent } from './searching/searching.component';
-import { SearchFormComponent } from './searching/search-form/search-form.component';
-import { SearchResultComponent } from './searching/search-result/search-result.component';
+import { SearchComponent } from './search/search.component';
+import { SearchFormComponent } from './search/search-form/search-form.component';
+import { SearchResultComponent } from './search/search-result/search-result.component';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 import { MaterialModule } from '@angular/material';
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 import { AccountComponent } from './account/account.component';
 
-import { CovalentLayoutModule, CovalentStepsModule /*, any other modules */ } from '@covalent/core';
+import { CovalentLayoutModule, CovalentStepsModule, CovalentSearchModule } from '@covalent/core';
 // (optional) Additional Covalent Modules imports
 import { CovalentHttpModule } from '@covalent/http';
 import { CovalentHighlightModule } from '@covalent/highlight';
 import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MainComponent } from './main/main.component';
+import { AboutComponent } from './about/about.component';
+import { BookComponent } from './bookstore/book/book.component';
 
 
 @NgModule({
@@ -63,11 +66,13 @@ import { MainComponent } from './main/main.component';
     JobConfigCreateComponent,
     JobConfigListComponent,
     JobConfigDetailComponent,
-    SearchingComponent,
+    SearchComponent,
     SearchFormComponent,
     SearchResultComponent,
     AccountComponent,
     MainComponent,
+    AboutComponent,
+    BookComponent,
     // ConfirmBoxComponent,
   ],
   imports: [
@@ -82,6 +87,7 @@ import { MainComponent } from './main/main.component';
     CovalentHighlightModule,
     CovalentMarkdownModule,
     CovalentDynamicFormsModule,
+    CovalentSearchModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
     // RouterModule,

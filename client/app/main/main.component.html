@@ -1,17 +1,21 @@
-<td-layout>
-  <td-navigation-drawer flex sidenavTitle="EEBook" name="Firstname Lastname" email="firstname.lastname@company.com">
+<td-layout #layout>
+  <td-navigation-drawer flex sidenavTitle="EEBook" name="{{currentUser?.userName}}" email="firstname.lastname@company.com">
     <md-nav-list>
-      <a *ngFor="let item of routes" md-list-item><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+        <a md-list-item [routerLink]="[item.route]" (click)="layout.close()"><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+      </ng-template>
     </md-nav-list>
   </td-navigation-drawer>
-  
+
   <td-layout-nav>
     <div td-toolbar-content layout="row" layout-align="start center" flex>
       <button md-icon-button td-menu-button tdLayoutToggle>
         <md-icon>menu</md-icon>
       </button>
       <span [routerLink]="['/']" class="cursor-pointer">EEBook</span>
-      <span flex></span>
+      <span flex="30"></span>
+      <td-search-box placeholder=" " alwaysVisible=true flex="40"></td-search-box>
+      <span flex="30"></span>
       <a md-icon-button mdTooltip="Docs" href="https://teradata.github.io/covalent/" target="_blank"><md-icon>chrome_reader_mode</md-icon></a>
       <a md-icon-button mdTooltip="Github" href="https://github.com/teradata/covalent" target="_blank"><md-icon svgIcon="assets:github"></md-icon></a>
     </div>

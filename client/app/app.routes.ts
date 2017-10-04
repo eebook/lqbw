@@ -1,3 +1,5 @@
+import { BookComponent } from './bookstore/book/book.component';
+import { AboutComponent } from './about/about.component';
 import { AccountComponent } from './account/account.component';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 import { JobHistoryDetailComponent } from './job/history/job-history-detail/job-history-detail.component';
@@ -13,18 +15,51 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { SettingsComponent } from './settings/settings.component';
 import { BookstoreComponent } from './bookstore/bookstore.component';
-import { SearchingComponent } from './searching/searching.component';
+import { SearchComponent } from './search/search.component';
 import { MainComponent } from './main/main.component';
 
 
 export const appRoutes = [
-  { path: 'search', component: SearchingComponent },
+  { path: 'search', component: SearchComponent },
   {
     path: '', component: MainComponent,
     children: [
+      { path: '', component: SearchComponent },
+      { path: 'register', component: UserRegisterComponent },
+      { path: 'login', component: UserLoginComponent },
+      { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
       {
-        component: SearchingComponent,
-        path: '',
+        path: 'bookstore',
+        children: [
+          { path: '', component: BookstoreComponent },
+          { path: 'book/:bookID', component: BookComponent }
+        ]
+      },
+      { path: 'account/auth/github', component: AccountComponent },
+      { path: 'about', component: AboutComponent },
+      {
+        path: 'job',
+        children: [
+          { path: '', redirectTo: 'config/list', pathMatch: 'full' },
+          {
+            path: 'config',
+            children: [
+              { path: '', redirectTo: 'list', pathMatch: 'full' },
+              { path: 'list', component: JobConfigListComponent },
+              { path: 'detail/:jobConfigName', component: JobConfigDetailComponent},
+              { path: 'create', component: JobConfigCreateComponent },
+            ]
+          },
+          {
+            path: 'history',
+            children: [
+              { path: '', redirectTo: 'list', pathMatch: 'full' },
+              { path: 'list', component: JobHistoryListComponent },
+              { path: 'detail', component: JobHistoryDetailComponent }
+            ]
+          }
+        ],
+        canActivate: [AuthGuard]
       }
     ]
   },

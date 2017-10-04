@@ -1,6 +1,5 @@
 import { AuthService } from './common/auth.service';
-import { Component, HostListener, ElementRef, Renderer, ViewContainerRef, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { User } from './user/model/user-model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MdIconRegistry } from '@angular/material';

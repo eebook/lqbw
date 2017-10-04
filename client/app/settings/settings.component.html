@@ -1,18 +1,20 @@
-<div class="page-content container clearfix"> 
-  <div class="col-3 float-left pr-4" role="navigation">
-    <nav class="menu">
-      <h3 class="menu-heading">
-        Personal settings
-      </h3>
-      <a href="/settings/#" class="menu-item">Profile</a>
-      <a href="/settings/#" class="menu-item">Account</a>
-      <a href="/settings/#" class="menu-item">Notifications</a>
-      <a href="/settings/#" class="menu-item">Filter</a>
-    </nav>
+<td-layout-manage-list opened="true" mode="side">
+  <md-toolbar td-sidenav-content>Settings</md-toolbar>
+  <div td-sidenav-content>
+    <md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && manageList.close()">
+      <ng-template let-item let-last="last" ngFor [ngForOf]="navMenu">
+        <a md-list-item [routerLink]="[item.route]">
+          <md-icon md-list-icon>{{item.icon}}</md-icon>
+          {{item.title}}
+        </a>
+      </ng-template>
+    </md-nav-list>
   </div>
-  <div class="col-9 float-left">
-    <div class="Subhead">
-      <h2 class="Subhead-heading">Public profile</h2>
-    </div>
-  </div>
-</div>
+  <md-toolbar>
+    <button md-icon-button td-menu-button tdLayoutManageListToggle>
+      <md-icon>menu</md-icon>
+    </button>
+    Content Title
+  </md-toolbar>
+  Content goes here
+</td-layout-manage-list>

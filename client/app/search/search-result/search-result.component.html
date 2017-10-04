@@ -1,0 +1,19 @@
+<div layout-gt-sm="row">
+  <div flex-gt-sm="15"></div>
+  <div flex-gt-sm="70">
+    <md-card>
+    <md-nav-list class="will-load item-list">
+        <ng-template let-item let-last="last" ngFor [ngForOf]="searchModel.searchResult">
+        <a md-list-item layout-align="row" [routerLink]="['../bookstore/book', item.uuid]">
+            <h3 md-line> {{item.name}} </h3>
+            <p md-line> {{item.eebook_url}} </p>
+            <span flex></span>
+            <span class="md-caption text-right" flex="20"> {{item.created_by}} </span>
+        </a>
+        <md-divider *ngIf="!last" md-inset></md-divider>
+        </ng-template>
+    </md-nav-list>
+    </md-card>
+  </div>
+  <div flex-gt-sm="15"></div>
+</div>

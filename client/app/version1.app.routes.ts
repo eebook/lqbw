@@ -13,7 +13,7 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { SettingsComponent } from './settings/settings.component';
 import { BookstoreComponent } from './bookstore/bookstore.component';
-import { SearchingComponent } from './searching/searching.component';
+import { SearchComponent } from './search/search.component';
 import { MainComponent } from './main/main.component';
 
 
