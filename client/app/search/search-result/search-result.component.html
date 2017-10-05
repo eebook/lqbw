@@ -1,4 +1,8 @@
-<div layout-gt-sm="row">
+<div layout-gt-sm="row" *ngIf="searchModel.searchResult == '' && (searchModel.searchString && searchModel.searchString.length > 0)">
+  not found
+</div>
+
+<div layout-gt-sm="row" *ngIf="searchModel && searchModel.searchResult.length > 0 && (searchModel.searchString && searchModel.searchString.length > 0)">
   <div flex-gt-sm="15"></div>
   <div flex-gt-sm="70">
     <md-card>

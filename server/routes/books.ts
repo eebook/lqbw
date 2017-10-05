@@ -1,0 +1,20 @@
+import * as express from 'express';
+
+import { EEBookRequest } from '../common/request';
+import eebookLogger from '../logger/logger';
+
+const LOGGER = eebookLogger.logger;
+const router = express.Router();
+
+
+router.get('/detail/:book_id', function(req, res, next) {
+  LOGGER.debug('Search books');
+  req.user = req.session.user;
+  EEBookRequest(req, 'GET', '/book/detail/' + req.params.book_id, req).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    throw err;
+  });
+});
+
+module.exports = router;

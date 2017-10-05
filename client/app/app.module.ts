@@ -1,3 +1,4 @@
+import { BookService } from './bookstore/book.service';
 import { SearchModule } from './search/search.module';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
@@ -103,6 +104,7 @@ import { BookComponent } from './bookstore/book/book.component';
     AuthService,
     HttpService,
     JobService,
+    BookService,
     GithubService,
     SimpleRequest,
     AuthGuard,

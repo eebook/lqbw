@@ -25,19 +25,18 @@ export class JobConfigDetailComponent implements OnInit {
   jobConfigName: string;
 
   constructor(
-    public activeRoute: ActivatedRoute,
+    public activetedRoute: ActivatedRoute,
     private jobService: JobService,
   ) {
   }
 
   ngOnInit() {
-    this.activeRoute.params.subscribe(
+    this.activetedRoute.params.subscribe(
       params => {
         this.getJobConfigDetail(params['jobConfigName']);
         this.jobConfigName = params['jobConfigName'];
       }
     );
-    console.log('??????');
     this.getPage(1);
   }
 

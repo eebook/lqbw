@@ -1,3 +1,37 @@
-<p>
-  book works!
-</p>
+<td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="center center" flex>
+      <span *ngIf="bookDetail">Book > {{bookDetail.name}}</span>
+      <span flex></span>
+    </div>
+    <td-layout-card-over  *ngIf="bookDetail">
+         <md-card-title>{{bookDetail.name}}</md-card-title>
+      <md-card-subtitle>TODO description: {{bookDetail.description}}</md-card-subtitle>
+      <md-divider></md-divider>
+      <md-list>
+        <ng-template let-item ngFor [ngForOf]=bookDetail.tags>
+          <md-list-item layout-align="row">
+              <md-icon md-list-avatar> receipt </md-icon>
+              <h3 md-line> {{item}} </h3>
+              <p md-line> activity description </p>            
+          </md-list-item>
+        </ng-template>
+          <md-list-item layout-align="row">
+              <md-icon md-list-avatar> receipt </md-icon>
+              <h3 md-line> {{bookDetail.eebook_url}} </h3>
+              <p md-line> activity description </p>            
+          </md-list-item>
+      </md-list>
+      <md-divider></md-divider>
+      <md-card-actions>
+        <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+          <button md-button color="accent" class="text-upper">
+            Back
+          </button>
+          <span flex></span>
+          <button md-button color="primary" class="text-upper" (click)="downloadFile()">
+            download
+          </button>
+        </section>
+      </md-card-actions>
+    </td-layout-card-over>   
+  </td-layout-nav>
