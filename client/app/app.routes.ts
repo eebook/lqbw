@@ -27,7 +27,7 @@ export const appRoutes = [
       { path: '', component: SearchComponent },
       { path: 'register', component: UserRegisterComponent },
       { path: 'login', component: UserLoginComponent },
-      { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+      { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
       {
         path: 'bookstore',
         children: [
@@ -39,28 +39,9 @@ export const appRoutes = [
       { path: 'about', component: AboutComponent },
       {
         path: 'job',
-        children: [
-          { path: '', redirectTo: 'config/list', pathMatch: 'full' },
-          {
-            path: 'config',
-            children: [
-              { path: '', redirectTo: 'list', pathMatch: 'full' },
-              { path: 'list', component: JobConfigListComponent },
-              { path: 'detail/:jobConfigName', component: JobConfigDetailComponent},
-              { path: 'create', component: JobConfigCreateComponent },
-            ]
-          },
-          {
-            path: 'history',
-            children: [
-              { path: '', redirectTo: 'list', pathMatch: 'full' },
-              { path: 'list', component: JobHistoryListComponent },
-              { path: 'detail', component: JobHistoryDetailComponent }
-            ]
-          }
-        ],
+        loadChildren: './job/job.module#JobModule',
         canActivate: [AuthGuard]
       }
     ]
-  },
+  }
 ];

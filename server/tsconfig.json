@@ -6,6 +6,6 @@
     "module": "commonjs"
   },
   "exclude": [
-    "test.ts"      
+    "test.ts"
   ]
 }

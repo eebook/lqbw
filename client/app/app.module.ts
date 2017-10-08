@@ -1,5 +1,4 @@
 import { BookService } from './bookstore/book.service';
-import { SearchModule } from './search/search.module';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
 import { JobModule } from './job/job.module';
@@ -7,9 +6,9 @@ import { GithubService } from './search/search.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxPaginationModule } from 'ngx-pagination';
+// import { NgxPaginationModule } from 'ngx-pagination';
 
 import { GrowlModule } from 'primeng/components/growl/growl';
 // import { ConfirmDialogModule } from 'primeng/primeng';
@@ -26,12 +25,6 @@ import { AuthService, AuthGuard } from './common/auth.service';
 import { HttpService, SimpleRequest } from './common/http.service';
 import { JobService } from './job/job.service';
 import { BookstoreComponent } from './bookstore/bookstore.component';
-import { SettingsComponent } from './settings/settings.component';
-import { JobComponent } from './job/job.component';
-import { JobHistoryDetailComponent } from './job/history/job-history-detail/job-history-detail.component';
-import { JobHistoryListComponent } from './job/history/job-history-list/job-history-list.component';
-import { JobConfigCreateComponent } from './job/config/job-config-create/job-config-create.component';
-import { JobConfigListComponent } from './job/config/job-config-list/job-config-list.component';
 import { SearchComponent } from './search/search.component';
 import { SearchFormComponent } from './search/search-form/search-form.component';
 import { SearchResultComponent } from './search/search-result/search-result.component';
@@ -60,13 +53,6 @@ import { BookComponent } from './bookstore/book/book.component';
     FormControlComponent,
     UserLoginComponent,
     BookstoreComponent,
-    SettingsComponent,
-    JobComponent,
-    JobHistoryDetailComponent,
-    JobHistoryListComponent,
-    JobConfigCreateComponent,
-    JobConfigListComponent,
-    JobConfigDetailComponent,
     SearchComponent,
     SearchFormComponent,
     SearchResultComponent,
@@ -86,19 +72,18 @@ import { BookComponent } from './bookstore/book/book.component';
     // (optional) Additional Covalent Modules imports
     CovalentHttpModule.forRoot(),
     CovalentHighlightModule,
-    CovalentMarkdownModule,
+    // CovalentMarkdownModule,
     CovalentDynamicFormsModule,
     CovalentSearchModule,
     BrowserAnimationsModule,
-    NgxPaginationModule,
+    // NgxPaginationModule,
     // RouterModule,
-    GrowlModule,
-    // JobModule,
+    // GrowlModule,
     MaterialModule,
     SharedModule,
     ComponentsModule,
-    SchemaFormModule,
-    RouterModule.forRoot(appRoutes)
+    // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(appRoutes, )
   ],
   providers: [
     AuthService,
@@ -108,7 +93,7 @@ import { BookComponent } from './bookstore/book/book.component';
     GithubService,
     SimpleRequest,
     AuthGuard,
-    {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
+    // {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
   ],
   bootstrap: [
     AppComponent
