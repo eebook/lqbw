@@ -1,1 +1,84 @@
-<sf-form [actions]="actions" [schema]="schemaFromServer"></sf-form>
+<td-layout-card-over cardTitle="Create Job" cardSubtitle="fill form to {{action}} user">
+  <ng-template tdLoading="user.form">
+    
+    <md-card-content class="push-bottom-none">
+      <form #userForm="ngForm">
+
+        <div layout="row">
+          <md-input-container flex>
+            <input mdInput
+                #displayNameElement
+                #displayNameControl="ngModel"
+                type="text"
+                placeholder="Name"
+                [(ngModel)]="displayName"
+                name="displayName"
+                maxlength="20"
+                required>
+            <md-hint align="start">
+              <span [hidden]="displayNameControl.pristine" class="tc-red-600">
+                <span [hidden]="!displayNameControl.hasError('required')">Required</span>
+              </span>
+            </md-hint>
+            <md-hint align="end">{{displayNameElement.value.length}} / 20</md-hint>
+          </md-input-container>
+        </div>
+        
+        <div layout="row">
+          <md-input-container flex> 
+            <input mdInput
+                #displayNameElement
+                #displayNameControl="ngModel"
+                type="text"
+                placeholder="URL"
+                [(ngModel)]="displayName"
+                name="displayName"
+                maxlength="20"
+                required>
+            <md-hint align="start">
+              <span [hidden]="displayNameControl.pristine" class="tc-red-600">
+                <span [hidden]="!displayNameControl.hasError('required')">Required</span>
+              </span>
+            </md-hint>
+            <md-hint align="end">{{displayNameElement.value.length}} / 20</md-hint>
+          </md-input-container>
+        </div>
+
+        <div layout="row" class="push-top">
+          <md-input-container flex> 
+            <input mdInput
+              #emailElement
+              #emailControl="ngModel"
+              type="text"
+              placeholder="Email" 
+              [(ngModel)]="email" 
+              name="email"
+              maxlength="30"
+              pattern="^[a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$"
+              required>
+            <md-hint align="start">
+              <span [hidden]="emailControl.pristine" class="tc-red-600">
+                <span [hidden]="!emailControl.hasError('required')">Required</span>
+                <span [hidden]="!emailControl.hasError('pattern')">incorrect pattern</span>
+              </span>
+            </md-hint>
+          <md-hint align="end">{{emailElement.value.length}} / 30</md-hint>
+          </md-input-container>
+        </div>
+
+      </form>
+    </md-card-content>
+
+    <md-divider></md-divider>
+
+    <md-card-actions>
+      <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+        <span flex></span>
+        <button md-button [disabled]="!userForm.form.valid" color="primary" (click)="create()">CREATE</button>
+        <button md-button (click)="goBack()">CANCEL</button>
+      </section>
+    </md-card-actions>
+  </ng-template>
+</td-layout-card-over>
+      
+      

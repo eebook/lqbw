@@ -73,7 +73,7 @@ import { BookComponent } from './bookstore/book/book.component';
     CovalentHttpModule.forRoot(),
     CovalentHighlightModule,
     // CovalentMarkdownModule,
-    CovalentDynamicFormsModule,
+    // CovalentDynamicFormsModule,
     CovalentSearchModule,
     BrowserAnimationsModule,
     // NgxPaginationModule,

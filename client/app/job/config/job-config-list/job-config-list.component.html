@@ -1,14 +1,53 @@
-<td-data-table
-[data]="data"
-[columns]="columns"
-[selectable]="true"
-[multiple]="true"
-[sortable]="true"
-[compareWith]="compareWith">
-<ng-template tdDataTableTemplate="columnName" let-value="value" let-row="row" let-column="column">
-  <div layout="row">
-    <span flex>{{value}}</span> // or <span flex>{{row[column]}}</span>
-    <mat-icon>star</mat-icon>
-  </div>
-</ng-template>
-</td-data-table>
+<md-toolbar>
+  <button md-icon-button td-menu-button tdLayoutManageListToggle>
+    <md-icon>menu</md-icon>
+  </button>
+  Job Config
+</md-toolbar>
+
+<!-- <td-data-table
+  [data]="data"
+  [columns]="columns"
+  [multiple]="true"
+  [sortable]="true">
+  <ng-template tdDataTableTemplate="columnName" let-value="value" let-row="row" let-column="column">
+    <div layout="row">
+      <span flex>{{value}}</span> // or <span flex>{{row[column]}}</span>
+      <mat-icon>star</mat-icon>
+    </div>
+  </ng-template>
+</td-data-table> -->
+
+<table td-data-table>
+  <thead>
+    <tr td-data-table-column-row>
+      <th td-data-table-column
+        *ngFor="let column of columns"
+        [numeric]="column.numeric">
+        {{column.label}}
+      </th>
+      <th td-data-table-column>
+        <span>actions</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr td-data-table-row *ngFor="let row of tableData">
+      <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
+        <span *ngIf="column.name == 'config_name'">
+          <a [routerLink]="['/job/config/detail', row.config_name]">
+            {{column.format ? column.format(row[column.name]) : row[column.name]}}
+          </a>
+        </span>
+        <span *ngIf="column.name != 'config_name'">
+          {{column.format ? column.format(row[column.name]) : row[column.name]}}
+        </span>
+      </td>
+      <td td-data-table-cell>
+        <button (click)="startClicked(row)" [class.mat-accent]="!row['actions']">start</button>
+        <button (click)="updateClicked(row)" [class.mat-accent]="!row['actions']">update</button>
+        <button (click)="deleteClicked(row)" [class.mat-accent]="!row['actions']">delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

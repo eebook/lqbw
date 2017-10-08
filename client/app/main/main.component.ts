@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
     icon: 'view_quilt',
   }, {
     title: 'Jobs',
-    route: '/job/config/list',
+    route: '/job',
     icon: 'receipt',
   }, {
     title: 'Settings',

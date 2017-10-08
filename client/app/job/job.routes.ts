@@ -1,3 +1,4 @@
+import { JobComponent } from './job.component';
 import { JobHistoryListComponent } from './history/job-history-list/job-history-list.component';
 import { JobHistoryDetailComponent } from './history/job-history-detail/job-history-detail.component';
 import { JobConfigListComponent } from './config/job-config-list/job-config-list.component';
@@ -10,6 +11,7 @@ import { RouterModule } from '@angular/router';
 export const jobRoutes = [
   {
     path: '',
+    component: JobComponent,
     children: [
       { path: '', redirectTo: 'config/list', pathMatch: 'full' },
       {
@@ -17,8 +19,8 @@ export const jobRoutes = [
         children: [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
           { path: 'list', component: JobConfigListComponent },
-          { path: 'detail', component: JobConfigDetailComponent},
-          { path: 'create', component: JobConfigCreateComponent },
+          { path: 'detail/:jobConfigName', component: JobConfigDetailComponent},
+          // { path: 'create', component: JobConfigCreateComponent },
         ]
       },
       {
@@ -30,5 +32,6 @@ export const jobRoutes = [
         ]
       }
     ]
-  }
+  },
+  { path: 'config/create', component: JobConfigCreateComponent}
 ];

@@ -1,90 +1,49 @@
-import { JobService } from './../../job.service';
-import { WidgetRegistry, Validator } from 'angular2-schema-form';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { MdSnackBar } from '@angular/material';
+
+import { TdDialogService, TdLoadingService } from '@covalent/core';
+
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-job-config-create',
   templateUrl: './job-config-create.component.html',
-  styleUrls: ['./job-config-create.component.scss']
+  styleUrls: ['./job-config-create.component.scss'],
 })
 export class JobConfigCreateComponent implements OnInit {
-  // The schema that will be used to generate a form
-  schemaFromServer = {
-    'properties': {
-      'url': {
-        'type': 'string',
-        'description': 'The url of a website',
-      },
-      'name': {
-        'type': 'string',
-        'description': 'Config name',
-      },
-      'type': {
-        'type': 'string',
-        'description': 'The type of site'
-      },
-      'needAuth': {
-        'type': 'boolean',
-        'description': 'Whether you need to log in'
-      },
-      'timeout': {
-        'type': 'string',
-        'description': 'Timeout, in minutes'
-      }
-    },
-    'required': ['url', 'type', 'needAuth'],
-    'buttons': [{
-      'label': 'Create',
-      'id': 'create'
-    }]
-  };
-  actions = {};
+  displayName: string;
+  email: string;
+  id: string;
+  admin: boolean;
+  action: string;
 
   constructor(
-    public jobService: JobService,
-    private snackBar: MdSnackBar,
-  ) {
-    this.actions['create'] = (property, options) => {
-      console.log('WTF');
-      const payload = {
-        config_name: property.value.name,
-        command_type: 'DEFAULT_COMMAND',
-        command: '/run.sh',
-        registry_index: 'index.alauda.cn',
-        registry_name: 'alauda_public_registry',
-        registry_project: 'alaudaorg',
-        image_name: 'alaudaorg',
-        image_tag: 'latest',
-        envvars: [{
-          name: 'env1',
-          value: 'env1_value'
-        }, {
-          name: 'env2',
-          value: 'env2_value'
-        }],
-        timeout: '120',
-        cpu: 0.5,
-        memory: 512,
-        created_by: 'knarfeh',  // TODO: move to express
-      };
-      this.jobService.createConfig(payload)
-        .subscribe(
-          (data) => {
-            console.log(data.json());
-          },
-          (error) => {
-            console.log('what the fuck', error.json().message);
-            this.snackBar.open(error.json().message, 'Create', {
-              duration: 2000,
-            });
-          }
-        );
-    };
-    // console.log(this.actions);
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _snackBarService: MdSnackBar,
+    private _loadingService: TdLoadingService,
+    private _dialogService: TdDialogService) {}
+
+  goBack(): void {
+    this._router.navigate(['/job/config']);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this._route.url.subscribe((url: any) => {
+      this.action = (url.length > 1 ? url[1].path : 'add');
+    });
+    this._route.params.subscribe((params: {id: string}) => {
+      this.id = params.id;
+      if (this.id) {
+        // this.load();
+      }
+    });
+  }
+
+  create(): void {
+    console.log('create job');
   }
 
 }

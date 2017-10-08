@@ -1,3 +1,20 @@
-<p>
-  job works!
-</p>
+<td-layout-manage-list opened="true" mode="side">
+  <md-toolbar td-sidenav-content>Jobs</md-toolbar>
+  <div td-sidenav-content>
+    <md-nav-list td-sidenav-content>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="navMenu">
+        <a md-list-item [routerLink]="[item.route]">
+          <md-icon md-list-icon>{{item.icon}}</md-icon>
+          {{item.title}}
+        </a>
+      </ng-template>
+    </md-nav-list>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</td-layout-manage-list>
+
+<a md-fab color="accent" class="mat-fab-bottom-right" [routerLink]="['config/create']">
+  <md-icon>add</md-icon>
+</a>

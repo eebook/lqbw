@@ -1,5 +1,5 @@
 {
-  "/": {
+  "/ajax/*": {
     "target": "http://localhost:18084/",
     "secure": false
   }

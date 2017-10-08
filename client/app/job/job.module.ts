@@ -1,3 +1,4 @@
+import { JobComponent } from './job.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { JobService } from './job.service';
 import { jobRoutes } from './job.routes';
@@ -10,6 +11,8 @@ import { JobHistoryDetailComponent } from './history/job-history-detail/job-hist
 import { JobConfigDetailComponent } from './config/job-config-detail/job-config-detail.component';
 import { JobConfigListComponent } from './config/job-config-list/job-config-list.component';
 import { JobConfigCreateComponent } from './config/job-config-create/job-config-create.component';
+import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, CovalentLayoutModule,
+  CovalentSearchModule, CovalentCommonModule } from '@covalent/core';
 
 
 @NgModule({
@@ -17,6 +20,13 @@ import { JobConfigCreateComponent } from './config/job-config-create/job-config-
     SchemaFormModule,
     SharedModule,
     NgxPaginationModule,
+    // covalent modules
+    CovalentLoadingModule,
+    CovalentDialogsModule,
+    CovalentMediaModule,
+    CovalentLayoutModule,
+    CovalentSearchModule,
+    CovalentCommonModule,
     RouterModule.forChild(jobRoutes),
   ],
   declarations: [
@@ -25,6 +35,7 @@ import { JobConfigCreateComponent } from './config/job-config-create/job-config-
     JobConfigDetailComponent,
     JobHistoryListComponent,
     JobHistoryDetailComponent,
+    JobComponent,
   ],
   providers: [
     JobService,
