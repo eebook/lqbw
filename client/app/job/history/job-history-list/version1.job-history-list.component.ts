@@ -30,15 +30,6 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
   total: number;
   p = 1;
 
-  jobs: any[];
-  // filteredJobs: any[];
-
-  filteredJobs = [
-    { config_name: 'config_name', status: 'Failed', created_at: 'yestorday'},
-    { config_name: 'config_name1', status: 'Failed', created_at: 'yestorday'},
-    { config_name: 'config_name2', status: 'Failed', created_at: 'yestorday'},
-  ];
-
   constructor(
     public jobService: JobService,
     private modalService: ModalService,

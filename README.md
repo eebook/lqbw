@@ -5,6 +5,8 @@
 
 * cp server/logger/default_config to dist
 
+* 右下角的小球 routerlink 动态更新的问题
+
 ## notes
 
 nodejs version: v6.11.1

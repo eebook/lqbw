@@ -7,9 +7,10 @@ const logger = eebLogger.logger;
 
 export function Request(option) {
     return request(option).then(function (res) {
-        logger.debug('Request result: ' + JSON.stringify(res));
-        logger.debug(`requesting, method: ${option.method}, url: ${option.url}` +
-        `, headers: ${JSON.stringify(option.headers)} result: ${JSON.stringify(res)} `);
+        // logger.debug('Request result: ' + JSON.stringify(res));
+        // logger.debug(`requesting, method: ${option.method}, url: ${option.url}` +
+        // `, headers: ${JSON.stringify(option.headers)} result: ${JSON.stringify(res)} `);
+        console.log('WTF???');
         return res;
     }).catch(function (err) {
         logger.debug('Request got err...');

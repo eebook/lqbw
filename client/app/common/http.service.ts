@@ -1,3 +1,4 @@
+import { EEBookErrorResponse } from './../../../server/common/exceptions';
 import { Injectable } from '@angular/core';
 import { Http, RequestMethod, RequestOptionsArgs, URLSearchParams, Response } from '@angular/http';
 import { TimeoutError } from 'rxjs/util/TimeoutError';
@@ -55,14 +56,16 @@ export class HttpService {
     return this.http.request(url, options)
       .timeout(TIMEOUT_IN_MS)
       .toPromise()
-      .then(res => res.json())
+      .then(res => {
+        return res.text() ? res.json() : {};
+      })
       .catch(error => {
+        console.log('error???', error);
         let errors: ErrorResponse['errors'];
         if (error instanceof Response) {
           if (error.status === 0) {
             errors = [{ code: 'network_issue' }];
           } else {
-            console.log('Got error from server: ', errors);
             errors = safeErrorResponseJson(error).errors;
           }
         } else if (error instanceof TimeoutError) {
@@ -87,7 +90,6 @@ export class SimpleRequest {
 
   }
   request(url: string, options: RequestOptionsArgs = { method: 'GET' }) {
-    console.log('??????');
     return this.http.request(url, options);
   }
 }

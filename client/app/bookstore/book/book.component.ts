@@ -36,7 +36,6 @@ export class BookComponent implements OnInit {
       .getBookDetail(bookID)
       .subscribe(data => {
         this.bookDetail = data.json().result;
-        console.log('book detal???', this.bookDetail);
       });
   }
 
@@ -46,12 +45,10 @@ export class BookComponent implements OnInit {
     this._http.get(this.bookDetail.download_url,
       {responseType: ResponseContentType.Blob}).subscribe(
         (response) => {
-          console.log('???');
           const mediaType = 'application/epub+zip';
           const blob = new Blob([response.blob()], {type: mediaType});
           const filename = this.bookDetail.name;
           saveAs(blob, filename);
         });
   }
-
 }

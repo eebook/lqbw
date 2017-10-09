@@ -34,7 +34,7 @@ router.get('/:config_name', function(req, res, next) {
   EEBookRequest(req, 'GET', '/job_configs/' + req.params.config_name, req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
-    throw err;
+    return next(err);
   });
 });
 
@@ -43,7 +43,7 @@ router.delete('/:config_name', function(req, res, next) {
   EEBookRequest(req, 'DELETE', '/job_configs/' + req.params.config_name, req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
-    throw err;
+    return next(err);
   });
 });
 

@@ -18,6 +18,12 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   LOGGER.debug('Start a job');
+  LOGGER.debug('req.body??', req.body);
+  EEBookRequest(req, 'POST', '/jobs/', {'data': req.body}).then(function (result) {
+    res.send({'result': result });
+  }).catch(function (err) {
+    throw err;
+  });
 });
 
 router.get('/:job_uuid', function(req, res, next) {
