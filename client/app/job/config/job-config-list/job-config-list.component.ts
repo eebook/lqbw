@@ -45,10 +45,6 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._titleService.setTitle('EEBook Job Config');
-    // this._jobService.getConfigList(100, 1)
-    //   .subscribe(res => {
-    //     this.tableData = res.json()['results'];
-    //   });
     this.load();
   }
 
@@ -63,7 +59,6 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       const response = await this._jobService.getConfigList(100, 1).toPromise();
       this.tableData = response.json()['results'];
     } catch (error) {
-      console.log('TODO: Basically does not happen');
       console.log(error);
     } finally {
       this._loadingService.resolve('job.list');

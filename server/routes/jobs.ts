@@ -36,6 +36,11 @@ router.put('/:job_uuid', function(req, res, next) {
 
 router.delete('/:job_uuid', function(req, res, next) {
   LOGGER.debug('Delete a job');
+  EEBookRequest(req, 'DELETE', '/jobs/' + req.params.job_uuid, req).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    return next(err);
+  });
 });
 
 module.exports = router;

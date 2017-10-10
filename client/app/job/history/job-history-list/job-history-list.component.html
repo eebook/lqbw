@@ -23,27 +23,24 @@
         <md-list-item>
           <md-icon md-list-avatar>person</md-icon>
           <h3 md-line> {{ job.config_name }}</h3>
-          <p md-line> {{ job.status }}</p>
-          <p md-line hide-gt-md class="md-caption"> {{ job.created_at }}</p>
-          <span flex></span>
-          <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
+          <span flex=20></span>
+          <span hide-xs hide-sm hide-md flex-gt-xs="90" flex-xs="40" layout-gt-xs="row">
             <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ job.created_at }} </div>
-            <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ job.created_at }} </div>
-        </span>
+            <div class="md-caption tc-grey-500" flex-gt-xs="20"> {{ job.status}} </div>
+            <div class="md-caption tc-grey-500" flex-gt-xs="30"> TODO: cost </div>
+          </span>
           <span>
             <button md-icon-button [md-menu-trigger-for]="menu">
               <md-icon>more_vert</md-icon>
             </button>
             <md-menu x-position="before" #menu="mdMenu">
-              <a md-menu-item>
-                <md-icon>edit</md-icon> Edit
-              </a>
-              <button md-menu-item>
+              <a md-menu-item (click)="deletClicked(job.job_uuid)">
                 <md-icon>delete</md-icon> Delete
-              </button>
+              </a>
             </md-menu>
           </span>
         </md-list-item>
+        <md-divider *ngIf="!last" md-inset></md-divider>
       </ng-template>
     </md-list>
   </ng-template>

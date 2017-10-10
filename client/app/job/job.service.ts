@@ -42,6 +42,10 @@ export class JobService {
     return this._promiseHttp.request('/ajax/jobs/', {method: 'POST', body: payload});
   }
 
+  public deleteJobById(jobUUID): Promise<any> {
+    return this._promiseHttp.request('/ajax/jobs/' + jobUUID, {method: 'DELETE'});
+  }
+
   public getJobDetail(job_uuid): Observable<Response> {
     console.log('Get a job detail');
     return this._http.get('/ajax/jobs/' + job_uuid);
