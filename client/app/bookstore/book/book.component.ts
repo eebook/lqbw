@@ -13,7 +13,7 @@ import { ResponseContentType } from '@angular/http';
   styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
-  private bookDetail: Book = new Book();
+  bookDetail: Book = new Book();
   bookID: string;
 
   constructor(

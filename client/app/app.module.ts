@@ -1,4 +1,3 @@
-import { BookService } from './bookstore/book.service';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
 import { JobModule } from './job/job.module';
@@ -24,7 +23,6 @@ import { CommonModule } from '@angular/common';
 import { AuthService, AuthGuard } from './common/auth.service';
 import { HttpService, SimpleRequest } from './common/http.service';
 import { JobService } from './job/job.service';
-import { BookstoreComponent } from './bookstore/bookstore.component';
 import { SearchComponent } from './search/search.component';
 import { SearchFormComponent } from './search/search-form/search-form.component';
 import { SearchResultComponent } from './search/search-result/search-result.component';
@@ -42,7 +40,7 @@ import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
-import { BookComponent } from './bookstore/book/book.component';
+import { ParticlesModule } from 'angular-particle';
 
 
 @NgModule({
@@ -52,14 +50,12 @@ import { BookComponent } from './bookstore/book/book.component';
     UserRegisterComponent,
     FormControlComponent,
     UserLoginComponent,
-    BookstoreComponent,
     SearchComponent,
     SearchFormComponent,
     SearchResultComponent,
     AccountComponent,
     MainComponent,
     AboutComponent,
-    BookComponent,
     // ConfirmBoxComponent,
   ],
   imports: [
@@ -83,13 +79,13 @@ import { BookComponent } from './bookstore/book/book.component';
     SharedModule,
     ComponentsModule,
     // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
+    ParticlesModule,
     RouterModule.forRoot(appRoutes, )
   ],
   providers: [
     AuthService,
     HttpService,
     JobService,
-    BookService,
     GithubService,
     SimpleRequest,
     AuthGuard,

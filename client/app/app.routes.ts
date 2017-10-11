@@ -28,13 +28,17 @@ export const appRoutes = [
       { path: 'register', component: UserRegisterComponent },
       { path: 'login', component: UserLoginComponent },
       { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
-      {
-        path: 'bookstore',
-        children: [
-          { path: '', component: BookstoreComponent },
-          { path: 'book/:bookID', component: BookComponent }
-        ]
-      },
+      // {
+      //   path: 'bookstore',
+      //   children: [
+      //     { path: '', component: BookstoreComponent },
+      //     { path: 'book/:bookID', component: BookComponent }
+      //   ]
+      // },
+      // {
+        // path: 'bookstore',
+        // loadChildren: './bookstore/bookstore.module#BookstoreModule',
+      // },
       { path: 'account/auth/github', component: AccountComponent },
       { path: 'about', component: AboutComponent },
       {
@@ -43,5 +47,9 @@ export const appRoutes = [
         canActivate: [AuthGuard]
       }
     ]
-  }
+  },
+  {
+    path: 'bookstore',
+    loadChildren: './bookstore/bookstore.module#BookstoreModule',
+  },
 ];

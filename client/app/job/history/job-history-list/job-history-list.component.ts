@@ -62,7 +62,8 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
     }
   }
 
-  deletClicked(jobUUID: string): void {
+  deletClicked(event, jobUUID: string): void {
+    event.stopPropagation();
     console.log('delete job???', jobUUID);
     this._dialogService
       .openConfirm({message: 'Are you sure to delete this job history'})
@@ -88,5 +89,9 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
     } finally {
       this._loadingService.resolve('job.history');
     }
+  }
+
+  itemClicked(jobUUID: string): void {
+    console.log('item ???', jobUUID);
   }
 }

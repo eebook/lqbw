@@ -2,7 +2,7 @@
   <button md-icon-button td-menu-button tdLayoutManageListToggle>
     <md-icon>menu</md-icon>
   </button>
-  <span>Job Config</span>
+  <span>Job History</span>
   <span flex></span>
   <button md-icon-button><md-icon class="md-24">view_module</md-icon></button>
   <button md-icon-button><md-icon class="md-24">sort</md-icon></button>
@@ -20,7 +20,7 @@
         <h3>No history to display.</h3>
       </div>
       <ng-template let-job let-last="last" ngFor [ngForOf]="filteredJobs">
-        <md-list-item>
+        <md-list-item layout-align="row" [routerLink]="['../detail', job.job_uuid]">
           <md-icon md-list-avatar>person</md-icon>
           <h3 md-line> {{ job.config_name }}</h3>
           <span flex=20></span>
@@ -30,11 +30,11 @@
             <div class="md-caption tc-grey-500" flex-gt-xs="30"> TODO: cost </div>
           </span>
           <span>
-            <button md-icon-button [md-menu-trigger-for]="menu">
+            <button md-icon-button [md-menu-trigger-for]="menu" (click)="$event.stopPropagation()">
               <md-icon>more_vert</md-icon>
             </button>
             <md-menu x-position="before" #menu="mdMenu">
-              <a md-menu-item (click)="deletClicked(job.job_uuid)">
+              <a md-menu-item (click)="deletClicked($event, job.job_uuid)">
                 <md-icon>delete</md-icon> Delete
               </a>
             </md-menu>

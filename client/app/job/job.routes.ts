@@ -6,8 +6,6 @@ import { JobConfigDetailComponent } from './config/job-config-detail/job-config-
 import { JobConfigCreateComponent } from './config/job-config-create/job-config-create.component';
 import { RouterModule } from '@angular/router';
 
-// TODO, move to a module
-
 export const jobRoutes = [
   {
     path: '',
@@ -28,7 +26,7 @@ export const jobRoutes = [
         children: [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
           { path: 'list', component: JobHistoryListComponent },
-          { path: 'detail', component: JobHistoryDetailComponent }
+          { path: 'detail/:jobID', component: JobHistoryDetailComponent }
         ]
       }
     ]
