@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
   EEBookRequest(req, 'GET', '/job_configs', req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
-      throw err;
+    return next(err);
   });
 });
 

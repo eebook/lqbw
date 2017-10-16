@@ -5,7 +5,7 @@ export class JobConfig {
   schedule_rule: string;
 }
 
-export class Job {
+export class JobDetail {
   created_at: Date;
   updated_at: Date;
   config_name: string;

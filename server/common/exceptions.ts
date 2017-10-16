@@ -17,7 +17,7 @@ export class EEBookErrorResponse extends EEBookBaseException {
         super();
         this.errors = [];
         const self = this;
-        console.log('_error? %j', _errors);
+        console.log('_errors from backend: %j', _errors);
 
         _.forEach(_errors, (error) => {
             self.errors.push(_.pick(error, ['code', 'source', 'message', 'fields']));

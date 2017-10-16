@@ -60,6 +60,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       this.tableData = response.json()['results'];
     } catch (error) {
       console.log(error);
+      console.log('WTF???');
     } finally {
       this._loadingService.resolve('job.list');
     }

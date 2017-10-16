@@ -7,6 +7,8 @@
 
 * 右下角的小球 routerlink 动态更新的问题
 
+* Unauthorized Access snackbar and redirect, just delete session to test
+
 ## notes
 
 nodejs version: v6.11.1

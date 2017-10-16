@@ -1,10 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+  
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+
 // Custom style for loading elements without height
 .will-load {
-    min-height: 80px;
+  min-height: 80px;
 }
 // Href line height wasn't right for md-icon-button
 a[md-icon-button] {
-    line-height: 36px;
+  line-height: 36px;
 }
 
 // Capitalize
@@ -14,5 +24,14 @@ a[md-icon-button] {
 
 // Lighter font weight in sub-toolbars
 td-layout-manage-list .mat-toolbar {
-    font-weight: 400;
+  font-weight: 400;
 }
+
+#content {
+  margin: 10px 15px;
+}
+
+// ol, ul {
+//   margin-top: 0;
+//   margin-bottom: 10px;
+// }

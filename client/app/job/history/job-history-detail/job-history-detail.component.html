@@ -1,3 +1,37 @@
-<p>
-  job-history-detail works!
-</p>
+<md-toolbar>
+  <button md-icon-button td-menu-button tdLayoutManageListToggle>
+    <md-icon>menu</md-icon>
+  </button>
+  <span>Job History Detail</span>
+</md-toolbar>
+
+<md-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+  <td-expansion-panel label="Basic information" expand="false">
+    <div class="md-padding">
+      <h3 class="md-subhead">md-padding class</h3>
+      <div>Demo 1</div>
+      <div>Demo 2</div>
+      <div>Demo 3</div>
+      <div>Demo 4</div>
+    </div>
+  </td-expansion-panel>
+</md-card>
+
+<md-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+  <md-tab-group>
+    <md-tab label="Logs">
+      <div class="lqbw-log-container" id="content">
+        <ul class="lqbw-log-list">
+          <li class="lqbw-log-item">
+            <span>time</span>
+            <span class="log-message">asdfsf</span>
+          </li>
+        </ul>
+      </div>
+    </md-tab>
+    <md-tab label="TODO">
+        <div class="lqbw-log-container" id="content">
+        </div>
+      </md-tab>
+  </md-tab-group>
+</md-card>

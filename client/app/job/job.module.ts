@@ -11,8 +11,9 @@ import { JobHistoryDetailComponent } from './history/job-history-detail/job-hist
 import { JobConfigDetailComponent } from './config/job-config-detail/job-config-detail.component';
 import { JobConfigListComponent } from './config/job-config-list/job-config-list.component';
 import { JobConfigCreateComponent } from './config/job-config-create/job-config-create.component';
+import { MdTabsModule } from '@angular/material';
 import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, CovalentLayoutModule,
-  CovalentSearchModule, CovalentCommonModule } from '@covalent/core';
+  CovalentSearchModule, CovalentCommonModule, CovalentExpansionPanelModule } from '@covalent/core';
 
 
 @NgModule({
@@ -27,6 +28,8 @@ import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, Cova
     CovalentLayoutModule,
     CovalentSearchModule,
     CovalentCommonModule,
+    CovalentExpansionPanelModule,
+    MdTabsModule,
     RouterModule.forChild(jobRoutes),
   ],
   declarations: [
