@@ -13,6 +13,7 @@
       <div>Demo 2</div>
       <div>Demo 3</div>
       <div>Demo 4</div>
+      <div>{{logs}}</div>
     </div>
   </td-expansion-panel>
 </md-card>
@@ -22,16 +23,16 @@
     <md-tab label="Logs">
       <div class="lqbw-log-container" id="content">
         <ul class="lqbw-log-list">
-          <li class="lqbw-log-item">
-            <span>time</span>
-            <span class="log-message">asdfsf</span>
+          <li class="lqbw-log-item" *ngFor="let item of logs">
+            <span>{{item.timestamp}}</span>
+            <span class="log-message">{{item.log}}</span>
           </li>
         </ul>
       </div>
     </md-tab>
     <md-tab label="TODO">
-        <div class="lqbw-log-container" id="content">
-        </div>
-      </md-tab>
+      <div class="lqbw-log-container" id="content">
+      </div>
+    </md-tab>
   </md-tab-group>
 </md-card>

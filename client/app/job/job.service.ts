@@ -36,6 +36,7 @@ export class JobService {
     return this._http.get(url);
   }
 
+  // Jobs operation
   public startJob(payload): Promise<any> {
     console.log('Start a job');
     // return this._http.post('/ajax/jobs/', payload);
@@ -46,13 +47,18 @@ export class JobService {
     return this._promiseHttp.request('/ajax/jobs/' + jobUUID, {method: 'DELETE'});
   }
 
-  public getJobDetail(job_uuid): Observable<Response> {
+  public getJobDetail(jobUUID): Observable<Response> {
     console.log('Get a job detail');
-    return this._http.get('/ajax/jobs/' + job_uuid);
+    return this._http.get('/ajax/jobs/' + jobUUID);
   }
 
-  public stopJob(job_uuid): Observable<Response> {
+  public stopJob(jobUUID): Observable<Response> {
     console.log('Update a job');
-    return this._http.put('/ajax/jobs/', job_uuid);
+    return this._http.put('/ajax/jobs/', jobUUID);
+  }
+
+  public getJobLogs(jobUUID: string, page: number, startTime: number, endTime: number): Promise<any> {
+    const url = '/ajax/jobs/' + jobUUID + '/logs/?start_time=' + startTime + '&end_time=' + endTime;
+    return this._promiseHttp.request(url, {method: 'GET'});
   }
 }

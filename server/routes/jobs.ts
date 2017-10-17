@@ -38,9 +38,18 @@ router.put('/:job_uuid', function(req, res, next) {
   LOGGER.debug('TODO: Stop a job');
 });
 
-router.delete('/:job_uuid', function(req, res, next) {
+router.delete('/:job_uuid/', function(req, res, next) {
   LOGGER.debug('Delete a job');
-  EEBookRequest(req, 'DELETE', '/jobs/' + req.params.job_uuid, req).then(function (result) {
+  EEBookRequest(req, 'DELETE', '/jobs/' + req.params.job_uuid + '/', req).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    return next(err);
+  });
+});
+
+router.get('/:job_uuid/logs/', function(req, res, next) {
+  LOGGER.debug('Get job logs');
+  EEBookRequest(req, 'GET', '/jobs/' + req.params.job_uuid + '/logs/', req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
     return next(err);
