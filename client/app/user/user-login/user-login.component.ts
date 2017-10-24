@@ -7,6 +7,9 @@ import { Observable } from 'rxjs/Observable';
 import { FieldBase, Textbox, Image } from './../../common/dynamic-form/form-field';
 import { fadeIn } from './../../animations/fade-in';
 import { HttpService } from '../../common/http.service';
+import { MatDialog, MatDialogRef, MatCheckboxModule } from '@angular/material';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @Component({
   selector: 'app-user-login',
@@ -18,89 +21,42 @@ import { HttpService } from '../../common/http.service';
 
 
 export class UserLoginComponent implements OnInit {
-  submitting = false;
-  public form: FormGroup;
+  login = "asdfs";
+  private isShopperLogin : boolean = false;
+  private rememberMe : boolean = false;
+  constructor(private dialog : MatDialog) {}
 
-  constructor(
-    private injector: Injector,
-    private http: HttpService,
-    private activateRoute: ActivatedRoute,
-    private router: Router
-  ) { }
 
-  @Input() fields: FieldBase<any>[] = [
-    new Textbox({
-      label: 'username',
-      key: 'username',
-      value: 'knarfeh',
-      validators: [Validators.required]
-    }),
-    new Textbox({
-      label: 'email',
-      key: 'email',
-      value: 'knarfeh@outlook.com',
-      Validators: [Validators.required]
-    }),
-    new Textbox({
-      label: 'password',
-      key: 'password',
-      type: 'password',
-      value: 'knarfehknarfeh',
-      Validators: [Validators.required]
-    })
-  ];
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
-  // TODO: move to a service
-  toFormGroup(fields: FieldBase<any>[]) {
-    const group: any = {};
+  passwordFormControl = new FormControl('', [
+      Validators.required]);
 
-    fields.forEach(field => {
-      group[field.key] = new FormControl(field.value || null, field.validators);
-    });
-    console.log(fields);
-    return new FormGroup(group);
-  }
 
+  signUpFormControl = new FormGroup({
+    emailFormControl : this.emailFormControl,
+    passwordFormControl : this.passwordFormControl
+  });
   ngOnInit() {
-    this.form = this.toFormGroup(this.fields);
-
-    this.activateRoute.params.subscribe(
-      params => {
-        console.log('User login, activateRoute params:', params);
-      }
-    );
   }
 
-  protected get injectorInstance() {
-    return this.injector;
+  signInUser(email : string, password: string, source? : string) {
+    // alert("Email: " + email + " Password : " +password);
+    this.dialog.closeAll();
   }
 
-  get loginDisabled() {
-    return !this.form.valid || this.submitting;
+  shopperLogin(){
+    this.isShopperLogin = !this.isShopperLogin;
   }
 
-  login() {
-    console.log('The user is landing...');
-    if (this.loginDisabled) {
-      return;
-    }
-    this.submitting = true;
+  rememberTheUser(){
+    this.rememberMe = !this.rememberMe;
+  }
 
-    this.http.request('/ajax/auth/login', {
-      method: 'POST',
-      body: this.form.value
-    }).then(({ result }) => {
-      console.log('Login result: ', result);
-      console.log('Successfully login...');
-      localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
-      return this.router.navigate(['bookstore']);
-    }).catch(errors => {
-      if (errors instanceof Array) {
-        console.log(errors);
-      }
-    }).then(() => {
-      console.log('Submitting is false now');
-      this.submitting = false;
-    });
+  regainPasswordClicked(){
+    this.dialog.closeAll();
   }
 }

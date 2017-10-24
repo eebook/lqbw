@@ -1,3 +1,4 @@
+import { SignInUpComponent } from './shared/modal/sign-in-up/sign-in-up.component';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
 import { JobModule } from './job/job.module';
@@ -7,10 +8,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NgxPaginationModule } from 'ngx-pagination';
 
 import { GrowlModule } from 'primeng/components/growl/growl';
-// import { ConfirmDialogModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -27,8 +26,6 @@ import { SearchComponent } from './search/search.component';
 import { SearchFormComponent } from './search/search-form/search-form.component';
 import { SearchResultComponent } from './search/search-result/search-result.component';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
-// import { MaterialModule } from '@angular/material';
-// import { MatModule} from '@angular/material';
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 import { AccountComponent } from './account/account.component';
@@ -57,6 +54,7 @@ import { ParticlesModule } from 'angular-particle';
     AccountComponent,
     MainComponent,
     AboutComponent,
+    // SignInComponent
     // ConfirmBoxComponent,
   ],
   imports: [
@@ -74,9 +72,6 @@ import { ParticlesModule } from 'angular-particle';
     CovalentSearchModule,
     BrowserAnimationsModule,
     // NgxPaginationModule,
-    // RouterModule,
-    // GrowlModule,
-    // MaterialModule,
     SharedModule,
     ComponentsModule,
     // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
@@ -94,6 +89,7 @@ import { ParticlesModule } from 'angular-particle';
   ],
   bootstrap: [
     AppComponent
-  ]
+  ],
+  entryComponents : [SignInUpComponent]
 })
 export class AppModule { }

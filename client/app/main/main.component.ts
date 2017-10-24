@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material';
+import { SignInUpComponent } from './../shared/modal/sign-in-up/sign-in-up.component';
 import { AuthService } from './../common/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -36,6 +38,7 @@ export class MainComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -51,5 +54,13 @@ export class MainComponent implements OnInit {
     this._authService.logout();
     // TODO: pop up messages
     this._router.navigate(['bookstore']);
+  }
+
+  ShowRegisterDialog() {
+    if (this.dialog.afterOpen) {
+      this.dialog.closeAll();
+    }
+    const dialogRefRegister = this.dialog.open(SignInUpComponent);
+    dialogRefRegister.afterClosed().subscribe(result => {});
   }
 }

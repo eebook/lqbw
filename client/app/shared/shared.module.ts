@@ -1,3 +1,5 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { SignInUpComponent } from './modal/sign-in-up/sign-in-up.component';
 import { ModalService } from './modal/modal.service';
 import { MatDialogRef } from '@angular/material';
 import { NgModule } from '@angular/core';
@@ -31,7 +33,7 @@ const MATERIAL_MODULES: any[] = [
   MatListModule, MatMenuModule, MatTooltipModule,
   MatSlideToggleModule, MatInputModule, MatCheckboxModule,
   MatToolbarModule, MatSnackBarModule, MatSidenavModule,
-  MatTabsModule, MatSelectModule,
+  MatTabsModule, MatSelectModule
 ];
 
 const COVALENT_MODULES: any[] = [
@@ -43,14 +45,18 @@ const COVALENT_MODULES: any[] = [
 
 
 @NgModule({
+  declarations: [
+    SignInUpComponent,
+  ],
   imports: [
     CommonModule,
     ComponentsModule,
+    ANGULAR_MODULES,
     MATERIAL_MODULES,
     COVALENT_MODULES,
-    FLEX_LAYOUT_MODULES,
   ],
   exports: [
+    SignInUpComponent,
     CommonModule,
     ComponentsModule,
     ANGULAR_MODULES,

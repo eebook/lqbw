@@ -32,5 +32,6 @@
 </div>
 
 <div *ngIf="!currentUser?.userName">
+  <button mat-raised-button color="primary" (click)="ShowRegisterDialog()">Click me!</button>
   <router-outlet></router-outlet>
 </div>
