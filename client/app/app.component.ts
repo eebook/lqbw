@@ -2,7 +2,7 @@ import { AuthService } from './common/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from './user/model/user-model';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MdIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   public currentUser: User;
 
   constructor(
-    private _iconRegistry: MdIconRegistry,
+    private _iconRegistry: MatIconRegistry,
     private _domSanitizer: DomSanitizer,
   ) {
     this._iconRegistry.addSvgIconInNamespace('assets', 'teradata',

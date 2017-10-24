@@ -8,11 +8,17 @@
         <div class="col-mat-offset-6">
           <button type="submit" 
                   class="btn btn-success"
-                  (click)="login()"
+                  (click)="register()"
                   [class.loading]="submitting"
-                  [disabled]="loginDisabled">
-                  登录
+                  [disabled]="registerDisabled">
+                  注册
           </button>
+          <a href="/auth/github">
+            <button type="button" (click)="loginWithGithub()">
+            <button type="button">
+              用 github 登录
+            </button>
+          </a>
         </div>
       </div>
     </form>

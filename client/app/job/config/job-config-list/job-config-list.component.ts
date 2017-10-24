@@ -1,5 +1,5 @@
 import { Title } from '@angular/platform-browser';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { ModalService } from './../../../shared/modal/modal.service';
 import { JobService } from './../../job.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -39,7 +39,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     // private _modalService: ModalService,
     private _loadingService: TdLoadingService,
     private _dialogService: TdDialogService,
-    private _snackBarService: MdSnackBar,
+    private _snackBarService: MatSnackBar,
   ) {
   }
 

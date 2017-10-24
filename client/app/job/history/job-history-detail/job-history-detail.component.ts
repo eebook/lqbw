@@ -1,7 +1,10 @@
+import { TdLoadingService } from '@covalent/core';
 import { ActivatedRoute } from '@angular/router';
 import { JobService } from './../../job.service';
 import { JobDetail } from './../../model/job-model';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-job-history-detail',
@@ -15,20 +18,22 @@ export class JobHistoryDetailComponent implements OnInit {
   logs: any[];
 
   constructor(
-    public activatedRoute: ActivatedRoute,
-    private jobService: JobService,
+    public _activatedRoute: ActivatedRoute,
+    private _jobService: JobService,
+    private _loadingService: TdLoadingService,
   ) {
 
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
+    this._activatedRoute.params.subscribe(
       params => {
         this.jobID = params['jobID'];
       }
     );
     console.log('this.jobID???', this.jobID);
-    this.jobService.getJobDetail(this.jobID)
+    this._jobService.getJobDetail(this.jobID)
+    // .interval(5000)
     .subscribe(data => {
       this.jobDetail = data.json();
       console.log('data json???', data.json());
@@ -38,7 +43,15 @@ export class JobHistoryDetailComponent implements OnInit {
   }
 
   async _startPolling() {
-    await this._pollLogs();
+    try {
+      this._loadingService.register('job.logs');
+      await this._pollLogs();
+    } catch (err) {
+      this.logs = [{log: 'Not logs'}];
+      console.log('Not logs');
+    } finally {
+      this._loadingService.resolve('job.logs');
+    }
   }
 
   expandedEvent() {
@@ -75,9 +88,8 @@ export class JobHistoryDetailComponent implements OnInit {
     const params = this._getParams();
     console.log('params??? ', params);
 
-    const logs = await this.jobService.getJobLogs(this.jobID, 1, params['start_time'], params['end_time']);
+    const logs = await this._jobService.getJobLogs(this.jobID, 1, params['start_time'], params['end_time']);
     this.logs = logs.results;
-    console.log('wtf is logs???', this.logs);
   }
 
   private _dateStrToTimestamp(dateStr) {

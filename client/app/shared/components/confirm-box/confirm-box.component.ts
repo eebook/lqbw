@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class ConfirmBoxComponent {
   public message: string;
 
   constructor(
-    public dialogRef: MdDialogRef<ConfirmBoxComponent>,
+    public dialogRef: MatDialogRef<ConfirmBoxComponent>,
   ) { }
 
 }

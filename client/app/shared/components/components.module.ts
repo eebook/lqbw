@@ -1,4 +1,4 @@
-import { MdDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

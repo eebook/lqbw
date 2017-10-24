@@ -1,30 +1,36 @@
+<div *ngIf="currentUser?.userName">
 <td-layout #layout>
   <td-navigation-drawer flex sidenavTitle="EEBook" name="{{currentUser?.userName}}" email="firstname.lastname@company.com">
-    <md-nav-list>
+    <mat-nav-list>
       <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
-        <a md-list-item [routerLink]="[item.route]" (click)="layout.close()"><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+        <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()"><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
       </ng-template>
-    </md-nav-list>
+    </mat-nav-list>
   </td-navigation-drawer>
 
   <td-layout-nav>
     <div td-toolbar-content layout="row" layout-align="start center" flex>
-      <button md-icon-button td-menu-button tdLayoutToggle>
-        <md-icon>menu</md-icon>
+      <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
       </button>
       <span [routerLink]="['/']" class="cursor-pointer">EEBook</span>
       <span flex></span>
       <!-- <td-search-box placeholder=" " alwaysVisible=false></td-search-box> -->
-      <!-- <a md-icon-button mdTooltip="Github" href="https://github.com/ee-book/ee-book" target="_blank"><md-icon svgIcon="assets:github"></md-icon></a> -->
+      <!-- <a mat-icon-button mdTooltip="Github" href="https://github.com/ee-book/ee-book" target="_blank"><mat-icon svgIcon="assets:github"></mat-icon></a> -->
     </div>
 
     <router-outlet></router-outlet>
 
     <td-layout-footer>
       <div layout="row" layout-align="start center">
-        <span class="md-caption">Copyright &copy; 2017 knarfeh. All rights reserved</span>
+        <span class="mat-caption">Copyright &copy; 2017 knarfeh. All rights reserved</span>
       </div>
     </td-layout-footer>
 
   </td-layout-nav>
 </td-layout>
+</div>
+
+<div *ngIf="!currentUser?.userName">
+  <router-outlet></router-outlet>
+</div>

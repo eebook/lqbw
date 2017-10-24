@@ -64,9 +64,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 app.use('/', index);
-app.use('/people', people);
-app.use('/auth', auth);
-app.use('/ajax/auth', account);
+// app.use('/people', people);
+app.use('/auth', account);
+// app.use('/ajax/auth', account);
 app.use('/ajax/book', book);
 app.use('/ajax/job_configs', job_configs);
 app.use('/ajax/jobs', job);

@@ -1,12 +1,10 @@
 <td-layout-card-over cardTitle="Create Job" cardSubtitle="fill form to {{action}} user">
   <ng-template tdLoading="user.form">
-    
-    <md-card-content class="push-bottom-none">
+    <mat-card-content class="push-bottom-none">
       <form #userForm="ngForm">
-
         <div layout="row">
-          <md-input-container flex>
-            <input mdInput
+          <mat-input-container flex>
+            <input matInput
                 #displayNameElement
                 #displayNameControl="ngModel"
                 type="text"
@@ -15,18 +13,18 @@
                 name="displayName"
                 maxlength="20"
                 required>
-            <md-hint align="start">
+            <mat-hint align="start">
               <span [hidden]="displayNameControl.pristine" class="tc-red-600">
                 <span [hidden]="!displayNameControl.hasError('required')">Required</span>
               </span>
-            </md-hint>
-            <md-hint align="end">{{displayNameElement.value.length}} / 20</md-hint>
-          </md-input-container>
+            </mat-hint>
+            <mat-hint align="end">{{displayNameElement.value.length}} / 20</mat-hint>
+          </mat-input-container>
         </div>
         
         <div layout="row">
-          <md-input-container flex> 
-            <input mdInput
+          <mat-input-container flex> 
+            <input matInput
                 #displayNameElement
                 #displayNameControl="ngModel"
                 type="text"
@@ -35,18 +33,18 @@
                 name="displayName"
                 maxlength="20"
                 required>
-            <md-hint align="start">
+            <mat-hint align="start">
               <span [hidden]="displayNameControl.pristine" class="tc-red-600">
                 <span [hidden]="!displayNameControl.hasError('required')">Required</span>
               </span>
-            </md-hint>
-            <md-hint align="end">{{displayNameElement.value.length}} / 20</md-hint>
-          </md-input-container>
+            </mat-hint>
+            <mat-hint align="end">{{displayNameElement.value.length}} / 20</mat-hint>
+          </mat-input-container>
         </div>
 
         <div layout="row" class="push-top">
-          <md-input-container flex> 
-            <input mdInput
+          <mat-input-container flex> 
+            <input matInput
               #emailElement
               #emailControl="ngModel"
               type="text"
@@ -56,28 +54,28 @@
               maxlength="30"
               pattern="^[a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$"
               required>
-            <md-hint align="start">
+            <mat-hint align="start">
               <span [hidden]="emailControl.pristine" class="tc-red-600">
                 <span [hidden]="!emailControl.hasError('required')">Required</span>
                 <span [hidden]="!emailControl.hasError('pattern')">incorrect pattern</span>
               </span>
-            </md-hint>
-          <md-hint align="end">{{emailElement.value.length}} / 30</md-hint>
-          </md-input-container>
+            </mat-hint>
+          <mat-hint align="end">{{emailElement.value.length}} / 30</mat-hint>
+          </mat-input-container>
         </div>
 
       </form>
-    </md-card-content>
+    </mat-card-content>
 
-    <md-divider></md-divider>
+    <mat-divider></mat-divider>
 
-    <md-card-actions>
+    <mat-card-actions>
       <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
         <span flex></span>
-        <button md-button [disabled]="!userForm.form.valid" color="primary" (click)="create()">CREATE</button>
-        <button md-button (click)="goBack()">CANCEL</button>
+        <button mat-button [disabled]="!userForm.form.valid" color="primary" (click)="create()">CREATE</button>
+        <button mat-button (click)="goBack()">CANCEL</button>
       </section>
-    </md-card-actions>
+    </mat-card-actions>
   </ng-template>
 </td-layout-card-over>
       

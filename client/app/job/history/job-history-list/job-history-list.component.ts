@@ -1,4 +1,4 @@
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { TdLoadingService, TdDialogService } from '@covalent/core';
 import { Title } from '@angular/platform-browser';
 import { JobService } from './../../job.service';
@@ -35,7 +35,7 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
     private _titleService: Title,
     private _loadingService: TdLoadingService,
     private _dialogService: TdDialogService,
-    private _snackBarService: MdSnackBar,
+    private _snackBarService: MatSnackBar,
   ) {
   }
 

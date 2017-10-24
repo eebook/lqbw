@@ -1,38 +1,39 @@
-<md-toolbar>
-  <button md-icon-button td-menu-button tdLayoutManageListToggle>
-    <md-icon>menu</md-icon>
+<mat-toolbar>
+  <button mat-icon-button td-menu-button tdLayoutManageListToggle>
+    <mat-icon>menu</mat-icon>
   </button>
   <span>Job History Detail</span>
-</md-toolbar>
+</mat-toolbar>
 
-<md-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+<mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
   <td-expansion-panel label="Basic information" expand="false">
-    <div class="md-padding">
-      <h3 class="md-subhead">md-padding class</h3>
+    <div class="mat-padding">
+      <h3 class="mat-subhead">mat-padding class</h3>
       <div>Demo 1</div>
       <div>Demo 2</div>
       <div>Demo 3</div>
       <div>Demo 4</div>
-      <div>{{logs}}</div>
     </div>
   </td-expansion-panel>
-</md-card>
+</mat-card>
 
-<md-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
-  <md-tab-group>
-    <md-tab label="Logs">
+<mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+  <mat-tab-group>
+    <mat-tab label="Logs">
+      <ng-template tdLoading="job.logs">
+        <div class="lqbw-log-container" id="content">
+          <ul class="lqbw-log-list">
+            <li class="lqbw-log-item" *ngFor="let item of logs">
+              <!-- <span>{{item.timestamp}}</span> -->
+              <span class="log-message">{{item.log}}</span>
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="TODO">
       <div class="lqbw-log-container" id="content">
-        <ul class="lqbw-log-list">
-          <li class="lqbw-log-item" *ngFor="let item of logs">
-            <span>{{item.timestamp}}</span>
-            <span class="log-message">{{item.log}}</span>
-          </li>
-        </ul>
       </div>
-    </md-tab>
-    <md-tab label="TODO">
-      <div class="lqbw-log-container" id="content">
-      </div>
-    </md-tab>
-  </md-tab-group>
-</md-card>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

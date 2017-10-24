@@ -5,20 +5,20 @@
 <div layout-gt-sm="row" *ngIf="searchModel && searchModel.searchResult.length > 0 && (searchModel.searchString && searchModel.searchString.length > 0)">
   <div flex-gt-sm="15"></div>
   <div flex-gt-sm="70">
-    <md-card>
-    <md-nav-list class="will-load item-list">
-        <ng-template let-item let-last="last" ngFor [ngForOf]="searchModel.searchResult">
-        <a md-list-item layout-align="row" [routerLink]="['../bookstore/book', item.uuid]">
-          <md-icon md-list-avatar>book</md-icon>
-          <h3 md-line> {{item.name}} </h3>
-          <p md-line> {{item.eebook_url}} </p>
+    <mat-card>
+    <mat-nav-list class="will-load item-list">
+      <ng-template let-item let-last="last" ngFor [ngForOf]="searchModel.searchResult">
+        <a mat-list-item layout-align="row" [routerLink]="['../bookstore/book', item.uuid]">
+          <mat-icon mat-list-avatar>book</mat-icon>
+          <h3 mat-line> {{item.name}} </h3>
+          <p mat-line> {{item.eebook_url}} </p>
           <span flex></span>
-          <span class="md-caption text-right" flex="20"> {{item.created_by}} </span>
+          <span class="mat-caption text-right" flex="20"> {{item.created_by}} </span>
         </a>
-        <md-divider *ngIf="!last" md-inset></md-divider>
-        </ng-template>
-    </md-nav-list>
-    </md-card>
+        <mat-divider *ngIf="!last" mat-inset></mat-divider>
+      </ng-template>
+    </mat-nav-list>
+    </mat-card>
   </div>
   <div flex-gt-sm="15"></div>
 </div>

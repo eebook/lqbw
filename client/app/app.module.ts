@@ -27,7 +27,8 @@ import { SearchComponent } from './search/search.component';
 import { SearchFormComponent } from './search/search-form/search-form.component';
 import { SearchResultComponent } from './search/search-result/search-result.component';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
-import { MaterialModule } from '@angular/material';
+// import { MaterialModule } from '@angular/material';
+// import { MatModule} from '@angular/material';
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 import { AccountComponent } from './account/account.component';
@@ -75,7 +76,7 @@ import { ParticlesModule } from 'angular-particle';
     // NgxPaginationModule,
     // RouterModule,
     // GrowlModule,
-    MaterialModule,
+    // MaterialModule,
     SharedModule,
     ComponentsModule,
     // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})

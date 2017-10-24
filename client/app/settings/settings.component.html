@@ -1,20 +1,20 @@
-<td-layout-manage-list opened="true" mode="side">
-  <md-toolbar td-sidenav-content>Settings</md-toolbar>
+<!-- <td-layout-manage-list opened="true" mode="side">
+  <mat-toolbar td-sidenav-content>Settings</mat-toolbar>
   <div td-sidenav-content>
-    <md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && manageList.close()">
+    <mat-nav-list td-sidenav-content (click)="!media.query('gt-sm') && manageList.close()">
       <ng-template let-item let-last="last" ngFor [ngForOf]="navMenu">
-        <a md-list-item [routerLink]="[item.route]">
-          <md-icon md-list-icon>{{item.icon}}</md-icon>
+        <a mat-list-item [routerLink]="[item.route]">
+          <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
           {{item.title}}
         </a>
       </ng-template>
-    </md-nav-list>
+    </mat-nav-list>
   </div>
-  <md-toolbar>
-    <button md-icon-button td-menu-button tdLayoutManageListToggle>
-      <md-icon>menu</md-icon>
+  <mat-toolbar>
+    <button mat-icon-button td-menu-button tdLayoutManageListToggle>
+      <mat-icon>menu</mat-icon>
     </button>
     Content Title
-  </md-toolbar>
+  </mat-toolbar>
   Content goes here
-</td-layout-manage-list>
+</td-layout-manage-list> -->
