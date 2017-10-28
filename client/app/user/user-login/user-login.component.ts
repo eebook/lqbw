@@ -21,10 +21,16 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 
 
 export class UserLoginComponent implements OnInit {
-  login = "asdfs";
-  private isShopperLogin : boolean = false;
-  private rememberMe : boolean = false;
-  constructor(private dialog : MatDialog) {}
+  login = 'Login';
+  private isShopperLogin = false;
+  private rememberMe = false;
+  submitting = false;
+
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpService,
+    private router: Router,
+  ) {}
 
 
   emailFormControl = new FormControl('', [
@@ -43,20 +49,36 @@ export class UserLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  signInUser(email : string, password: string, source? : string) {
-    // alert("Email: " + email + " Password : " +password);
+  signInUser(email: string, password: string, source?: string) {
+    alert('Email: ' + email + 'Password : ' + password);
+    console.log('The user is landing...');
+    // if (this.loginDisabled) {
+      // return;
+    // }
+    this.submitting = true;
+
+    this.http.request('/ajax/auth/login', {
+      method: 'POST',
+      body: {'email': email, 'password': password}
+    }).then(({ result }) => {
+      console.log('Login result: ', result);
+      console.log('Successfully login...');
+      localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
+      // TODO: return returnUrl
+      return this.router.navigate(['']);
+    }).catch(errors => {
+      if (errors instanceof Array) {
+        console.log(errors);
+      }
+    }).then(() => {
+      console.log('Submitting is false now');
+      this.submitting = false;
+    });
     this.dialog.closeAll();
   }
 
-  shopperLogin(){
+  shopperLogin() {
     this.isShopperLogin = !this.isShopperLogin;
   }
 
-  rememberTheUser(){
-    this.rememberMe = !this.rememberMe;
-  }
-
-  regainPasswordClicked(){
-    this.dialog.closeAll();
-  }
 }

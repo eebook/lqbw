@@ -1,33 +1,27 @@
 <div class="singInDiv">
-    <form [formGroup]="signUpFormControl">
-        <div class="titleDiv"><b class="singInTitle">{{ login }}</b></div>
-        <div class="emailDiv input-group">
-            <mat-form-field class="email">
-                <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignIn>
-                <mat-error *ngIf="emailFormControl.hasError('pattern') || emailFormControl.hasError('email')">
-                    <strong>Παρακαλώ εισάγετε σωστά το Email σας πχ. example@mail.com</strong>
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                    <strong>Ξεχάσατε να γράψετε το Email σας. </strong>
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div class="passDiv input-group">
-            <mat-form-field class="password">
-                <input matInput type="password" placeholder="Κωδικός πρόσβασης" required="true" [formControl]="passwordFormControl" #passswordSignIn>
-                <mat-error *ngIf="passwordFormControl.hasError('required')">
-                    <strong>Ο κωδικός δεν μπορεί να είναι κενός.</strong>
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div class="rememberMe">
-            <mat-checkbox (click)="rememberTheUser()"> Να με θυμάμαι</mat-checkbox>
-        </div>
-        <div class="regainPass">
-            <a href="#" class="regainPassword" (click)="regainPasswordClicked()"><b>Ξεχάσατε τον κωδικό σας?</b></a>
-        </div>
-        <div class="singnInButton">
-            <button class="btn btn-block signIn" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)"><b>Σύνδεση</b></button>
-        </div>
-    </form>
+  <form [formGroup]="signUpFormControl">
+    <div class="titleDiv"><b class="singInTitle">{{ login }}</b></div>
+    <div class="emailDiv input-group">
+      <mat-form-field class="email">
+        <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignIn>
+          <mat-error *ngIf="emailFormControl.hasError('pattern') || emailFormControl.hasError('email')">
+            Not valid
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            required
+          </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="passDiv input-group">
+      <mat-form-field class="password">
+        <input matInput type="password" placeholder="password" required="true" [formControl]="passwordFormControl" #passswordSignIn>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            required
+          </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="singnInButton">
+      <button class="btn btn-block signIn" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
+    </div>
+  </form>
 </div>
