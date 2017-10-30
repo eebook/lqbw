@@ -1,6 +1,7 @@
+import { TdLoadingService } from '@covalent/core';
 import { Router } from '@angular/router';
 import { HttpService } from './../../../common/http.service';
-import { MatDialog, MatDialogRef, MatCheckboxModule } from '@angular/material';
+import { MatDialog, MatDialogRef, MatCheckboxModule, MatSnackBar } from '@angular/material';
 import { Component, Inject, Output, ElementRef } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 
@@ -12,7 +13,8 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
     styleUrls: ['./sign-in-up.component.scss'],
   })
   export class SignInUpComponent {
-    login = 'Login';
+    LOGIN_TITLE = 'Login';
+    REGISTER_TITLE = 'Register';
     private isShopperLogin = false;
     private rememberMe = false;
     submitting = false;
@@ -21,6 +23,8 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
       private dialog: MatDialog,
       private http: HttpService,
       private router: Router,
+      private _snackBar: MatSnackBar,
+      private _loadingService: TdLoadingService,
       private dialogRef: MatDialogRef<SignInUpComponent>,
     ) {}
 
@@ -31,8 +35,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
     ]);
     usernameFormControl = new FormControl('', [
       Validators.required
-  ]);
-
+    ]);
     passwordFormControl = new FormControl('', [
         Validators.required
     ]);
@@ -44,13 +47,13 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
     });
 
     signInUser(email: string, password: string, source?: string) {
-      alert('Email: ' + email + 'Password : ' + password);
       console.log('The user is landing...');
       // if (this.loginDisabled) {
         // return;
       // }
       this.submitting = true;
 
+      this._loadingService.register('signInUp');
       this.http.request('/ajax/auth/login', {
         method: 'POST',
         body: {'email': email, 'password': password}
@@ -58,20 +61,45 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
         console.log('Login result: ', result);
         console.log('Successfully login...');
         localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
+        this._loadingService.resolve('signInUp');
+        this.dialog.closeAll();
         return this.router.navigate(['']);
       }).catch(errors => {
         if (errors instanceof Array) {
-          console.log(errors);
+          this._loadingService.resolve('signInUp');
+          this._snackBar.open(errors[0].message, 'Error', {
+            duration: 5000,
+          });
         }
       }).then(() => {
         console.log('Submitting is false now');
         this.submitting = false;
       });
-      this.dialog.closeAll();
     }
 
-    shopperLogin() {
-      this.isShopperLogin = !this.isShopperLogin;
+
+    signUpUser(email: string, username: string, password: string) {
+      console.log('Registering, email: ' + email + ' username: ' + username + ' password: ' + password);
+
+      this._loadingService.register('signInUp');
+      this.http.request('/ajax/auth/register', {
+        method: 'POST',
+        body: {'email': email, 'username': username, 'password': password}
+      }).then(({ result }) => {
+        console.log('Register result: ', result);
+        this._loadingService.resolve('signInUp');
+        this.dialog.closeAll();
+        this._snackBar.open('Successfully registered');
+      }).catch(errors => {
+        if (errors instanceof Array) {
+          this._loadingService.resolve('signInUp');
+          this._snackBar.open(errors[0].message, 'Error', {
+            duration: 5000,
+          });
+        }
+      }).then(() => {
+        console.log('Submitting is false now');
+      });
     }
 
     rememberTheUser() {

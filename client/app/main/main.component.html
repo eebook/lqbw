@@ -5,6 +5,7 @@
       <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
         <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()"><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
       </ng-template>
+      <a mat-list-item (click)="doLogout(layout)"><mat-icon>people</mat-icon>Logout</a>
     </mat-nav-list>
   </td-navigation-drawer>
 
@@ -32,6 +33,6 @@
 </div>
 
 <div *ngIf="!currentUser?.userName">
-  <button mat-raised-button color="primary" (click)="ShowRegisterDialog()">Login</button>
+  <button mat-raised-button color="primary" (click)="ShowRegisterDialog()">Auth</button>
   <router-outlet></router-outlet>
 </div>

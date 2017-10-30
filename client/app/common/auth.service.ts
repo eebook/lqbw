@@ -17,7 +17,7 @@ export class AuthService {
         console.log(errors);
       }
     }).then(() => {
-        console.log('logout, WTF is this');
+        console.log('logout, emmmmmmm');
     });
   }
 }

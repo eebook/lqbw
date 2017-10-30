@@ -46,7 +46,6 @@ export class JobConfigCreateComponent implements OnInit {
     private snackBar: MatSnackBar,
   ) {
     this.actions['create'] = (property, options) => {
-      console.log('WTF');
       const payload = {
         config_name: property.value.name,
         command_type: 'DEFAULT_COMMAND',

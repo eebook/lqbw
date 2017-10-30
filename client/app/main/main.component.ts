@@ -50,10 +50,12 @@ export class MainComponent implements OnInit {
     }
   }
 
-  public doLogout(): void {
+  public doLogout(layout): void {
     this._authService.logout();
+    this.currentUser = null;
     // TODO: pop up messages
-    this._router.navigate(['bookstore']);
+    layout.close();
+    this._router.navigate(['']);
   }
 
   ShowRegisterDialog() {
@@ -61,6 +63,8 @@ export class MainComponent implements OnInit {
       this.dialog.closeAll();
     }
     const dialogRefRegister = this.dialog.open(SignInUpComponent);
-    dialogRefRegister.afterClosed().subscribe(result => {});
+    dialogRefRegister.afterClosed().subscribe(result => {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    });
   }
 }

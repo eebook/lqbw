@@ -50,7 +50,6 @@ export class JobConfigDetailComponent implements OnInit {
   }
 
   getPage(page: number) {
-    console.log('WTF???');
     this.loading = true;
     this.asyncJobs = this.jobService.getJobList(5, page, this.jobConfigName)
       .do(res => {

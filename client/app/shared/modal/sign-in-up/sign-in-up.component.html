@@ -1,27 +1,71 @@
+<ng-template tdLoading="signInUp" tdLoadingStrategy="overlay">
 <div class="singInDiv">
-  <form [formGroup]="signUpFormControl">
-    <div class="titleDiv"><b class="singInTitle">{{ login }}</b></div>
-    <div class="emailDiv input-group">
-      <mat-form-field class="email">
-        <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignIn>
-          <mat-error *ngIf="emailFormControl.hasError('pattern') || emailFormControl.hasError('email')">
-            Not valid
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            required
-          </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="passDiv input-group">
-      <mat-form-field class="password">
-        <input matInput type="password" placeholder="password" required="true" [formControl]="passwordFormControl" #passswordSignIn>
-          <mat-error *ngIf="passwordFormControl.hasError('required')">
-            required
-          </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="singnInButton">
-      <button class="btn btn-block signIn" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
-    </div>
-  </form>
+  <mat-tab-group dynamicHeight=true>
+    <mat-tab label="Login" position=0>
+      <div class="sign-in-up-container" flex=80>
+        <form [formGroup]="signUpFormControl">
+          <div class="emailDiv input-group">
+            <mat-form-field class="email">
+              <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignIn>
+              <mat-error *ngIf="emailFormControl.hasError('pattern') || emailFormControl.hasError('email')">
+                not valid
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="passwordDiv input-group">
+            <mat-form-field class="password">
+              <input matInput type="password" placeholder="Password" required="true" [formControl]="passwordFormControl" #passswordSignIn>
+              <mat-error *ngIf="passwordFormControl.hasError('required')">
+                required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="signInButton">
+            <button class="sign__button" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Register">
+      <div class="sign-in-up-container" >
+        <form [formGroup]="signUpFormControl">
+          <div class="emailDiv input-group">
+            <mat-form-field class="email">
+              <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignUp>
+              <mat-error *ngIf="emailFormControl.hasError('pattern') || emailFormControl.hasError('email')">
+                not valid
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="usernameDiv input-group">
+            <mat-form-field class="username">
+              <input matInput placeholder="Username" required="true" [formControl]="usernameFormControl" #usernameSignUp>
+              <mat-error *ngIf="usernameFormControl.hasError('required')">
+                required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="passwordDiv input-group">
+            <mat-form-field class="password">
+              <input matInput type="password" placeholder="Password" required="true" [formControl]="passwordFormControl" #passswordSignUp>
+              <mat-error *ngIf="passwordFormControl.hasError('required')">
+                required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="signUpButton">
+            <button class="sign__button" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signUpUser(emailSignUp.value, usernameSignUp.value, passswordSignUp.value)">Register</button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
+</ng-template>
