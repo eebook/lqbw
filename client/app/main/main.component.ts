@@ -1,8 +1,8 @@
 import { MatDialog } from '@angular/material';
 import { SignInUpComponent } from './../shared/modal/sign-in-up/sign-in-up.component';
 import { AuthService } from './../common/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user/model/user-model';
 import { CovalentSearchModule } from '@covalent/core';
 
@@ -11,7 +11,7 @@ import { CovalentSearchModule } from '@covalent/core';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterContentInit {
   routes: Object[] = [{
     title: 'Home',
     route: '/',
@@ -34,10 +34,12 @@ export class MainComponent implements OnInit {
     icon: 'info'
   }];
   public currentUser: User;
+  returnUrl: string;
 
   constructor(
     private _authService: AuthService,
     private _router: Router,
+    private _route: ActivatedRoute,
     public dialog: MatDialog
   ) { }
 
@@ -47,6 +49,17 @@ export class MainComponent implements OnInit {
       console.log('currentUser is None');
     } else {
       console.log('currentUser: ' + this.currentUser.userName);
+    }
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+    console.log('returnUrl???' + this.returnUrl);
+  }
+
+  public ngAfterContentInit() {
+    // https://github.com/angular/angular/issues/10762
+    // let modalFactory = this.componentResolver.resolveComponentFactory(<any>this.dialog.config.content);
+    // this.componentInstance = this.container.createComponent(modalFactory, null, this.injector);
+    if (this.returnUrl !== '/') {
+      this.signInUpDialog();
     }
   }
 
@@ -58,7 +71,7 @@ export class MainComponent implements OnInit {
     this._router.navigate(['']);
   }
 
-  ShowRegisterDialog() {
+  signInUpDialog() {
     if (this.dialog.afterOpen) {
       this.dialog.closeAll();
     }

@@ -1,0 +1,33 @@
+.emailDiv {
+  padding: 0.5em;
+}
+
+.passwordDiv {
+  padding: 0.5em;
+}
+
+.usernameDiv {
+  padding: 0.5em;
+}
+
+form {
+  display: inline-block;
+  text-align: center;
+}
+
+.sign {
+  &__button {
+    border-radius: 20px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    height: 50%;
+    color: #c15c3c;
+  }
+}
+
+.sign-in-up-container {
+  margin: 60px;
+  padding: 16px 8px 2px 8px;
+  overflow: auto;
+}

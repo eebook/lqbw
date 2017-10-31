@@ -2,7 +2,7 @@
 <div class="singInDiv">
   <mat-tab-group dynamicHeight=true>
     <mat-tab label="Login" position=0>
-      <div class="sign-in-up-container" flex=80>
+      <div class="sign-in-up-container">
         <form [formGroup]="signUpFormControl">
           <div class="emailDiv input-group">
             <mat-form-field class="email">
@@ -27,6 +27,9 @@
             <button class="sign__button" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
           </div>
         </form>
+        <div class="login-link-container">
+          <a class="login-link text-danger" routerLink="/">Recover password</a>
+        </div>
       </div>
     </mat-tab>
 

@@ -7,7 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { FieldBase, Textbox, Image } from './../../common/dynamic-form/form-field';
 import { fadeIn } from './../../animations/fade-in';
 import { HttpService } from '../../common/http.service';
-import { MatDialog, MatDialogRef, MatCheckboxModule } from '@angular/material';
+import { MatDialog, MatDialogRef, MatCheckboxModule, MatSnackBar } from '@angular/material';
+import { TdLoadingService } from '@covalent/core';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -15,31 +16,34 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss'],
-  animations: [ fadeIn ],
-  providers: [ HttpService ]
 })
 
 
 export class UserLoginComponent implements OnInit {
   login = 'Login';
   private isShopperLogin = false;
-  private rememberMe = false;
   submitting = false;
 
   constructor(
-    private dialog: MatDialog,
-    private http: HttpService,
-    private router: Router,
+    private _http: HttpService,
+    private _router: Router,
+    private _dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private _loadingService: TdLoadingService,
   ) {}
 
 
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
+    Validators.pattern(EMAIL_REGEX)
   ]);
-
+  usernameFormControl = new FormControl('', [
+    Validators.required
+  ]);
   passwordFormControl = new FormControl('', [
-      Validators.required]);
+    Validators.required
+  ]);
 
 
   signUpFormControl = new FormGroup({
@@ -50,14 +54,14 @@ export class UserLoginComponent implements OnInit {
   }
 
   signInUser(email: string, password: string, source?: string) {
-    alert('Email: ' + email + 'Password : ' + password);
     console.log('The user is landing...');
     // if (this.loginDisabled) {
       // return;
     // }
     this.submitting = true;
 
-    this.http.request('/ajax/auth/login', {
+    this._loadingService.register('user.login');
+    this._http.request('/ajax/auth/login', {
       method: 'POST',
       body: {'email': email, 'password': password}
     }).then(({ result }) => {
@@ -65,16 +69,19 @@ export class UserLoginComponent implements OnInit {
       console.log('Successfully login...');
       localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
       // TODO: return returnUrl
-      return this.router.navigate(['']);
+      this._loadingService.resolve('user.login');
+      return this._router.navigate(['']);
     }).catch(errors => {
       if (errors instanceof Array) {
-        console.log(errors);
+        this._loadingService.resolve('user.login');
+        this._snackBar.open(errors[0].message, 'Error', {
+          duration: 5000,
+        });
       }
     }).then(() => {
       console.log('Submitting is false now');
       this.submitting = false;
     });
-    this.dialog.closeAll();
   }
 
   shopperLogin() {

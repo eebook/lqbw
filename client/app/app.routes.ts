@@ -20,14 +20,13 @@ import { MainComponent } from './main/main.component';
 
 
 export const appRoutes = [
-  { path: 'search', component: SearchComponent },
   {
-    path: '', component: MainComponent,
+    path: '',
+    component: MainComponent,
     children: [
       { path: '', component: SearchComponent },
-      { path: 'register', component: UserRegisterComponent },
-      { path: 'login', component: UserLoginComponent },
-      { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
+      // { path: 'register', component: UserRegisterComponent },
+      // { path: 'login', component: UserLoginComponent },
       // {
       //   path: 'bookstore',
       //   children: [
@@ -39,14 +38,20 @@ export const appRoutes = [
         // path: 'bookstore',
         // loadChildren: './bookstore/bookstore.module#BookstoreModule',
       // },
-      { path: 'account/auth/github', component: AccountComponent },
       { path: 'about', component: AboutComponent },
+      { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
+      { path: 'account/auth/github', component: AccountComponent },
       {
         path: 'job',
         loadChildren: './job/job.module#JobModule',
         canActivate: [AuthGuard]
       }
     ]
+  },
+  { path: 'user', loadChildren: './user/user.module#UserModule' },
+  {
+    path: 'search',
+    component: SearchComponent
   },
   {
     path: 'bookstore',

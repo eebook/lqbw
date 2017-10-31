@@ -33,6 +33,7 @@
 </div>
 
 <div *ngIf="!currentUser?.userName">
-  <button mat-raised-button color="primary" (click)="ShowRegisterDialog()">Auth</button>
+  <button mat-raised-button color="primary" (click)="signInUpDialog()">Auth</button>
+  <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
   <router-outlet></router-outlet>
 </div>

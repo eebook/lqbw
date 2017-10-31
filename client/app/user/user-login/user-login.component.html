@@ -1,27 +1,31 @@
-<div class="singInDiv">
-  <form [formGroup]="signUpFormControl">
-    <div class="titleDiv"><b class="singInTitle">{{ login }}</b></div>
-    <div class="emailDiv input-group">
-      <mat-form-field class="email">
-        <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignIn>
+<ng-template tdLoading="user.login" tdLoadingStrategy="overlay">
+  <div class="sign-in-up-container">
+    <form [formGroup]="signUpFormControl">
+      <div class="emailDiv input-group">
+        <mat-form-field class="email">
+          <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignIn>
           <mat-error *ngIf="emailFormControl.hasError('pattern') || emailFormControl.hasError('email')">
-            Not valid
+            not valid
           </mat-error>
           <mat-error *ngIf="emailFormControl.hasError('required')">
             required
           </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="passDiv input-group">
-      <mat-form-field class="password">
-        <input matInput type="password" placeholder="password" required="true" [formControl]="passwordFormControl" #passswordSignIn>
+        </mat-form-field>
+      </div>
+      <div class="passwordDiv input-group">
+        <mat-form-field class="password">
+          <input matInput type="password" placeholder="Password" required="true" [formControl]="passwordFormControl" #passswordSignIn>
           <mat-error *ngIf="passwordFormControl.hasError('required')">
             required
           </mat-error>
-      </mat-form-field>
+        </mat-form-field>
+      </div>
+      <div class="signInButton">
+        <button class="sign__button" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
+      </div>
+    </form>
+    <div class="login-link-container">
+      <a class="login-link text-danger" routerLink="/user/reset_password">forset password</a>
     </div>
-    <div class="singnInButton">
-      <button class="btn btn-block signIn" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
-    </div>
-  </form>
-</div>
+  </div>
+</ng-template>

@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { SignInUpComponent } from './shared/modal/sign-in-up/sign-in-up.component';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
@@ -12,9 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GrowlModule } from 'primeng/components/growl/growl';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { UserRegisterComponent } from './user/user-register/user-register.component';
-import { UserLoginComponent } from './user/user-login/user-login.component';
 import { FormControlComponent } from './common/dynamic-form/form-control.component';
 import { appRoutes } from './app.routes';
 import { CommonModule } from '@angular/common';
@@ -44,10 +42,7 @@ import { ParticlesModule } from 'angular-particle';
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    UserRegisterComponent,
     FormControlComponent,
-    UserLoginComponent,
     SearchComponent,
     SearchFormComponent,
     SearchResultComponent,
@@ -66,7 +61,6 @@ import { ParticlesModule } from 'angular-particle';
     CovalentStepsModule,
     // (optional) Additional Covalent Modules imports
     CovalentHttpModule.forRoot(),
-    CovalentHighlightModule,
     // CovalentMarkdownModule,
     // CovalentDynamicFormsModule,
     CovalentSearchModule,
@@ -90,6 +84,6 @@ import { ParticlesModule } from 'angular-particle';
   bootstrap: [
     AppComponent
   ],
-  entryComponents : [SignInUpComponent]
+  // entryComponents : [SignInUpComponent]
 })
 export class AppModule { }

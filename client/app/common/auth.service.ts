@@ -27,6 +27,7 @@ export class AuthGuard implements CanActivate {
   constructor (private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    // TODO: use ngrx/store
     if (localStorage.getItem('currentUser')) {
       return true;
     }
