@@ -40,7 +40,9 @@ export class HttpService {
     return urlSearchParams;
   }
 
-  constructor(public http: Http, ) {
+  constructor(
+    public _http: Http,
+  ) {
   }
 
   /**
@@ -53,14 +55,13 @@ export class HttpService {
    * @returns {Promise<any>}
    */
   public request(url: string, options: RequestOptionsArgs = { method: 'GET' }): Promise<any> {
-    return this.http.request(url, options)
+    return this._http.request(url, options)
       .timeout(TIMEOUT_IN_MS)
       .toPromise()
       .then(res => {
         return res.text() ? res.json() : {};
       })
       .catch(error => {
-        console.log('error???', error);
         let errors: ErrorResponse['errors'];
         if (error instanceof Response) {
           if (error.status === 0) {
@@ -86,11 +87,13 @@ export class HttpService {
 
 @Injectable()
 export class SimpleRequest {
-  constructor(public http: Http) {
+  constructor(
+    public _http: Http
+  ) {
 
   }
   request(url: string, options: RequestOptionsArgs = { method: 'GET' }) {
-    return this.http.request(url, options);
+    return this._http.request(url, options);
   }
 }
 

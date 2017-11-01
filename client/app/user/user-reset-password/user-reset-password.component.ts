@@ -1,8 +1,9 @@
+import { CaptchaImgComponent } from './../../common/captcha-img-component';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TdDialogService } from '@covalent/core';
 import { HttpService } from './../../common/http.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -12,6 +13,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
   styleUrls: ['./user-reset-password.component.scss']
 })
 export class UserResetPasswordComponent implements OnInit {
+  @ViewChild(CaptchaImgComponent) captchaImg: CaptchaImgComponent;
 
   constructor(
     private _http: HttpService,
@@ -22,6 +24,9 @@ export class UserResetPasswordComponent implements OnInit {
     Validators.required,
     Validators.email,
     Validators.pattern(EMAIL_REGEX)
+  ]);
+  captchaFormControl = new FormControl('', [
+    Validators.required,
   ]);
 
   resetPasswordFormControl = new FormGroup({

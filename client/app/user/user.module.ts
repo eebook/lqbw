@@ -1,3 +1,4 @@
+import { CaptchaImgComponent } from './../common/captcha-img-component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserComponent } from './user.component';
 import { userRoutes } from './user.routes';
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     UserRegisterComponent,
     UserResetPasswordComponent,
     UserComponent,
+    CaptchaImgComponent,
   ],
   providers: [
     AuthService

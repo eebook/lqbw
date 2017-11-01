@@ -1,3 +1,7 @@
+# WIP
+
+![lqbw](./lqbw刘备.jpg)
+
 ## TODO
 
 * A better loading page
