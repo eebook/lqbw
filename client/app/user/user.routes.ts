@@ -1,5 +1,5 @@
 import { UserComponent } from './user.component';
-import { UserResetPasswordComponent } from './user-reset-password/user-reset-password.component';
+import { UserForgetPasswordComponent } from './user-reset-password/user-forget-password.component';
 import { RouterModule } from '@angular/router';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -19,8 +19,8 @@ export const userRoutes = [
         component: UserRegisterComponent
       },
       {
-        path: 'reset_password',
-        component: UserResetPasswordComponent
+        path: 'forget_password',
+        component: UserForgetPasswordComponent
       }
     ]
   }

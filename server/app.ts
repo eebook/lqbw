@@ -27,6 +27,7 @@ import * as job from './routes/jobs';
 import * as search from './routes/search';
 import * as root from './routes/root';
 import * as captcha_image from './routes/captcha_image';
+import * as user from './routes/user';
 require('dotenv').config();
 
 
@@ -67,14 +68,15 @@ passport.deserializeUser(function(id, done) {
 
 app.use('/', index);
 // app.use('/people', people);
-app.use('/auth', account);
-app.use('/ajax', root);
+// app.use('/auth', account);
 app.use('/ajax/captcha-image', captcha_image);
 app.use('/ajax/auth', account);
 app.use('/ajax/book', book);
 app.use('/ajax/job_configs', job_configs);
 app.use('/ajax/jobs', job);
 app.use('/ajax/search', search);
+app.use('/ajax/user', user);
+app.use('/ajax', root);
 app.use('*', index);
 
 
