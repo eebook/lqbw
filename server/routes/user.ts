@@ -2,9 +2,11 @@ import * as express from 'express';
 
 import { EEBookRequest } from '../common/request';
 import eebookLogger from '../logger/logger';
+import { getEncAse192 } from '../common/util';
 
 const LOGGER = eebookLogger.logger;
 const router = express.Router();
+const CAPTCHA_NAME_COOKIE = 'captcha';
 
 
 router.post('/send_verify_code', function(req, res, next) {
@@ -18,18 +20,22 @@ router.post('/send_verify_code', function(req, res, next) {
   LOGGER.info('User input code: ', code, 'realCode: ', realCode);
   if (code != null && realCode != null && code === realCode) {
     LOGGER.info('TODO: Send verify code');
-    EEBookRequest(req, 'POST', '/user/send_verify_code', {'email': req.body.email}).then(function (result) {
-      LOGGER.info('result???' + result);
+    LOGGER.info('request. body: ' + req.body);
+    EEBookRequest(req, 'POST', '/user/send_verify_code', {'data': req.body}).then(function (result) {
+      res.send(result);
     }).catch(function (err) {
       throw err;
     });
+  } else {
+    const picString = parseInt(Math.random() * 9000 + 1000 + '', 10).toString();
+    req.session[CAPTCHA_NAME_COOKIE] = picString;
+    const encString = getEncAse192(picString);
+    const result = {
+      image_url: '/ajax/captcha-image/' + encString
+    };
+    res.status(200).send(result);
   }
 
-  EEBookRequest(req, 'GET', '/search/book', req).then(function (result) {
-    res.send(result);
-  }).catch(function (err) {
-    throw err;
-  });
 });
 
 module.exports = router;

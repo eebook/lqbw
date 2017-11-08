@@ -16,7 +16,6 @@ function getImage(rstring: string) {
   // Second color: paint (red, green, blue, alpha)
   p.color(80, 80, 80, 255);
   const img = p.getBase64();
-  LOGGER.info('Whats going on? man');
   return new Buffer(img, 'base64');
 }
 

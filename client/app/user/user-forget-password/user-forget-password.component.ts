@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { CaptchaImgComponent } from './../../common/captcha-img-component';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -33,6 +34,7 @@ export class UserForgetPasswordComponent implements OnInit {
   constructor(
     private _http: HttpService,
     private _router: Router,
+    private _snackBar: MatSnackBar,
     private _loadingService: TdLoadingService
   ) { }
 
@@ -49,23 +51,30 @@ export class UserForgetPasswordComponent implements OnInit {
     if (this.submitDisabled) {
       return;
     }
-
     this._loadingService.register('reset.password.send.code');
-    this._loadingService.resolve('reset.password.send.code');
     this._http.request('/ajax/user/send_verify_code', {
       method: 'POST',
       body: {'email': email, 'code': captchaCode}
-    }).then(({ result }) => {
-      if (result.captcha) {
+    }).then((result) => {
+      this._loadingService.resolve('reset.password.send.code');
+      if (result.image_url) {
         this.captchaImg.captchaSrc = result.image_url;
-        throw [{ code: 'invalid_captcha' }];
+        throw [{
+          code: 'invalid_captcha',
+          message: 'Invalid captcha'
+        }];
       } else {
-        return this._router.navigate(['user/forget-password/reset', email]);
+        return this._router.navigate(['user/reset', email]);
       }
     }).catch((errors: any[]) => {
-      console.log('TODO, errors');
+      console.log('errors???', errors);
+      this._loadingService.resolve('reset.password.send.code');
+      this._snackBar.open(errors[0].message, 'Error', {
+        duration: 5000,
+      });
     }).then(() => {
       this.submitting = false;
+      this._loadingService.resolve('reset.password.send.code');
     });
 
   }
