@@ -10,21 +10,16 @@ const CAPTCHA_NAME_COOKIE = 'captcha';
 
 
 router.post('/send_verify_code', function(req, res, next) {
-  LOGGER.debug('TODO: send captcha code');
-  LOGGER.debug('req.body???', req.body);
-  LOGGER.debug('captcha???' + req.session.captcha);
-
   const code = req.body.code;
   const realCode = req.session.captcha;
 
   LOGGER.info('User input code: ', code, 'realCode: ', realCode);
   if (code != null && realCode != null && code === realCode) {
-    LOGGER.info('TODO: Send verify code');
     LOGGER.info('request. body: ' + req.body);
     EEBookRequest(req, 'POST', '/user/send_verify_code', {'data': req.body}).then(function (result) {
       res.send(result);
     }).catch(function (err) {
-      throw err;
+      return next(err);
     });
   } else {
     const picString = parseInt(Math.random() * 9000 + 1000 + '', 10).toString();
@@ -36,6 +31,15 @@ router.post('/send_verify_code', function(req, res, next) {
     res.status(200).send(result);
   }
 
+});
+
+router.post('/reset_password', function(req, res, next) {
+  LOGGER.debug('reset password');
+  EEBookRequest(req, 'POST', '/user/reset_password', {'data': req.body}).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    return next(err);
+  });
 });
 
 module.exports = router;

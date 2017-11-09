@@ -16,4 +16,3 @@ export function getDecAse192(str, secret = 'lqbw') {
   return dec;
 }
 
-
