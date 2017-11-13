@@ -19,7 +19,7 @@ export class GithubService {
     this.searchString = '';
   }
 
-  getUser() {
+  getBooks() {
       if (this.searchString) {
           return this._http.get('/ajax/search/book?q=' + this.searchString)
             .map(res => res.json())

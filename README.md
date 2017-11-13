@@ -5,6 +5,7 @@
 ## TODO
 
 * A better loading page
+
 * use karma to run unit test
 
 * cp server/logger/default_config to dist
@@ -13,6 +14,12 @@
 
 * Unauthorized Access snackbar and redirect, just delete session to test
 
+### Roadmap
+
+* Use Angular5
+* Unit testing
+* Login with github, google, facebook, etc.
+
 ## notes
 
 nodejs version: v6.11.1
@@ -20,6 +27,7 @@ nodejs version: v6.11.1
 ## dev
 
 ### start redis (TODO: You can't rely on it)
+
 ```
 redis-server
 ```
@@ -36,7 +44,7 @@ npm run dev
 ./node_modules/.bin/ng-xi18n  --i18nFormat=xlf  --outFile=./client/locale/messages.xlf
 ```
 
-### Konwn issues
+### Known issues
 
 * login/logout need refresh manually
 

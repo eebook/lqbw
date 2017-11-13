@@ -39,7 +39,7 @@ export class SearchFormComponent implements OnInit {
   getSearchResult() {
     console.log('Getting search result');
     console.log('Got searchString: ' + this.searchModel.searchString);
-    this._searchService.getUser().subscribe(result => {
+    this._searchService.getBooks().subscribe(result => {
       // TODO: Fix continued triggering of async requests when typing. Take up too much resource, bad UX.
       // Reference: https://stackoverflow.com/questions/32051273/angular-and-debounce
       this.searchModel.searchResult = result.results;

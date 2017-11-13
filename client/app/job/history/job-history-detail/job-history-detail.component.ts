@@ -47,8 +47,8 @@ export class JobHistoryDetailComponent implements OnInit {
       this._loadingService.register('job.logs');
       await this._pollLogs();
     } catch (err) {
-      this.logs = [{log: 'Not logs'}];
-      console.log('Not logs');
+      this.logs = [{log: 'No logs'}];
+      console.log('No logs');
     } finally {
       this._loadingService.resolve('job.logs');
     }
