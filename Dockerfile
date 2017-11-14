@@ -7,6 +7,7 @@ RUN \
   build-essential \
   libfreetype6-dev \
   curl \
+  python \
   libreadline-dev \
   libncurses5-dev \
   libpcre3-dev \
