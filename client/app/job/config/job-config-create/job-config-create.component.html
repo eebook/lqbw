@@ -1,55 +1,15 @@
-<td-layout-card-over cardTitle="Create Job" cardSubtitle="fill form to {{action}} user">
+<td-layout-card-over cardTitle="Create Job" cardSubtitle="Fill form to create a job config">
   <ng-template tdLoading="user.form">
     <mat-card-content class="push-bottom-none">
       <form #userForm="ngForm">
-        <div layout="row">
-          <mat-input-container flex>
-            <input matInput
-                #displayNameElement
-                #displayNameControl="ngModel"
-                type="text"
-                placeholder="Name"
-                [(ngModel)]="displayName"
-                name="displayName"
-                maxlength="20"
-                required>
-            <mat-hint align="start">
-              <span [hidden]="displayNameControl.pristine" class="tc-red-600">
-                <span [hidden]="!displayNameControl.hasError('required')">Required</span>
-              </span>
-            </mat-hint>
-            <mat-hint align="end">{{displayNameElement.value.length}} / 20</mat-hint>
-          </mat-input-container>
-        </div>
-        
-        <div layout="row">
-          <mat-input-container flex> 
-            <input matInput
-                #displayNameElement
-                #displayNameControl="ngModel"
-                type="text"
-                placeholder="URL"
-                [(ngModel)]="displayName"
-                name="displayName"
-                maxlength="20"
-                required>
-            <mat-hint align="start">
-              <span [hidden]="displayNameControl.pristine" class="tc-red-600">
-                <span [hidden]="!displayNameControl.hasError('required')">Required</span>
-              </span>
-            </mat-hint>
-            <mat-hint align="end">{{displayNameElement.value.length}} / 20</mat-hint>
-          </mat-input-container>
-        </div>
-
         <div layout="row" class="push-top">
-          <mat-input-container flex> 
+          <mat-input-container flex>
             <input matInput
               #emailElement
               #emailControl="ngModel"
               type="text"
-              placeholder="Email" 
-              [(ngModel)]="email" 
+              placeholder="Email"
+              [(ngModel)]="email"
               name="email"
               maxlength="30"
               pattern="^[a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$"
@@ -63,8 +23,52 @@
           <mat-hint align="end">{{emailElement.value.length}} / 30</mat-hint>
           </mat-input-container>
         </div>
-
       </form>
+
+      <td-steps>
+        <td-step #step1 label="Basic Info" [active]="true" [state]="stateStep1" [disabled]="disabled" (activated)="activeStep1Event()" (deactivated)="deactiveStep1Event()">
+          <ng-template td-step-label><span>Basic Info</span></ng-template>
+          <div layout="row" class="push-top">
+            <mat-input-container flex>
+              <input matInput
+                  #displayNameElement
+                  #displayNameControl="ngModel"
+                  type="text"
+                  placeholder="URL"
+                  [(ngModel)]="displayName"
+                  name="URL"
+                  maxlength="20"
+                  required>
+              <mat-hint align="start">
+                <span [hidden]="displayNameControl.pristine" class="tc-red-600">
+                  <span [hidden]="!displayNameControl.hasError('required')">Required</span>
+                </span>
+              </mat-hint>
+              <mat-hint align="end">{{displayNameElement.value.length}} / 20</mat-hint>
+            </mat-input-container>
+            <span flex>
+              <button mat-raised-button color="primary" (click)="toggleRequiredStep1()" class="text-upper">TODELETE Toggle step1 Required</button>
+            </span>
+          </div>
+        </td-step>
+        <td-step #step2 label="URL info" sublabel="Toggle between active and inactive while in required state and disable ripple." [state]="stateStep2" [disabled]="disabled" disableRipple>
+          This step is required!
+          <ng-template td-step-actions>
+            <button mat-raised-button color="primary" (click)="toggleRequiredStep2()" class="text-upper">Toggle Require</button>
+            <button mat-button (click)="step2.active = false" class="text-upper">Cancel</button>
+          </ng-template>
+        </td-step>
+        <td-step #step3 label="Complete State" sublabel="Toggle between active and inactive while in complete state." [state]="stateStep3" [disabled]="disabled">
+          Mark this step complete and get a summary
+          <ng-template td-step-summary>
+            Use an optional step summary to summarize the info in this step
+          </ng-template>
+          <ng-template td-step-actions>
+            <button mat-raised-button color="primary" (click)="toggleCompleteStep3()" class="text-upper">Toggle Complete</button>
+            <button mat-button (click)="step3.active = false" class="text-upper">Cancel</button>
+          </ng-template>
+        </td-step>
+      </td-steps>
     </mat-card-content>
 
     <mat-divider></mat-divider>
@@ -78,5 +82,4 @@
     </mat-card-actions>
   </ng-template>
 </td-layout-card-over>
-      
-      
+

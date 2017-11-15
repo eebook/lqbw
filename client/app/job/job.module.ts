@@ -14,7 +14,7 @@ import { JobConfigCreateComponent } from './config/job-config-create/job-config-
 // import { MdTabsModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, CovalentLayoutModule,
-  CovalentSearchModule, CovalentCommonModule, CovalentExpansionPanelModule } from '@covalent/core';
+  CovalentSearchModule, CovalentCommonModule, CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
 
 
 @NgModule({
@@ -28,6 +28,7 @@ import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, Cova
     CovalentMediaModule,
     CovalentLayoutModule,
     CovalentSearchModule,
+    CovalentStepsModule,
     CovalentCommonModule,
     CovalentExpansionPanelModule,
     MatTabsModule,

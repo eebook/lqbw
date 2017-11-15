@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/:config_name', function(req, res, next) {
   LOGGER.debug('Get job config details');
-  EEBookRequest(req, 'GET', '/job_configs/' + req.params.config_name, req).then(function (result) {
+  EEBookRequest(req, 'GET', '/job_configs/' + req.params.config_name + '/', req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
     return next(err);
@@ -40,7 +40,7 @@ router.get('/:config_name', function(req, res, next) {
 
 router.delete('/:config_name', function(req, res, next) {
   LOGGER.debug('Delete job config');
-  EEBookRequest(req, 'DELETE', '/job_configs/' + req.params.config_name, req).then(function (result) {
+  EEBookRequest(req, 'DELETE', '/job_configs/' + req.params.config_name + '/', req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
     return next(err);

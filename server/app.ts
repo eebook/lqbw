@@ -1,14 +1,10 @@
-/**
- * eebook - app.js
- */
-
-
 import * as express from 'express';
 import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as session from 'express-session';
 import * as passport from 'passport';
+import ENVVARS from './env';
 const methodOverride = require('method-override');
 const RedisStore = require('connect-redis')(session);
 // import * as FileStore from 'session-file-store';
@@ -52,7 +48,12 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(session({
   secret: 'sessionsecret',
   // store: TODO: store in redis?
-  store: new RedisStore(),
+  store: new RedisStore(
+    {
+      'host': ENVVARS.REDIS_HOST,
+      'port': ENVVARS.REDIS_PORT
+    }
+  ),
   resave: false,
   saveUninitialized: true
 }));
