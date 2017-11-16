@@ -10,8 +10,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { GrowlModule } from 'primeng/components/growl/growl';
-
 import { AppComponent } from './app.component';
 import { FormControlComponent } from './common/dynamic-form/form-control.component';
 import { appRoutes } from './app.routes';
@@ -65,8 +63,8 @@ import { ParticlesModule } from 'angular-particle';
     // CovalentDynamicFormsModule,
     CovalentSearchModule,
     BrowserAnimationsModule,
-    // NgxPaginationModule,
     SharedModule,
+    SchemaFormModule,
     ComponentsModule,
     // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
     ParticlesModule,
@@ -79,7 +77,7 @@ import { ParticlesModule } from 'angular-particle';
     GithubService,
     SimpleRequest,
     AuthGuard,
-    // {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
+    {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
   ],
   bootstrap: [
     AppComponent

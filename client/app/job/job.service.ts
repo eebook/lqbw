@@ -16,7 +16,13 @@ export class JobService {
   }
 
   public getConfigByName(name): Observable<Response> {
-    return this._http.get('/ajax/job_configs/' + name);
+    return this._http.get('/ajax/job_configs/' + name)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  public checkConfigName(name): Observable<Response> {
+    return this._http.get('/ajax/job_configs/' + name + '/exist');
   }
 
   public deleteConfigByName(name): Promise<any> {
@@ -60,5 +66,15 @@ export class JobService {
   public getJobLogs(jobUUID: string, page: number, startTime: number, endTime: number): Promise<any> {
     const url = '/ajax/jobs/' + jobUUID + '/logs/?start_time=' + startTime + '&end_time=' + endTime;
     return this._promiseHttp.request(url, {method: 'GET'});
+  }
+
+  public getUrlMetaData(url): Observable<Response> {
+    return this._http.post('/ajax/url_metadata', {'url': url})
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any) {
+    return Observable.throw(error);
   }
 }

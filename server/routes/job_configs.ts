@@ -38,6 +38,15 @@ router.get('/:config_name', function(req, res, next) {
   });
 });
 
+router.get('/:config_name/exist', function(req, res, next) {
+  LOGGER.debug('Check whether config name exist');
+  EEBookRequest(req, 'GET', '/job_configs/' + req.params.config_name + '/exist', req).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    return next(err);
+  });
+});
+
 router.delete('/:config_name', function(req, res, next) {
   LOGGER.debug('Delete job config');
   EEBookRequest(req, 'DELETE', '/job_configs/' + req.params.config_name + '/', req).then(function (result) {

@@ -38,8 +38,6 @@ export class UserForgetPasswordComponent implements OnInit {
     private _loadingService: TdLoadingService
   ) { }
 
-
-
   ngOnInit() {
   }
 

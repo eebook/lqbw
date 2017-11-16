@@ -24,6 +24,7 @@ import * as search from './routes/search';
 import * as root from './routes/root';
 import * as captcha_image from './routes/captcha_image';
 import * as user from './routes/user';
+import * as url_metadata from './routes/url_metadata';
 require('dotenv').config();
 
 
@@ -76,6 +77,7 @@ app.use('/ajax/book', book);
 app.use('/ajax/job_configs', job_configs);
 app.use('/ajax/jobs', job);
 app.use('/ajax/search', search);
+app.use('/ajax/url_metadata', url_metadata);
 app.use('/ajax/user', user);
 app.use('/ajax', root);
 app.use('*', index);
