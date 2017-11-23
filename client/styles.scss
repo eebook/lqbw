@@ -1,7 +1,7 @@
 html {
   font-size: 10px;
 }
-  
+
 * {
   margin: 0;
   padding: 0;
@@ -21,6 +21,10 @@ body {
 
 html, body, button, input, select, textarea, h1, h2, h3, p, a {
   font-family: HelveticaNeue-Light, Helvetica Neue, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+
+fieldset {
+  border-width: 0px;
 }
 
 *:focus {

@@ -4,7 +4,9 @@ import { JobService } from './job.service';
 import { jobRoutes } from './job.routes';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
+import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry, StringWidget } from 'angular2-schema-form';
+import { MyWidgetRegistry } from './widget/widgetregistry';
+import { MyStringWidget } from './widget/string/string.widget';
 import { SharedModule } from '../shared/shared.module';
 import { JobHistoryListComponent } from './history/job-history-list/job-history-list.component';
 import { JobHistoryDetailComponent } from './history/job-history-detail/job-history-detail.component';
@@ -41,10 +43,12 @@ import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, Cova
     JobHistoryListComponent,
     JobHistoryDetailComponent,
     JobComponent,
+    MyStringWidget,
   ],
+  entryComponents: [MyStringWidget],
   providers: [
     JobService,
-    {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
+    {provide: WidgetRegistry, useClass: MyWidgetRegistry},
   ]
 })
 export class JobModule { }

@@ -63,6 +63,7 @@ export class JobConfigCreateComponent implements OnInit {
         (res) => {
           this.metaData = res;
           this.urlSchema = this.metaData.result.schema;
+          console.log('url schema???', this.urlSchema);
           this.stateStep1 = StepState.None;
           this.step1Active = false;
           this.step2Active = true;
