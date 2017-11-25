@@ -7,9 +7,9 @@
     <td>
       {{ job.config_name }}, {{ job.status }}, {{ job.created_at }}
     </td>
-  </tr> 
+  </tr>
 </tbody>
-  
+
 <div class="has-text-centered">
   <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
   <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
@@ -21,28 +21,28 @@
     </button>
     <span>Job Config Detail</span>
   </mat-toolbar>
-  
+
   <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
     <td-expansion-panel label="Basic information" expand="false">
       <div class="mat-padding">
         <h3 class="mat-subhead">mat-padding class</h3>
-        <div>Demo 1</div>
-        <div>Demo 2</div>
-        <div>Demo 3</div>
-        <div>Demo 4</div>
+        <div>{{jobConfig.config_name}}</div>
+        <div>{{jobConfig.created_by}}</div>
+        <div>{{jobConfig.image_name}}:{{jobConfig.image_tag}}</div>
+        <div>{{jobConfig.created_at}}</div>
       </div>
     </td-expansion-panel>
   </mat-card>
-  
+
   <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
     <mat-tab-group>
       <mat-tab label="Logs">
-        <ng-template tdLoading="job.logs">
+        <ng-template tdLoading="jobConfig.jobs">
           <div class="lqbw-log-container" id="content">
           </div>
         </ng-template>
       </mat-tab>
-      <mat-tab label="TODO">
+      <mat-tab label="Configs">
         <div class="lqbw-log-container" id="content">
         </div>
       </mat-tab>

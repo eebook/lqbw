@@ -38,6 +38,7 @@ export class JobConfigCreateComponent implements OnInit {
 
   metaData: any;
   urlSchema: any;
+  value: any = {};
 
   constructor(
     private _router: Router,
@@ -149,8 +150,39 @@ export class JobConfigCreateComponent implements OnInit {
     this.step2Disabled = true;
   }
 
-  create(): void {
+  create(url: string, name: string): void {
+    const payload = {
+      config_name: name,
+      image_name: this.metaData.result.image,
+      // image_tag: this.metaData.result.image_version,
+      image_tag: 'tst',
+      envvars: [{
+        name: 'URL',
+        value: url
+      }]
+    }
     console.log('create job');
+    console.log('url???%s, name???%s', url, name);
+    console.log('this.value???', this.value);
+    for (var key in this.value) {
+      payload.envvars.push({name: key, value: this.value[key]});
+    }
+    console.log('payload????', payload);
+    this._loadingService.register('create.job');
+    this._jobService.createConfig(payload)
+      .subscribe(
+        (data) => {
+          console.log('create job config: ', data.json());
+          // TODO: jump jump
+          this._loadingService.resolve('create.job');
+          this._router.navigate(['/job/config/detail', name]);
+        },
+        (error) => {
+          this._snackBarService.open(error.json().message, 'Create', {
+            duration: 2000,
+          });
+        }
+      );
   }
 
 }

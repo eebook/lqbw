@@ -1,0 +1,12 @@
+<div layout="row" class="push-top">
+  <mat-input-container flex>
+    <input matInput type="string"
+      type="text"
+      [placeholder]="schema.title"
+      [name]="name"
+      [attr.readonly]="schema.readOnly?true:null"
+      [attr.id]="id"
+      [attr.disabled]="schema.readOnly?true:null"
+      [formControl]="control" />
+  </mat-input-container>
+</div>

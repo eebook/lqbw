@@ -1,4 +1,3 @@
-import { EEBookErrorResponse } from './../../../server/common/exceptions';
 import { Injectable } from '@angular/core';
 import { Http, RequestMethod, RequestOptionsArgs, URLSearchParams, Response } from '@angular/http';
 import { TimeoutError } from 'rxjs/util/TimeoutError';

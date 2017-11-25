@@ -37,17 +37,23 @@
               </mat-hint>
             </mat-input-container>
             <ng-template td-step-actions>
-              <button mat-raised-button color="primary" [disabled]="!basicInfoControlGroup.valid" (click)="inputBasicInfo(urlElement.value, jobNameElement.value)" class="text-upper">Next</button>
-              <button mat-button (click)="goBack()" class="text-upper">Cancel</button>
+              <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <span flex></span>
+                <button mat-raised-button color="primary" [disabled]="!basicInfoControlGroup.valid" (click)="inputBasicInfo(urlElement.value, jobNameElement.value)" class="text-upper">Next</button>
+                <button mat-button (click)="goBack()" class="text-upper">Cancel</button>
+              </section>
             </ng-template>
           </div>
           </form>
         </td-step>
         <td-step #step2 label="Config" sublabel="" [state]="stateStep2" [disabled]="step2Disabled" disableRipple [active]="step2Active">
-          <sf-form [schema]="urlSchema"></sf-form>
+          <sf-form [schema]="urlSchema" (onChange)="value=$event.value"></sf-form>
           <ng-template td-step-actions>
-            <button mat-raised-button color="primary" (click)="inputBasicInfo(urlElement.value, jobNameElement.value)" class="text-upper">Create</button>
-            <button mat-button (click)="step2.active = false" class="text-upper">Cancel</button>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+              <span flex></span>
+              <button mat-raised-button color="primary" (click)="create(urlElement.value, jobNameElement.value)" class="text-upper">Create</button>
+              <button mat-button (click)="step2.active = false" class="text-upper">Cancel</button>
+            </section>
           </ng-template>
         </td-step>
       </td-steps>

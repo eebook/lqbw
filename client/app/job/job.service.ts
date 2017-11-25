@@ -17,7 +17,6 @@ export class JobService {
 
   public getConfigByName(name): Observable<Response> {
     return this._http.get('/ajax/job_configs/' + name)
-      .map(res => res.json())
       .catch(this.handleError);
   }
 
@@ -31,7 +30,6 @@ export class JobService {
   }
 
   public createConfig(payload): Observable<Response> {
-    console.log('WTF????');
     return this._http.post('/ajax/job_configs/', payload);
   }
 

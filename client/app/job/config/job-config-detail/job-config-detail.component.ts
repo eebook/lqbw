@@ -17,6 +17,7 @@ import 'rxjs/add/operator/takeWhile';
 })
 export class JobConfigDetailComponent implements OnInit {
   public jobConfig: JobConfig = new JobConfig();
+  // jobConfig: any;
   alive = true;
   loading: boolean;
   asyncJobs: Observable<any[]>;
@@ -45,7 +46,7 @@ export class JobConfigDetailComponent implements OnInit {
       .getConfigByName(name)
       .subscribe(data => {
         this.jobConfig = data.json();
-        console.log('data json???', data.json());
+        console.log('jobconfig???', this.jobConfig)
       });
   }
 
