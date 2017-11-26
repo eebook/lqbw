@@ -25,7 +25,6 @@
   <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
     <td-expansion-panel label="Basic information" expand="false">
       <div class="mat-padding">
-        <h3 class="mat-subhead">mat-padding class</h3>
         <div>{{jobConfig.config_name}}</div>
         <div>{{jobConfig.created_by}}</div>
         <div>{{jobConfig.image_name}}:{{jobConfig.image_tag}}</div>
@@ -36,7 +35,7 @@
 
   <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
     <mat-tab-group>
-      <mat-tab label="Logs">
+      <mat-tab label="jobs">
         <ng-template tdLoading="jobConfig.jobs">
           <div class="lqbw-log-container" id="content">
           </div>

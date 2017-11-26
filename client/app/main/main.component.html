@@ -3,7 +3,9 @@
   <td-navigation-drawer flex sidenavTitle="EEBook" name="{{currentUser?.userName}}" email="firstname.lastname@company.com">
     <mat-nav-list>
       <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
-        <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()"><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+        <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()">
+          <mat-icon>{{item.icon}}</mat-icon>
+        {{item.title}}</a>
       </ng-template>
       <a mat-list-item (click)="doLogout(layout)"><mat-icon>people</mat-icon>Logout</a>
     </mat-nav-list>
