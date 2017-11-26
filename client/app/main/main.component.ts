@@ -80,4 +80,9 @@ export class MainComponent implements OnInit, AfterContentInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     });
   }
+
+  changeLang(lang: string): void {
+    localStorage.setItem('lang', lang);
+    window.location.reload();
+  }
 }

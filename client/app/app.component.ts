@@ -36,4 +36,9 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
   }
+
+  changeLang(lang: string): void {
+    localStorage.setItem('lang', lang);
+    window.location.reload();
+  }
 }
