@@ -58,7 +58,12 @@
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
+          <p>{{envvars}}</p>
+          <ng-container matColumnDef="name">
+            <!-- <mat-header-cell *matHeaderCellDef>Name</mat-header-cell> -->
+            <!-- <mat-cell *matCellDef="let envvars"> {{envvars.name}} </mat-cell> -->
+          </ng-container>
         </div>
       </mat-tab>
     </mat-tab-group>

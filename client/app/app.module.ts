@@ -49,12 +49,18 @@ import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 // import { ParticlesModule } from 'angular-particle';
 // import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+// import { HttpClientModule, HttpClient } from '@angular/common/http';
 // import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 // import { AppReducer } from './shared/ngrx/index';
 import { TranslateLoader } from '@ngx-translate/core';
+<<<<<<< HEAD
 import { CoreModule } from './core/core.module';
+=======
+// import { MultilingualModule, Languages, translateLoaderFactory, MultilingualEffects } from './shared/i18n/index';
+// import { Languages } from './shared/i18n/index';
+// import { MultilingualService } from './shared/i18n/services/multilingual.service';
+>>>>>>> feat: Ops, ready to try angular-seed-express
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
 import { DBModule } from '@ngrx/db';
@@ -110,13 +116,17 @@ import { schema } from './db';
 
   ],
   providers: [
+    // HttpClient,
     AuthService,
     HttpService,
     JobService,
     // MultilingualService,
     SimpleRequest,
     AuthGuard,
-    // { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+    // {
+      // provide: Languages,
+      // useValue: Config.GET_SUPPORTED_LANGUAGES()
+    // }HttpHandler,
     {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
   ],
   bootstrap: [

@@ -10,7 +10,9 @@ if (environment.production) {
   console.log('prod mode');
 }
 
-getTranslationProviders(environment.production).then((providers: CompilerOptions[]) => {
-  const options = { providers };
-  platformBrowserDynamic().bootstrapModule(AppModule, options);
-});
+// getTranslationProviders(environment.production).then((providers: CompilerOptions[]) => {
+//   const options = { providers };
+//   platformBrowserDynamic().bootstrapModule(AppModule, options);
+// });
+platformBrowserDynamic().bootstrapModule(AppModule);
+
