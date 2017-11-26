@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 
 import { ComponentsModule } from './components/components.module';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+// import {TranslateModule} from '@ngx-translate/core';
+import { MultilingualModule } from './i18n/index';
 import {
   CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
   CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
@@ -51,6 +53,7 @@ const COVALENT_MODULES: any[] = [
   imports: [
     CommonModule,
     ComponentsModule,
+    // MultilingualModule,
     ANGULAR_MODULES,
     MATERIAL_MODULES,
     COVALENT_MODULES,
@@ -59,6 +62,8 @@ const COVALENT_MODULES: any[] = [
     SignInUpComponent,
     CommonModule,
     ComponentsModule,
+    // TranslateModule,
+    // MultilingualModule,
     ANGULAR_MODULES,
     MATERIAL_MODULES,
     COVALENT_MODULES,

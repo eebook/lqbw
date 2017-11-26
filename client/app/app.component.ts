@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './user/model/user-model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   constructor(
     private _iconRegistry: MatIconRegistry,
     private _domSanitizer: DomSanitizer,
+    // _translate: TranslateService
   ) {
     this._iconRegistry.addSvgIconInNamespace('assets', 'teradata',
     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/teradata.svg'));
@@ -33,12 +35,12 @@ export class AppComponent implements OnInit {
     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/listener.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'querygrid',
     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/querygrid.svg'));
+
+
+    // _translate.setDefaultLang('en');
+    // _translate.use('en');
   }
   ngOnInit() {
   }
 
-  changeLang(lang: string): void {
-    localStorage.setItem('lang', lang);
-    window.location.reload();
-  }
 }

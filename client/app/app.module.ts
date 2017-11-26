@@ -1,3 +1,4 @@
+import { Config } from './shared/utils/config';
 import { UserModule } from './user/user.module';
 import { SignInUpComponent } from './shared/modal/sign-in-up/sign-in-up.component';
 import { ComponentsModule } from './shared/components/components.module';
@@ -35,6 +36,16 @@ import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 import { ParticlesModule } from 'angular-particle';
+// import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+// import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { StoreModule } from '@ngrx/store';
+import { AppReducer } from './shared/ngrx/index';
+import { TranslateLoader } from '@ngx-translate/core';
+// import { MultilingualModule, Languages, translateLoaderFactory, MultilingualEffects } from './shared/i18n/index';
+import { Languages } from './shared/i18n/index';
+// import { MultilingualService } from './shared/i18n/services/multilingual.service';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -64,19 +75,36 @@ import { ParticlesModule } from 'angular-particle';
     CovalentSearchModule,
     BrowserAnimationsModule,
     SharedModule,
+    // MultilingualModule.forRoot([{
+    //   provide: TranslateLoader,
+    //   deps: [HttpClient],
+    //   useFactory: (translateLoaderFactory)
+    // }]),
+    StoreModule.provideStore(AppReducer),
     SchemaFormModule,
     ComponentsModule,
     // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
     ParticlesModule,
-    RouterModule.forRoot(appRoutes, )
+    RouterModule.forRoot(appRoutes, ),
+    // StoreModule.forRoot(reducers),
+    // Note that you must instrument after importing StoreModule (config is optional)
+    // StoreDevtoolsModule.instrument({
+    //   maxAge: 25 //  Retains last 25 states
+    // })
   ],
   providers: [
+    HttpClient,
     AuthService,
     HttpService,
     JobService,
     GithubService,
+    // MultilingualService,
     SimpleRequest,
     AuthGuard,
+    {
+      provide: Languages,
+      useValue: Config.GET_SUPPORTED_LANGUAGES()
+    },
     {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
   ],
   bootstrap: [

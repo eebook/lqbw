@@ -1,3 +1,73 @@
+<mat-toolbar>
+    <button mat-icon-button td-menu-button tdLayoutManageListToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Job Config Detail</span>
+  </mat-toolbar>
+
+  <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+    <td-expansion-panel label="Basic information of {{jobConfig.config_name}}" expand="false">
+      <div class="mat-padding">
+        <div class="static-field">
+          <label>Name: </label>
+          <div>
+            <span>{{jobConfig.config_name}}</span>
+          </div>
+        </div>
+        <div class="static-field">
+          <label>Image: </label>
+          <div>
+            <span>{{jobConfig.image_name}}:{{jobConfig.image_tag}}</span>
+          </div>
+        </div>
+        <div class="static-field">
+          <label>Created at: </label>
+          <div>
+            <span>{{jobConfig.created_at}}</span>
+          </div>
+        </div>
+
+      </div>
+    </td-expansion-panel>
+  </mat-card>
+
+  <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+    <mat-tab-group>
+      <mat-tab label="Jobs">
+        <ng-template tdLoading="jobConfig.jobs">
+          <div class="lqbw-log-container" id="content">
+          </div>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Configs">
+        <div class="lqbw-log-container" id="content">
+          <!-- <table class="config-detail-table" align="center">
+            <thead>
+              <tr>
+                <th style="width: 300px;">Name</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of jobConfig.envvars">
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+              </tr>
+            </tbody>
+          </table> -->
+          <p>{{envvars}}</p>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let envvars"> {{envvars.name}} </mat-cell>
+          </ng-container>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
 <!-- <p>
   {{ jobConfig.config_name }}, {{ jobConfig.updated_at }} , {{ jobConfig.created_at }}, {{ jobConfig.schedule_rule}}
 </p>
@@ -14,42 +84,3 @@
   <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
   <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
 </div> -->
-
-<mat-toolbar>
-    <button mat-icon-button td-menu-button tdLayoutManageListToggle>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Job Config Detail</span>
-  </mat-toolbar>
-
-  <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
-    <td-expansion-panel label="Basic information" expand="false">
-      <div class="mat-padding">
-        <div class="static-field">
-          <label>name: </label>
-          <div>
-            <span>{{jobConfig.config_name}}</span>
-          </div>
-        </div>
-        <div>{{jobConfig['created_by']}}</div>
-        <div>{{jobConfig.created_by}}</div>
-        <div>{{jobConfig.image_name}}:{{jobConfig.image_tag}}</div>
-        <div>{{jobConfig.created_at}}</div>
-      </div>
-    </td-expansion-panel>
-  </mat-card>
-
-  <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
-    <mat-tab-group>
-      <mat-tab label="Jobs">
-        <ng-template tdLoading="jobConfig.jobs">
-          <div class="lqbw-log-container" id="content">
-          </div>
-        </ng-template>
-      </mat-tab>
-      <mat-tab label="Configs">
-        <div class="lqbw-log-container" id="content">
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card>

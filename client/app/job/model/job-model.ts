@@ -5,6 +5,7 @@ export class JobConfig {
   created_by: string;
   image_name: string;
   image_tag: string;
+  envvars: any;
 }
 
 export class JobDetail {

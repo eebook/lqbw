@@ -5,6 +5,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user/model/user-model';
 import { CovalentSearchModule } from '@covalent/core';
+// import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main',
@@ -36,12 +37,18 @@ export class MainComponent implements OnInit, AfterContentInit {
   public currentUser: User;
   returnUrl: string;
 
+  // param = {value: 'world'};
+
   constructor(
     private _authService: AuthService,
     private _router: Router,
     private _route: ActivatedRoute,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    // private translate: TranslateService
+  ) {
+    // translate.setDefaultLang('en');
+    // translate.use('en');
+  }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -81,8 +88,8 @@ export class MainComponent implements OnInit, AfterContentInit {
     });
   }
 
-  changeLang(lang: string): void {
-    localStorage.setItem('lang', lang);
-    window.location.reload();
-  }
+  // changeLang(lang: string): void {
+  //   localStorage.setItem('lang', lang);
+  //   window.location.reload();
+  // }
 }
