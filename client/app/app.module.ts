@@ -27,7 +27,12 @@ import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 import { AccountComponent } from './account/account.component';
 
-import { CovalentLayoutModule, CovalentStepsModule, CovalentSearchModule } from '@covalent/core';
+import {
+  CovalentLayoutModule,
+  CovalentStepsModule,
+  CovalentSearchModule,
+  CovalentDataTableModule
+} from '@covalent/core';
 // (optional) Additional Covalent Modules imports
 import { CovalentHttpModule } from '@covalent/http';
 import { CovalentHighlightModule } from '@covalent/highlight';
@@ -37,13 +42,13 @@ import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 import { ParticlesModule } from 'angular-particle';
 // import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+// import { HttpClientModule, HttpClient } from '@angular/common/http';
 // import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
-import { AppReducer } from './shared/ngrx/index';
+// import { AppReducer } from './shared/ngrx/index';
 import { TranslateLoader } from '@ngx-translate/core';
 // import { MultilingualModule, Languages, translateLoaderFactory, MultilingualEffects } from './shared/i18n/index';
-import { Languages } from './shared/i18n/index';
+// import { Languages } from './shared/i18n/index';
 // import { MultilingualService } from './shared/i18n/services/multilingual.service';
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -63,6 +68,7 @@ import { Languages } from './shared/i18n/index';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
@@ -73,14 +79,14 @@ import { Languages } from './shared/i18n/index';
     // CovalentMarkdownModule,
     // CovalentDynamicFormsModule,
     CovalentSearchModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     SharedModule,
     // MultilingualModule.forRoot([{
     //   provide: TranslateLoader,
     //   deps: [HttpClient],
     //   useFactory: (translateLoaderFactory)
     // }]),
-    StoreModule.provideStore(AppReducer),
+    // StoreModule.provideStore(AppReducer),
     SchemaFormModule,
     ComponentsModule,
     // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
@@ -93,7 +99,6 @@ import { Languages } from './shared/i18n/index';
     // })
   ],
   providers: [
-    HttpClient,
     AuthService,
     HttpService,
     JobService,
@@ -101,10 +106,6 @@ import { Languages } from './shared/i18n/index';
     // MultilingualService,
     SimpleRequest,
     AuthGuard,
-    {
-      provide: Languages,
-      useValue: Config.GET_SUPPORTED_LANGUAGES()
-    },
     {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
   ],
   bootstrap: [

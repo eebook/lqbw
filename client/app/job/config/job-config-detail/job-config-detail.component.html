@@ -39,48 +39,27 @@
           </div>
         </ng-template>
       </mat-tab>
-      <mat-tab label="Configs">
+      <mat-tab label="Env Virables">
         <div class="lqbw-log-container" id="content">
-          <!-- <table class="config-detail-table" align="center">
+          <table td-data-table>
             <thead>
-              <tr>
-                <th style="width: 300px;">Name</th>
-                <th>Value</th>
+              <tr td-data-table-column-row>
+                <th td-data-table-column
+                    *ngFor="let column of columns"
+                    [numeric]="column.numeric">
+                  {{column.label}}
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of jobConfig.envvars">
-                <td>
-                  {{ item.name }}
-                </td>
-                <td>
-                  {{ item.value }}
+              <tr td-data-table-row *ngFor="let row of envvars">
+                <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
+                  {{column.format ? column.format(row[column.name]) : row[column.name]}}
                 </td>
               </tr>
             </tbody>
-          </table> -->
-          <p>{{envvars}}</p>
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-            <mat-cell *matCellDef="let envvars"> {{envvars.name}} </mat-cell>
-          </ng-container>
+          </table>
         </div>
       </mat-tab>
     </mat-tab-group>
   </mat-card>
-<!-- <p>
-  {{ jobConfig.config_name }}, {{ jobConfig.updated_at }} , {{ jobConfig.created_at }}, {{ jobConfig.schedule_rule}}
-</p>
-
-<tbody>
-  <tr *ngFor="let job of asyncJobs | async | paginate: {id: 'server', itemsPerPage: 5, currentPage: p, totalItems: total }">
-    <td>
-      {{ job.config_name }}, {{ job.status }}, {{ job.created_at }}
-    </td>
-  </tr>
-</tbody>
-
-<div class="has-text-centered">
-  <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
-  <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
-</div> -->

@@ -24,7 +24,7 @@ export const appRoutes = [
     path: '',
     component: MainComponent,
     children: [
-      { path: '', component: SearchComponent },
+      { path: 'search', component: SearchComponent },
       // { path: 'register', component: UserRegisterComponent },
       // { path: 'login', component: UserLoginComponent },
       // {
@@ -39,7 +39,11 @@ export const appRoutes = [
         // loadChildren: './bookstore/bookstore.module#BookstoreModule',
       // },
       { path: 'about', component: AboutComponent },
-      { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
+      {
+        path: 'settings',
+        loadChildren: './settings/settings.module#SettingsModule',
+        canActivate: [AuthGuard]
+      },
       { path: 'account/auth/github', component: AccountComponent },
       {
         path: 'job',
@@ -48,13 +52,17 @@ export const appRoutes = [
       }
     ]
   },
-  { path: 'user', loadChildren: './user/user.module#UserModule' },
   {
-    path: 'search',
-    component: SearchComponent
+    path: 'user',
+    loadChildren: './user/user.module#UserModule'
   },
+  // {
+  //   path: 'search',
+  //   component: SearchComponent
+  // },
   {
     path: 'bookstore',
     loadChildren: './bookstore/bookstore.module#BookstoreModule',
+    canActivate: [AuthGuard]
   },
 ];
