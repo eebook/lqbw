@@ -1,9 +1,6 @@
-import { AuthGuard } from './../common/auth.service';
 import { SettingsComponent } from './settings.component';
-
 import { RouterModule } from '@angular/router';
-
-// TODO, move to a module
+import { AuthGuard } from './../common/auth.service';
 
 export const settingsRoutes = [
   {

@@ -5,26 +5,26 @@
     </div>
     <td-layout-card-over  *ngIf="bookDetail">
          <mat-card-title>{{bookDetail.name}}</mat-card-title>
-      <mat-card-subtitle>TODO description: {{bookDetail.description}}</mat-card-subtitle>
+      <!-- <mat-card-subtitle>TODO description: {{bookDetail.description}}</mat-card-subtitle> -->
       <mat-divider></mat-divider>
       <mat-list>
         <ng-template let-item ngFor [ngForOf]=bookDetail.tags>
           <mat-list-item layout-align="row">
               <mat-icon mat-list-avatar> receipt </mat-icon>
               <h3 mat-line> {{item}} </h3>
-              <p mat-line> activity description </p>            
+              <p mat-line> activity description </p>
           </mat-list-item>
         </ng-template>
           <mat-list-item layout-align="row">
               <mat-icon mat-list-avatar> receipt </mat-icon>
-              <h3 mat-line> {{bookDetail.eebook_url}} </h3>
-              <p mat-line> activity description </p>            
+              <!-- <h3 mat-line> {{bookDetail.eebook_url}} </h3> -->
+              <p mat-line> activity description </p>
           </mat-list-item>
       </mat-list>
       <mat-divider></mat-divider>
       <mat-card-actions>
         <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-          <button mat-button color="accent" class="text-upper">
+          <button mat-button color="accent" class="text-upper" (click)="goBack()">
             Back
           </button>
           <span flex></span>
@@ -33,5 +33,5 @@
           </button>
         </section>
       </mat-card-actions>
-    </td-layout-card-over>   
+    </td-layout-card-over>
   </td-layout-nav>

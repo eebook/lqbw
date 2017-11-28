@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentsModule } from './components/components.module';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 // import {TranslateModule} from '@ngx-translate/core';
-import { MultilingualModule } from './i18n/index';
+// import { MultilingualModule } from './i18n/index';
 import {
   CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
   CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,

@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, CovalentLayoutModule,
-         CovalentSearchModule, CovalentCommonModule } from '@covalent/core';
+import { CovalentCommonModule } from '@covalent/core';
 
 import { UserService, IUser, USER_PROVIDER, USERS_API } from './services/user.service';
 
@@ -33,11 +32,6 @@ import { UserService, IUser, USER_PROVIDER, USERS_API } from './services/user.se
     // MdSlideToggleModule,
     // MdMenuModule,
     // covalent modules
-    CovalentLoadingModule,
-    CovalentDialogsModule,
-    CovalentMediaModule,
-    CovalentLayoutModule,
-    CovalentSearchModule,
     CovalentCommonModule,
     // extra
   ], // modules needed to run this module

@@ -1,0 +1,14 @@
+<div class="search_bar">
+  <mat-input-container color="#ff0000">
+    <input matInput
+      placeholder="Search ebooks"
+      [value]="query"
+      type="text"
+      maxlength="1200"
+      name="searchstring"
+      [value]="query"
+      (keyup)="search.emit($event.target.value)"
+    />
+  </mat-input-container>
+  <mat-spinner [diameter]="30" [strokeWidth]="3"></mat-spinner>
+</div>

@@ -1,10 +1,8 @@
 import { JobComponent } from './job.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { JobService } from './job.service';
 import { jobRoutes } from './job.routes';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry, StringWidget } from 'angular2-schema-form';
 import { MyWidgetRegistry } from './widget/widgetregistry';
 import { MyStringWidget } from './widget/string/string.widget';
 import { SharedModule } from '../shared/shared.module';
@@ -15,15 +13,28 @@ import { JobConfigListComponent } from './config/job-config-list/job-config-list
 import { JobConfigCreateComponent } from './config/job-config-create/job-config-create.component';
 // import { MdTabsModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
-import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, CovalentLayoutModule,
-  CovalentSearchModule, CovalentCommonModule, CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
+import {
+  CovalentLoadingModule,
+  CovalentDialogsModule,
+  CovalentMediaModule,
+  CovalentLayoutModule,
+  CovalentSearchModule,
+  CovalentCommonModule,
+  CovalentExpansionPanelModule,
+  CovalentStepsModule
+} from '@covalent/core';
+import {
+  SchemaFormModule,
+  WidgetRegistry,
+  DefaultWidgetRegistry,
+  StringWidget
+} from 'angular2-schema-form';
 
 
 @NgModule({
   imports: [
     SchemaFormModule,
     SharedModule,
-    NgxPaginationModule,
     // covalent modules
     CovalentLoadingModule,
     CovalentDialogsModule,

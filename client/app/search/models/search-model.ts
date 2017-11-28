@@ -4,3 +4,4 @@ export class Search {
     public searchString: string,
   ) {}
 }
+

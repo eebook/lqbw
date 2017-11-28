@@ -1,1 +1,1 @@
-export * from './multilingual.effect';
+// export * from './multilingual.effect';

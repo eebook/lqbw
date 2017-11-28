@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Search } from './model/search-model';
+import { Search } from './models/search-model';
 import { GithubService } from './search.service';
 
 @Component({

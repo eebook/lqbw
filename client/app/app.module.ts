@@ -1,15 +1,25 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { Config } from './shared/utils/config';
 import { UserModule } from './user/user.module';
 import { SignInUpComponent } from './shared/modal/sign-in-up/sign-in-up.component';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
 import { JobModule } from './job/job.module';
-import { GithubService } from './search/search.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterModule, PreloadAllModules } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import {
+  ReactiveFormsModule,
+  FormsModule } from '@angular/forms';
+import {
+  RouterModule,
+  PreloadAllModules
+} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer,
+} from '@ngrx/router-store';
 
 import { AppComponent } from './app.component';
 import { FormControlComponent } from './common/dynamic-form/form-control.component';
@@ -19,9 +29,6 @@ import { CommonModule } from '@angular/common';
 import { AuthService, AuthGuard } from './common/auth.service';
 import { HttpService, SimpleRequest } from './common/http.service';
 import { JobService } from './job/job.service';
-import { SearchComponent } from './search/search.component';
-import { SearchFormComponent } from './search/search-form/search-form.component';
-import { SearchResultComponent } from './search/search-result/search-result.component';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
@@ -40,26 +47,22 @@ import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
-import { ParticlesModule } from 'angular-particle';
+// import { ParticlesModule } from 'angular-particle';
 // import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 // import { HttpClientModule, HttpClient } from '@angular/common/http';
 // import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 // import { AppReducer } from './shared/ngrx/index';
 import { TranslateLoader } from '@ngx-translate/core';
-// import { MultilingualModule, Languages, translateLoaderFactory, MultilingualEffects } from './shared/i18n/index';
-// import { Languages } from './shared/i18n/index';
-// import { MultilingualService } from './shared/i18n/services/multilingual.service';
+import { CoreModule } from './core/core.module';
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers, metaReducers } from './reducers';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FormControlComponent,
-    SearchComponent,
-    SearchFormComponent,
-    SearchResultComponent,
     AccountComponent,
     MainComponent,
     AboutComponent,
@@ -74,7 +77,6 @@ import { TranslateLoader } from '@ngx-translate/core';
     CommonModule,
     CovalentLayoutModule,
     CovalentStepsModule,
-    // (optional) Additional Covalent Modules imports
     CovalentHttpModule.forRoot(),
     // CovalentMarkdownModule,
     // CovalentDynamicFormsModule,
@@ -89,23 +91,33 @@ import { TranslateLoader } from '@ngx-translate/core';
     // StoreModule.provideStore(AppReducer),
     SchemaFormModule,
     ComponentsModule,
+    // StoreModule.provideStore(rootReducer),
+    // Note that you must instrument after importing StoreModule
+    // StoreDevtoolsModule.instrumentOnlyWithExtension({
+      // maxAge: 5
+    // }),
+    EffectsModule.forRoot([]),
     // RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
-    ParticlesModule,
+    // ParticlesModule,
+    CoreModule.forRoot(),
     RouterModule.forRoot(appRoutes, ),
-    // StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule,
     // Note that you must instrument after importing StoreModule (config is optional)
     // StoreDevtoolsModule.instrument({
     //   maxAge: 25 //  Retains last 25 states
     // })
+
   ],
   providers: [
     AuthService,
     HttpService,
     JobService,
-    GithubService,
+    // GithubService,
     // MultilingualService,
     SimpleRequest,
     AuthGuard,
+    // { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
     {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
   ],
   bootstrap: [
