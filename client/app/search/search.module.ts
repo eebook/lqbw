@@ -1,50 +1,42 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import {
-  MatListModule,
-  MatInputModule,
-  MatCardModule,
-  MatIconModule
-} from '@angular/material';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { ParticlesModule } from 'angular-particle';
-import { SearchComponent } from './search.component';
-import { searchRoutes } from './search.routes';
-import { SearchResultComponent } from './search-result/search-result.component';
-import { SearchFormComponent } from './search-form/search-form.component';
-import { GithubService } from './search.service';
-import { SearchtmpComponent } from './containers/search/search.component';
-import { ComponentsModule } from './components/index';
+import {
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatListModule,
+  MatIconModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
+
+import { ComponentsModule } from './components';
 import { BookEffects } from './effects/book';
+import { SearchBookComponent } from './containers/search/search.component';
 import { reducers } from './reducers';
+import { searchRoutes } from './search.routes';
 
 @NgModule({
   imports: [
-    FormsModule,
     CommonModule,
-    ComponentsModule,
-    ParticlesModule,
-    MatListModule,
     MatInputModule,
     MatCardModule,
+    MatButtonModule,
+    MatListModule,
+    MatListModule,
     MatIconModule,
-    HttpClientModule,
-    StoreModule.forFeature('books', reducers),
-    EffectsModule.forFeature([BookEffects]),
+    MatProgressSpinnerModule,
+
+    ComponentsModule,
     RouterModule.forChild(searchRoutes),
+    StoreModule.forFeature('books', reducers),
+    EffectsModule.forFeature([BookEffects, ]),
   ],
   declarations: [
-    SearchComponent,
-    SearchFormComponent,
-    SearchResultComponent,
-    SearchtmpComponent,
+    SearchBookComponent,
   ],
-  providers: [
-    GithubService,
-  ]
+  // providers: [BookExistsGuard],
 })
-export class SearchModule { }
+export class BooksModule {}

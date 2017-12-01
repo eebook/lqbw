@@ -20,7 +20,7 @@ export const appRoutes = [
     children: [
       {
         path: '',
-        loadChildren: './search/search.module#SearchModule',
+        loadChildren: './search/search.module#BooksModule',
       },
       // { path: 'register', component: UserRegisterComponent },
       // { path: 'login', component: UserLoginComponent },

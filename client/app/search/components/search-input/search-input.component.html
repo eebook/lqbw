@@ -10,5 +10,5 @@
       (keyup)="search.emit($event.target.value)"
     />
   </mat-input-container>
-  <mat-spinner [diameter]="30" [strokeWidth]="3"></mat-spinner>
+  <mat-spinner [class.show]="searching" [diameter]="30" [strokeWidth]="3"></mat-spinner>
 </div>

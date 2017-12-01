@@ -7,13 +7,12 @@ export interface State {
   query: string;
 }
 
-
 const initialState: State = {
   ids: [],
   loading: false,
   error: '',
   query: '',
-}
+};
 
 export function reducer(state = initialState, action: book.Actions): State {
   switch (action.type) {
@@ -28,6 +27,7 @@ export function reducer(state = initialState, action: book.Actions): State {
           query,
         };
       }
+
       return {
         ...state,
         loading: true,
@@ -35,6 +35,7 @@ export function reducer(state = initialState, action: book.Actions): State {
         query,
       };
     }
+
     case book.SEARCH_COMPLETE: {
       return {
         ids: action.payload.map(book => book.id),
@@ -43,6 +44,7 @@ export function reducer(state = initialState, action: book.Actions): State {
         query: state.query,
       };
     }
+
     case book.SEARCH_ERROR: {
       return {
         ...state,
@@ -50,6 +52,7 @@ export function reducer(state = initialState, action: book.Actions): State {
         error: action.payload,
       };
     }
+
     default: {
       return state;
     }
@@ -57,6 +60,9 @@ export function reducer(state = initialState, action: book.Actions): State {
 }
 
 export const getIds = (state: State) => state.ids;
+
 export const getQuery = (state: State) => state.query;
+
 export const getLoading = (state: State) => state.loading;
+
 export const getError = (state: State) => state.error;

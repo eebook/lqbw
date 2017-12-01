@@ -21,9 +21,8 @@ export interface BookTmp {
   publisher: string;
   publishDate: string;
   description: string;
-  price: string;
   summary: string;
-  author_intro: string;
+  author_intro?: string;
   isbn13?: string;
   isbn10?: string;
   rating?: string;

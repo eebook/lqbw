@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import * as fromSearch from './search';
-import * as fromRoot from '../../reducers';
 import * as fromBooks from './books';
+import * as fromRoot from '../../reducers';
 
 export interface BooksState {
   search: fromSearch.State;
@@ -13,14 +13,32 @@ export interface State extends fromRoot.State {
 }
 
 export const reducers = {
-  search: fromSearch.reducer
-}
+  search: fromSearch.reducer,
+  books: fromBooks.reducer,
+};
+
+/**
+ * A selector function is a map function factory. We pass it parameters and it
+ * returns a function that maps from the larger state tree into a smaller
+ * piece of state. This selector simply selects the `books` state.
+ *
+ * Selectors are used with the `select` operator.
+ *
+ * ```ts
+ * class MyComponent {
+ * 	constructor(state$: Observable<State>) {
+ * 	  this.booksState$ = state$.select(getBooksState);
+ * 	}
+ * }
+ * ```
+ */
 
 /**
  * The createFeatureSelector function selects a piece of state from the root of the state object.
  * This is used for selecting feature states that are loaded eagerly or lazily.
 */
 export const getBooksState = createFeatureSelector<BooksState>('books');
+
 /**
  * Every reducer module exports selector functions, however child reducers
  * have no knowledge of the overall state tree. To make them useable, we
@@ -33,6 +51,11 @@ export const getBooksState = createFeatureSelector<BooksState>('books');
 export const getBookEntitiesState = createSelector(
   getBooksState,
   state => state.books
+);
+
+export const getSelectedBookId = createSelector(
+  getBookEntitiesState,
+  fromBooks.getSelectedId
 );
 
 /**
@@ -49,6 +72,14 @@ export const {
   selectAll: getAllBooks,
   selectTotal: getTotalBooks,
 } = fromBooks.adapter.getSelectors(getBookEntitiesState);
+
+export const getSelectedBook = createSelector(
+  getBookEntities,
+  getSelectedBookId,
+  (entities, selectedId) => {
+    return selectedId && entities[selectedId];
+  }
+);
 
 /**
  * Just like with the books selectors, we also have to compose the search
@@ -75,7 +106,6 @@ export const getSearchError = createSelector(
   getSearchState,
   fromSearch.getError
 );
-
 
 /**
  * Some selector functions create joins across parts of state. This selector

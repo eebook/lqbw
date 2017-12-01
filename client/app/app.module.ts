@@ -49,7 +49,7 @@ import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 // import { ParticlesModule } from 'angular-particle';
 // import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-// import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 // import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 // import { AppReducer } from './shared/ngrx/index';
@@ -57,7 +57,8 @@ import { TranslateLoader } from '@ngx-translate/core';
 import { CoreModule } from './core/core.module';
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
-
+import { DBModule } from '@ngrx/db';
+import { schema } from './db';
 
 @NgModule({
   declarations: [
@@ -73,15 +74,14 @@ import { reducers, metaReducers } from './reducers';
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
     CommonModule,
     CovalentLayoutModule,
     CovalentStepsModule,
+    DBModule.provideDB(schema),
     CovalentHttpModule.forRoot(),
-    // CovalentMarkdownModule,
-    // CovalentDynamicFormsModule,
     CovalentSearchModule,
-    // BrowserAnimationsModule,
     SharedModule,
     // MultilingualModule.forRoot([{
     //   provide: TranslateLoader,
@@ -104,16 +104,15 @@ import { reducers, metaReducers } from './reducers';
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
     // Note that you must instrument after importing StoreModule (config is optional)
-    // StoreDevtoolsModule.instrument({
-    //   maxAge: 25 //  Retains last 25 states
-    // })
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    })
 
   ],
   providers: [
     AuthService,
     HttpService,
     JobService,
-    // GithubService,
     // MultilingualService,
     SimpleRequest,
     AuthGuard,

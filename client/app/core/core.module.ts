@@ -8,6 +8,7 @@ import {
 } from '@angular/material';
 
 import { NotFoundComponent } from './components/notfound/not-found.component';
+import { SearchBooksService } from './services/search.service';
 
 
 export const COMPONENTS = [
@@ -28,7 +29,7 @@ export class CoreModule {
   static forRoot() {
     return {
       ngModule: CoreModule,
-      providers: []
+      providers: [SearchBooksService]
     }
   }
 }
