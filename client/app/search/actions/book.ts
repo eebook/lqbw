@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Book } from '../models/book';
+import { Book, BookTmp } from '../models/book';
 
 export const SEARCH = '[Book] Search';
 export const SEARCH_COMPLETE = '[Book] Search Complete';
@@ -23,7 +23,7 @@ export class Search implements Action {
 export class SearchComplete implements Action {
   readonly type = SEARCH_COMPLETE;
 
-  constructor(public payload: Book[]) {}
+  constructor(public payload: BookTmp[]) {}
 }
 
 export class SearchError implements Action {
@@ -35,7 +35,7 @@ export class SearchError implements Action {
 export class Load implements Action {
   readonly type = LOAD;
 
-  constructor(public payload: Book) {}
+  constructor(public payload: BookTmp) {}
 }
 
 export class Select implements Action {

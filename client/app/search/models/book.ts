@@ -34,6 +34,39 @@ export class Book {
   };
 }
 
+interface tags {
+  count: number;
+  name: string;
+  title: string;
+}
+
+interface images {
+  large: string;
+  medium: string;
+  small: string;
+}
+
+export class BookTmp {
+  id: string;
+  title: string;
+  subtitle: string;
+  author?: string[];
+  publisher: string;
+  publishDate: string;
+  description: string;
+  summary: string;
+  author_intro?: string;
+  isbn13?: string;
+  isbn10?: string;
+  rating?: string;
+  type: string;
+  url: string;
+  image?: string;
+  tag: tags;
+  images?: images;
+}
+
+
 export function generateMockBook(): Book {
   return {
     id: '1',

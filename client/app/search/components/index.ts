@@ -12,7 +12,7 @@ import {
 } from '@angular/material';
 
 import { BookAuthorsComponent } from './book-authors/book-authors.component';
-import { BookDetailComponent } from './book-detail';
+// import { BookDetailComponent } from './book-detail';
 import { BookPreviewComponent } from './book-preview/book-preview.component';
 import { BookPreviewListComponent } from './book-preview-list/book-preview-list.component';
 import { SearchInputComponent } from './search-input/search-input.component';
@@ -21,7 +21,7 @@ import { PipesModule } from '../../shared/pipes';
 
 export const COMPONENTS = [
   BookAuthorsComponent,
-  BookDetailComponent,
+  // BookDetailComponent,
   BookPreviewComponent,
   BookPreviewListComponent,
   SearchInputComponent,

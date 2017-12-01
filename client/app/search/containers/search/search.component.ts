@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import * as fromBooks from '../../reducers';
 import * as book from '../../actions/book';
-import { Book } from '../../models/book';
+import { Book, BookTmp } from '../../models/book';
 
 @Component({
   selector: 'app-search-book-page',
@@ -14,13 +14,13 @@ import { Book } from '../../models/book';
 })
 export class SearchBookComponent {
   searchQuery$: Observable<string>;
-  books$: Observable<Book[]>;
+  bookstmp$: Observable<BookTmp[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
   constructor(private store: Store<fromBooks.State>) {
     this.searchQuery$ = store.select(fromBooks.getSearchQuery).take(1);
-    this.books$ = store.select(fromBooks.getSearchResults);
+    this.bookstmp$ = store.select(fromBooks.getSearchResults);
     this.loading$ = store.select(fromBooks.getSearchLoading);
     this.error$ = store.select(fromBooks.getSearchError);
   }

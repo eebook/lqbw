@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Book } from '../../models/book';
+import { BookTmp } from '../../models/book';
 
 @Component({
   selector: 'app-book-authors',
@@ -8,9 +8,11 @@ import { Book } from '../../models/book';
   styleUrls: ['./book-authors.component.scss']
 })
 export class BookAuthorsComponent {
-  @Input() book: Book;
+  @Input() bookstmp: BookTmp;
 
   get authors() {
-    return this.book.volumeInfo.authors;
+    if (this.bookstmp.author) {
+      return this.bookstmp.author[0];
+    }
   }
 }

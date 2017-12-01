@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Book } from '../models/book';
+import { Book, BookTmp } from '../models/book';
 import * as book from '../actions/book';
 
 /**
@@ -10,7 +10,7 @@ import * as book from '../actions/book';
  * model type by id. This interface is extended to include
  * any additional interface properties.
  */
-export interface State extends EntityState<Book> {
+export interface State extends EntityState<BookTmp> {
   selectedBookId: string | null;
 }
 
@@ -22,8 +22,8 @@ export interface State extends EntityState<Book> {
  * a sortComparer option which is set to a compare
  * function if the records are to be sorted.
  */
-export const adapter: EntityAdapter<Book> = createEntityAdapter<Book>({
-  selectId: (book: Book) => book.id,
+export const adapter: EntityAdapter<BookTmp> = createEntityAdapter<BookTmp>({
+  selectId: (booktmp: BookTmp) => booktmp.id,
   sortComparer: false,
 });
 
