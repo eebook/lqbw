@@ -84,7 +84,7 @@
     "primer-product": "^5.3.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
-    "rxjs": "^5.4.2",
+    "rxjs": "^5.5.2",
     "save": "^2.3.1",
     "session-file-store": "^1.1.2",
     "systemjs": "^0.20.18",

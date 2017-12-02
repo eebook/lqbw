@@ -49,6 +49,7 @@ npm run dev
 ### Known issues
 
 * login/logout need refresh manually
+* takeUntil not working!!!!!
 
 ## License
 
