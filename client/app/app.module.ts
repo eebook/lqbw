@@ -54,13 +54,7 @@ import { AboutComponent } from './about/about.component';
 import { StoreModule } from '@ngrx/store';
 // import { AppReducer } from './shared/ngrx/index';
 import { TranslateLoader } from '@ngx-translate/core';
-<<<<<<< HEAD
 import { CoreModule } from './core/core.module';
-=======
-// import { MultilingualModule, Languages, translateLoaderFactory, MultilingualEffects } from './shared/i18n/index';
-// import { Languages } from './shared/i18n/index';
-// import { MultilingualService } from './shared/i18n/services/multilingual.service';
->>>>>>> feat: Ops, ready to try angular-seed-express
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
 import { DBModule } from '@ngrx/db';
@@ -80,7 +74,6 @@ import { schema } from './db';
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     FormsModule,
     CommonModule,
     CovalentLayoutModule,
