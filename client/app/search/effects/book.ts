@@ -37,7 +37,7 @@ import { empty } from 'rxjs/observable/empty';
 
 import { SearchBooksService } from '../../core/services/search.service';
 import * as book from '../actions/book';
-import { Book, BookTmp } from '../models/book';
+import { Book, } from '../models/book';
 
 export const SEARCH_DEBOUNCE = new InjectionToken<number>('Search Debounce');
 export const SEARCH_SCHEDULER = new InjectionToken<Scheduler>(
@@ -63,7 +63,7 @@ export class BookEffects {
       return this._searchBooks
         .searchBooks(query)
         .takeUntil(nextSearch$)
-        .map((bookstmp: BookTmp[]) => new book.SearchComplete(bookstmp))
+        .map((books: Book[]) => new book.SearchComplete(books))
         .catch(err => of(new book.SearchError(err)));
     });
 

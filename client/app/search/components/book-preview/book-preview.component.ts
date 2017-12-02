@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BookTmp } from '../../models/book';
+import { Book } from '../../models/book';
 
 @Component({
   selector: 'app-book-preview',
@@ -7,29 +7,33 @@ import { BookTmp } from '../../models/book';
   styleUrls: ['./book-preview.component.scss']
 })
 export class BookPreviewComponent {
-  @Input() bookstmp: BookTmp;
+  @Input() book: Book;
 
   get id() {
-    return this.bookstmp.id;
+    return this.book.id;
   }
 
   get title() {
-    return this.bookstmp.title;
+    return this.book.title;
   }
 
   get subtitle() {
-    return this.bookstmp.subtitle;
+    return this.book.subtitle;
   }
 
   get description() {
-    return this.bookstmp.summary;
+    return this.book.summary;
   }
 
   get thumbnail(): string | boolean {
-    if (this.bookstmp.images) {
-      return this.bookstmp.images.small;
+    if (this.book.images) {
+      return this.book.images.small;
     }
 
     return false;
+  }
+
+  get createdBy() {
+    return this.book.created_by;
   }
 }

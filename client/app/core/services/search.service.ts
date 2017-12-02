@@ -1,9 +1,9 @@
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Book, BookTmp } from '../../search/models/book';
+import { Book, } from '../../search/models/book';
 
 @Injectable()
 export class SearchBooksService {
@@ -14,7 +14,7 @@ export class SearchBooksService {
     private http: Http,
   ) {}
 
-  searchBooks(queryTitle: string): Observable<BookTmp[]> {
+  searchBooks(queryTitle: string): Observable<Book[]> {
     // return this.http
       // .get<{ results: BookTmp[] }>('/ajax/search/book?q=' + queryTitle)
       return this.http.get('/ajax/search/book?q=' + queryTitle)

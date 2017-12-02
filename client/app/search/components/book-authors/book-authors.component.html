@@ -1,5 +1,7 @@
-<h5 mat-subheader>Written By:</h5>
-<span>
-  <!-- {{ authors | bcAddCommas }} -->
-  {{ authors }}
-</span>
+<div *ngIf="!createdBy">
+  <h5 mat-subheader>Written By: {{ authors | bcAddCommas }}</h5>
+
+</div>
+<div *ngIf="createdBy">
+  <h5 mat-subheader>Created By: {{ createdBy }}</h5>
+</div>

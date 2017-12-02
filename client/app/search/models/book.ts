@@ -1,38 +1,3 @@
-export interface Book {
-  id: string;
-  volumeInfo: {
-    title: string;
-    subtitle: string;
-    authors: string[];
-    publisher: string;
-    publishDate: string;
-    description: string;
-    averageRating: number;
-    ratingsCount: number;
-    imageLinks: {
-      thumbnail: string;
-      smallThumbnail: string;
-    };
-  };
-}
-
-export class Book {
-  id: string;
-  volumeInfo: {
-    title: string;
-    subtitle: string;
-    authors: string[];
-    publisher: string;
-    publishDate: string;
-    description: string;
-    averageRating: number;
-    ratingsCount: number;
-    imageLinks: {
-      thumbnail: string;
-      smallThumbnail: string;
-    };
-  };
-}
 
 interface tags {
   count: number;
@@ -46,13 +11,13 @@ interface images {
   small: string;
 }
 
-export class BookTmp {
+export class Book {
   id: string;
   title: string;
   subtitle: string;
   author?: string[];
   publisher: string;
-  publishDate: string;
+  pubdate: string;
   description: string;
   summary: string;
   author_intro?: string;
@@ -64,25 +29,5 @@ export class BookTmp {
   image?: string;
   tag: tags;
   images?: images;
-}
-
-
-export function generateMockBook(): Book {
-  return {
-    id: '1',
-    volumeInfo: {
-      title: 'title',
-      subtitle: 'subtitle',
-      authors: ['author'],
-      publisher: 'publisher',
-      publishDate: '',
-      description: 'description',
-      averageRating: 3,
-      ratingsCount: 5,
-      imageLinks: {
-        thumbnail: 'string',
-        smallThumbnail: 'string',
-      },
-    },
-  };
+  created_by?: string;
 }
