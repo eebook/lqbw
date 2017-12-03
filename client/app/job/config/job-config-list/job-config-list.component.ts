@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { ModalService } from './../../../shared/modal/modal.service';
 import { JobService } from './../../job.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
+import * as _ from 'lodash';
 import {
   TdDataTableService,
   TdDataTableSortingOrder,
@@ -50,7 +50,6 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // TODO: to unscript
     this.alive = false;
   }
 
@@ -63,7 +62,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       console.log(error);
       console.log(error.status);
       if (error.status === 401) {
-        console.log('ddd');
+        console.log('auth!!!!');
       }
       console.log('unknown???');
     } finally {
@@ -71,16 +70,16 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     }
   }
 
-  startClicked(jobConfig) {
+  startClicked(event, jobConfig) {
     console.log('Start clicked: ', jobConfig);
     this._startJob(jobConfig['config_name']);
   }
 
-  updateClicked(jobConfig) {
-    console.log('Update clicked: ', jobConfig);
-  }
+  // updateClicked(jobConfig) {
+  //   console.log('Update clicked: ', jobConfig);
+  // }
 
-  deleteClicked(jobConfig) {
+  deleteClicked(event, jobConfig) {
     console.log('Delete clicked: ', jobConfig);
     this._dialogService
       .openConfirm({message: 'Are you sure to delete this job config?'})
@@ -120,6 +119,13 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     } finally {
       this._loadingService.resolve('job.list');
     }
+  }
+
+  private repoHref(config) {
+    const result = _.filter(config.envvars, function(o) {
+      return o.name === "repo";
+    })[0];
+    return result['value'];
   }
 
   search(searchTerm: string): void {

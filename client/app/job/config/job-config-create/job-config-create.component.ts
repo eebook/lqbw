@@ -24,6 +24,7 @@ export class JobConfigCreateComponent implements OnInit {
   stateStep2: StepState = StepState.Required;
   step2Disabled = false;
   step2Active = false;
+  repo: string;
 
   urlFormControl = new FormControl('', [
     Validators.required
@@ -52,6 +53,7 @@ export class JobConfigCreateComponent implements OnInit {
 
   inputBasicInfo(url: string, name: string): void {
     // this.stateStep1 = (this.stateStep1 === StepState.Required ? StepState.None : StepState.Required);
+    // TODO: this is a bug, should merge result of urlmetadata and nameexist result
     this.step2Disabled = false;
     this._getUrlMetadata(url);
     this._checkNameExist(name);
@@ -64,7 +66,7 @@ export class JobConfigCreateComponent implements OnInit {
         (res) => {
           this.metaData = res;
           this.urlSchema = this.metaData.result.schema;
-          console.log('url schema???', this.urlSchema);
+          this.repo = this.metaData.result.repo;
           this.stateStep1 = StepState.None;
           this.step1Active = false;
           this.step2Active = true;
@@ -154,11 +156,13 @@ export class JobConfigCreateComponent implements OnInit {
     const payload = {
       config_name: name,
       image_name: this.metaData.result.image,
-      // image_tag: this.metaData.result.image_version,
-      image_tag: 'tst',
+      image_tag: this.metaData.result.image_version,
       envvars: [{
         name: 'URL',
         value: url
+      }, {
+        name: 'repo',
+        value: this.repo
       }]
     }
     console.log('create job');

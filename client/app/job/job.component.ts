@@ -10,11 +10,11 @@ export class JobComponent implements OnInit, AfterViewChecked {
   navMenu: Object[] = [{
     title: 'Config',
     route: '/job/config/list',
-    icon: 'dashboard',
+    icon: 'perm_data_setting',
   }, {
     title: 'History',
     route: '/job/history/list',
-    icon: 'dashboard',
+    icon: 'change_history',
   }];
 
   currentComponent = '';

@@ -16,19 +16,23 @@ export class MainComponent implements OnInit, AfterContentInit {
   routes: Object[] = [{
     title: 'Home',
     route: '/',
-    icon: 'dashboard',
+    icon: 'search',
   }, {
     title: 'Bookstore',
     route: '/bookstore',
     icon: 'view_quilt',
   }, {
-    title: 'Jobs',
-    route: '/job',
-    icon: 'receipt',
+    title: 'Config',
+    route: '/job/config/list',
+    icon: 'perm_data_setting',
+  }, {
+    title: 'History',
+    route: '/job/history/list',
+    icon: 'change_history',
   }, {
     title: 'Settings',
     route: '/settings',
-    icon: 'people',
+    icon: 'settings',
   }, {
     title: 'About',
     route: '/about',

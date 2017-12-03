@@ -5,40 +5,50 @@
   Job Config
 </mat-toolbar>
 
-<ng-template tdLoading="job.list">
-  <table td-data-table>
-    <thead>
-      <tr td-data-table-column-row>
-        <th td-data-table-column
-          *ngFor="let column of columns"
-          [numeric]="column.numeric">
-          {{column.label}}
-        </th>
-        <th td-data-table-column>
-          <span>actions</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr td-data-table-row *ngFor="let row of tableData">
-        <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
-          <span *ngIf="column.name == 'config_name'">
-            <a [routerLink]="['/job/config/detail', row.config_name]">
-              {{column.format ? column.format(row[column.name]) : row[column.name]}}
-            </a>
+<mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+  <!-- <td-search-box class="push-left push-right" placeholder="search" [alwaysVisible]="true" ></td-search-box> -->
+  <mat-divider></mat-divider>
+  <ng-template tdLoading="job.list">
+    <mat-list class="will-load">
+      <div class="mat-padding" *ngIf="tableData?.length === 0" layout="row" layout-align="center center">
+        <!-- <div class="mat-padding" *ngIf=true layout="row" layout-align="center center"> -->
+        <h3>No Config to Display.</h3>
+      </div>
+      <ng-template let-column let-last="last" ngFor [ngForOf]="tableData">
+        <mat-list-item layout-align="row" [routerLink]="['/job/config/detail', column.config_name]">
+          <mat-icon mat-list-avatar>settings</mat-icon>
+          <h3 mat-line> {{ column.config_name }} </h3>
+          <span hide-xs hide-sm hide-md flex-gt-xs="90" flex-xs="80" layout-gt-xs="row">
+            <div class="mat-caption tc-grey-500" flex-gt-xs="70"> {{ column.created_at }} </div>
+            <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ column.image_name}}</div>
           </span>
-          <span *ngIf="column.name != 'config_name'">
-            {{column.format ? column.format(row[column.name]) : row[column.name]}}
+          <span>
+            <button mat-icon-button [mat-menu-trigger-for]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu x-position="before" #menu="matMenu">
+              <a mat-menu-item (click)="startClicked($event, column)">
+                <mat-icon>delete</mat-icon> Start
+              </a>
+              <a mat-menu-item (click)="deleteClicked($event, column)">
+                <mat-icon>delete</mat-icon> Delete
+              </a>
+              <a mat-menu-item target="_blank" href="{{ repoHref(column) }}">
+                <mat-icon>delete</mat-icon> Source Code
+              </a>
+              <a mat-menu-item target="_blank" href="https://hub.docker.com/r/{{ column.image_name}}">
+                <mat-icon>delete</mat-icon> Image
+              </a>
+            </mat-menu>
           </span>
-        </td>
-        <td td-data-table-cell>
-          <button (click)="startClicked(row)">start</button>
-          <button (click)="deleteClicked(row)">delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</ng-template>
+        </mat-list-item>
+        <mat-divider *ngIf="!last" mat-inset></mat-divider>
+      </ng-template>
+    </mat-list>
+  </ng-template>
+</mat-card>
+
+
 <a mat-fab color="accent" class="mat-fab-bottom-right fixed" routerLink="../create">
   <mat-icon>add</mat-icon>
 </a>

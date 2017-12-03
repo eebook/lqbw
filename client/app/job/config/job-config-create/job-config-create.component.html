@@ -1,6 +1,7 @@
 <td-layout-card-over cardTitle="Create Job" cardSubtitle="Fill form to create a job config">
   <ng-template tdLoading="create.job">
     <mat-card-content class="push-bottom-none">
+      <h3><a target="_blank" href="https://github.com/eebook/catalog/tree/knarfeh-dev/json">Supported Website</a></h3>
       <td-steps>
         <td-step #step1 label="Basic" [active]="step1Active" [state]="stateStep1" (activated)="activeStep1Event()" (deactivated)="deactiveStep1Event()">
           <ng-template td-step-label><span>Basic</span></ng-template>
@@ -63,9 +64,9 @@
 
     <mat-card-actions>
       <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-        <span flex></span>
         <!-- <button mat-button [disabled]="!userForm.form.valid" color="primary" (click)="create()">CREATE</button> -->
-        <!-- <button mat-button (click)="goBack()">CANCEL</button> -->
+        <button mat-button (click)="goBack()">CANCEL</button>
+        <span flex></span>
       </section>
     </mat-card-actions>
   </ng-template>
