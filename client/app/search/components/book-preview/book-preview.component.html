@@ -1,4 +1,4 @@
-<a [routerLink]="['/book', id]">
+<a [routerLink]="hasDetail? ['/bookstore/book', id]: []">
   <mat-card>
     <mat-card-title-group>
       <img mat-card-sm-image *ngIf="thumbnail" [src]="thumbnail"/>

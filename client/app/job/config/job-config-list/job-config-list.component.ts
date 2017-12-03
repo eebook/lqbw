@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { ModalService } from './../../../shared/modal/modal.service';
 import { JobService } from './../../job.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import 'rxjs/add/operator/toPromise';
 import {
   TdDataTableService,
   TdDataTableSortingOrder,

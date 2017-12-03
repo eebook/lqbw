@@ -36,4 +36,11 @@ export class BookPreviewComponent {
   get createdBy() {
     return this.book.created_by;
   }
+
+  get hasDetail() {
+    if (this.book.type == "eebook") {
+      return true;
+    }
+    return false
+  }
 }

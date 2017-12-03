@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpService, SimpleRequest } from './../common/http.service';
 import { Injectable } from '@angular/core';
 // import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class JobService {

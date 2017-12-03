@@ -27,7 +27,7 @@ export class Book {
   type: string;
   url: string;
   image?: string;
-  tag: tags;
+  tag: tags[];
   images?: images;
   created_by?: string;
 }

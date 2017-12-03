@@ -1,11 +1,3 @@
-export class Book {
-  name: string;
-  tags: Array<string>;
-  type: string;
-  uuid: string;
-  download_url: string;
-  created_by: string;
-}
 
 interface tags {
   count: number;
@@ -13,13 +5,19 @@ interface tags {
   title: string;
 }
 
-export interface BookTmp {
+interface images {
+  large: string;
+  medium: string;
+  small: string;
+}
+
+export class Book {
   id: string;
   title: string;
   subtitle: string;
-  authors: string[];
+  author?: string[];
   publisher: string;
-  publishDate: string;
+  pubdate: string;
   description: string;
   summary: string;
   author_intro?: string;
@@ -28,5 +26,9 @@ export interface BookTmp {
   rating?: string;
   type: string;
   url: string;
-  tag: tags;
+  download_url?: string;
+  image?: string;
+  tag: tags[];
+  images?: images;
+  created_by?: string;
 }
