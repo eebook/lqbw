@@ -50,7 +50,7 @@ export class BookEffects {
   @Effect()
   search$: Observable<Action> = this._actions$
     .ofType<book.Search>(book.SEARCH)
-    // .debounceTime(this.debounce, this.scheduler || async)
+    .debounceTime(this.debounce, this.scheduler || async)
     .map(action => action.payload)
     .switchMap(query => {
       if (query === '') {

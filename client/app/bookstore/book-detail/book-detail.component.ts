@@ -8,11 +8,11 @@ import { ResponseContentType } from '@angular/http';
 
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  selector: 'app-book-detail',
+  templateUrl: './book-detail.component.html',
+  styleUrls: ['./book-detail.component.scss']
 })
-export class BookComponent implements OnInit {
+export class BookDetailComponent implements OnInit {
   bookDetail: Book = new Book();
   bookID: string;
 

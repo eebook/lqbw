@@ -1,10 +1,11 @@
 import { BookService } from './book.service';
 import { BookstoreComponent } from './bookstore.component';
 import { bookstoreRoutes } from './bookstore.routes';
-import { BookComponent } from './book/book.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { MasonryModule } from 'angular2-masonry';
 import {
   CovalentLoadingModule,
   CovalentDialogsModule,
@@ -25,10 +26,11 @@ import {
     CovalentLayoutModule,
     CovalentSearchModule,
     CovalentCommonModule,
+    MasonryModule,
     RouterModule.forChild(bookstoreRoutes),
   ],
   declarations: [
-    BookComponent,
+    BookDetailComponent,
     BookstoreComponent,
   ],
   providers: [

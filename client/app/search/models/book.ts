@@ -30,4 +30,5 @@ export class Book {
   tag: tags[];
   images?: images;
   created_by?: string;
+  alt?: string;
 }

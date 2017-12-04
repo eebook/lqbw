@@ -8,9 +8,13 @@ import {
   MatButtonModule,
   MatListModule,
   MatIconModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatChipsModule,
 } from '@angular/material';
 
+// import { NgxMasonryModule } from 'ngx-masonry';
+// import { MasonryModule } from 'angular2-masonry';
+import { TagInputModule } from 'ngx-chips';
 import { BookAuthorsComponent } from './book-authors/book-authors.component';
 // import { BookDetailComponent } from './book-detail';
 import { BookPreviewComponent } from './book-preview/book-preview.component';
@@ -38,6 +42,10 @@ export const COMPONENTS = [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
+    TagInputModule,
+    MatChipsModule,
+    // NgxMasonryModule,
+    // MasonryModule,
     PipesModule,
   ],
   declarations: COMPONENTS,

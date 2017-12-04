@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bookstore.component.scss']
 })
 export class BookstoreComponent implements OnInit {
+  pins: any[];
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  createRange(len= 20) {
+    let arr = [];
+    for (let i = 0; i < len ; i++) {
+      arr.push(i);
+    }
+    return arr;
+  }
 }

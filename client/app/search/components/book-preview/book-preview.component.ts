@@ -43,4 +43,12 @@ export class BookPreviewComponent {
     }
     return false
   }
+
+  get url() {
+    return this.book.url;
+  }
+
+  get alt() {
+    return this.book.alt;
+  }
 }

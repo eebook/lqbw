@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+// import { MasonryModule } from '../shared/masonry'
+
 import {
   MatInputModule,
   MatCardModule,
@@ -28,6 +30,7 @@ import { searchRoutes } from './search.routes';
     MatListModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    // MasonryModule,
 
     ComponentsModule,
     RouterModule.forChild(searchRoutes),

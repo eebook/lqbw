@@ -25,13 +25,6 @@ export const appRoutes = [
       // { path: 'register', component: UserRegisterComponent },
       // { path: 'login', component: UserLoginComponent },
       // {
-      //   path: 'bookstore',
-      //   children: [
-      //     { path: '', component: BookstoreComponent },
-      //     { path: 'book/:bookID', component: BookComponent }
-      //   ]
-      // },
-      // {
         // path: 'bookstore',
         // loadChildren: './bookstore/bookstore.module#BookstoreModule',
       // },

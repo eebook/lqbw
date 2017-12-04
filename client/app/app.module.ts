@@ -33,6 +33,8 @@ import { JobConfigDetailComponent } from './job/config/job-config-detail/job-con
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 import { AccountComponent } from './account/account.component';
+// import { MasonryModule } from 'angular2-masonry';
+// import { NgxMasonryModule } from 'ngx-masonry';
 
 import {
   CovalentLayoutModule,
@@ -82,6 +84,7 @@ import { schema } from './db';
     CovalentHttpModule.forRoot(),
     CovalentSearchModule,
     SharedModule,
+    // NgxMasonryModule,
     // MultilingualModule.forRoot([{
     //   provide: TranslateLoader,
     //   deps: [HttpClient],
