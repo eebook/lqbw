@@ -1,6 +1,6 @@
 <ng-template tdLoading="user.login" tdLoadingStrategy="overlay">
   <div class="sign-in-up-container">
-    <form [formGroup]="signUpFormControl">
+    <form [formGroup]="signInFormControl">
       <div class="emailDiv input-group">
         <mat-form-field class="email">
           <input matInput placeholder="Email" [formControl]="emailFormControl" required="true" #emailSignIn>
@@ -21,11 +21,12 @@
         </mat-form-field>
       </div>
       <div class="signInButton">
-        <button class="sign__button" mat-raised-button [disabled]="!signUpFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
+        <button class="sign__button" mat-raised-button [disabled]="!signInFormControl.valid" (click)="signInUser(emailSignIn.value, passswordSignIn.value)">Login</button>
       </div>
     </form>
     <div class="login-link-container">
-      <a class="login-link text-danger" routerLink="/user/forget_password">forget password</a>
+      <a class="login-link text-danger" routerLink="/user/forget-password">forget password</a>
+      <a class="login-link text-danger" routerLink="/user/register">register</a>
     </div>
   </div>
 </ng-template>

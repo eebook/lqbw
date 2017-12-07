@@ -6,10 +6,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BookService {
-  constructor(private http: Http) {}
+  constructor(private _http: Http) {}
+
+  public getBookList(): Observable<Response> {
+    console.log('Get book list');
+    return this._http.get('/ajax/books/')
+  }
 
   public getBookDetail(bookUUID): Observable<Response> {
     console.log('Get book detail');
-    return this.http.get('/ajax/book/detail/' + bookUUID);
+    return this._http.get('/ajax/books/detail/' + bookUUID);
   }
 }

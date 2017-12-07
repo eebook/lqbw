@@ -1,3 +1,4 @@
+import { UserRegisterSuccessComponent } from './user-register-success/user-register-success.component';
 import { ResetPasswordCompleteComponent } from './reset-password-complete/reset-password-complete.component';
 import { UserResetPasswordComponent } from './user-reset-password/user-reset-password.component';
 import { UserComponent } from './user.component';
@@ -5,6 +6,7 @@ import { UserForgetPasswordComponent } from './user-forget-password/user-forget-
 import { RouterModule } from '@angular/router';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import { UserActivate } from './user-activate/user-activate.component';
 
 export const userRoutes = [
   {
@@ -21,7 +23,11 @@ export const userRoutes = [
         component: UserRegisterComponent
       },
       {
-        path: 'forget_password',
+        path: 'register-success',
+        component: UserRegisterSuccessComponent,
+      },
+      {
+        path: 'forget-password',
         component: UserForgetPasswordComponent
       },
       {
@@ -31,6 +37,10 @@ export const userRoutes = [
       {
         path: 'reset-complete/:account',
         component: ResetPasswordCompleteComponent
+      },
+      {
+        path: 'activate/:code',
+        component: UserActivate
       }
     ]
   }

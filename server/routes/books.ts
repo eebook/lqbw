@@ -17,4 +17,14 @@ router.get('/detail/:book_id', function(req, res, next) {
   });
 });
 
+router.get('/', function(req, res, next) {
+  LOGGER.debug('List books');
+  req.user = req.session.user;
+  EEBookRequest(req, 'GET', '/books/?page_size=1000', req).then(function (result) {
+    res.send(result);
+  }).catch(function (err) {
+    throw err;
+  });
+});
+
 module.exports = router;

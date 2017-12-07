@@ -7,16 +7,14 @@ import * as passport from 'passport';
 import ENVVARS from './env';
 const methodOverride = require('method-override');
 const RedisStore = require('connect-redis')(session);
-// import * as FileStore from 'session-file-store';
-// let FileStore = require('session-file-store')(session);
 
 import config from '../config';
 import eebLogger from './logger/logger';
 import EEBookErrorResponse from './common/exceptions';
 import * as index from './routes/index';
 import * as people from './routes/people';
+// import * as auth from './routes/auth';
 import * as auth from './routes/auth';
-import * as account from './routes/account';
 import * as book from './routes/books';
 import * as job_configs from './routes/job_configs';
 import * as job from './routes/jobs';
@@ -44,11 +42,10 @@ app.use(cookieParser());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// const fileStore = FileStore(session);
 
 app.use(session({
   secret: 'sessionsecret',
-  // store: TODO: store in redis?
+  // TODO: dont store in redis?
   store: new RedisStore(
     {
       'host': ENVVARS.REDIS_HOST,
@@ -72,8 +69,8 @@ app.use('/', index);
 // app.use('/people', people);
 // app.use('/auth', account);
 app.use('/ajax/captcha-image', captcha_image);
-app.use('/ajax/auth', account);
-app.use('/ajax/book', book);
+app.use('/ajax/auth', auth);
+app.use('/ajax/books', book);
 app.use('/ajax/job_configs', job_configs);
 app.use('/ajax/jobs', job);
 app.use('/ajax/search', search);

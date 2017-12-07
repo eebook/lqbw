@@ -21,17 +21,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 
 export class UserLoginComponent implements OnInit {
   login = 'Login';
-  private isShopperLogin = false;
   submitting = false;
-
-  constructor(
-    private _http: HttpService,
-    private _router: Router,
-    private _dialog: MatDialog,
-    private _snackBar: MatSnackBar,
-    private _loadingService: TdLoadingService,
-  ) {}
-
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -44,20 +34,25 @@ export class UserLoginComponent implements OnInit {
   passwordFormControl = new FormControl('', [
     Validators.required
   ]);
-
-
-  signUpFormControl = new FormGroup({
-    emailFormControl : this.emailFormControl,
-    passwordFormControl : this.passwordFormControl
+  signInFormControl = new FormGroup({
+    emailFormControl: this.emailFormControl,
+    passwordFormControl: this.passwordFormControl
   });
+
+  constructor(
+    private _http: HttpService,
+    private _router: Router,
+    private _dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private _loadingService: TdLoadingService,
+  ) {}
+
+
   ngOnInit() {
   }
 
   signInUser(email: string, password: string, source?: string) {
     console.log('The user is landing...');
-    // if (this.loginDisabled) {
-      // return;
-    // }
     this.submitting = true;
 
     this._loadingService.register('user.login');
@@ -82,10 +77,6 @@ export class UserLoginComponent implements OnInit {
       console.log('Submitting is false now');
       this.submitting = false;
     });
-  }
-
-  shopperLogin() {
-    this.isShopperLogin = !this.isShopperLogin;
   }
 
 }

@@ -10,6 +10,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UserResetPasswordComponent } from './user-reset-password/user-reset-password.component';
 import { ResetPasswordCompleteComponent } from './reset-password-complete/reset-password-complete.component';
+import { UserRegisterSuccessComponent } from './user-register-success/user-register-success.component';
+import { UserActivate } from './user-activate/user-activate.component';
+
 
 @NgModule({
   imports: [
@@ -24,6 +27,8 @@ import { ResetPasswordCompleteComponent } from './reset-password-complete/reset-
     CaptchaImgComponent,
     UserResetPasswordComponent,
     ResetPasswordCompleteComponent,
+    UserRegisterSuccessComponent,
+    UserActivate
   ],
   providers: [
     AuthService

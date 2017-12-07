@@ -18,7 +18,7 @@ import {
 })
 
 export class JobConfigListComponent implements OnInit, OnDestroy {
-  alive = true;
+  // alive = true;
   searchTerm = '';
   fromRow = 1;
   currentPage = 1;
@@ -50,7 +50,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    // this.alive = false;
   }
 
   async load(): Promise<void> {
@@ -62,7 +62,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       console.log(error);
       console.log(error.status);
       if (error.status === 401) {
-        console.log('auth!!!!');
+        console.log('TODO: auth!!!!');
       }
       console.log('unknown???');
     } finally {

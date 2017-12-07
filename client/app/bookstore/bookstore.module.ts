@@ -11,9 +11,9 @@ import {
   CovalentDialogsModule,
   CovalentMediaModule,
   CovalentLayoutModule,
-  CovalentSearchModule,
   CovalentCommonModule
 } from '@covalent/core';
+import { MatCardModule } from '@angular/material';
 
 
 @NgModule({
@@ -24,9 +24,9 @@ import {
     CovalentDialogsModule,
     CovalentMediaModule,
     CovalentLayoutModule,
-    CovalentSearchModule,
     CovalentCommonModule,
     MasonryModule,
+    MatCardModule,
     RouterModule.forChild(bookstoreRoutes),
   ],
   declarations: [

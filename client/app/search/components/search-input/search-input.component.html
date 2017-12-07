@@ -1,5 +1,5 @@
 <div class="search_bar">
-  <!-- <mat-input-container color="#ff0000">
+  <mat-input-container color="#ff0000">
     <input matInput
       placeholder="Search ebooks"
       [value]="query"
@@ -8,9 +8,8 @@
       name="searchstring"
       (keyup)="search.emit($event.target.value)"
     />
-  </mat-input-container> -->
-  <!-- <tag-input theme='dark'></tag-input> -->
-  <mat-form-field class="has-chip-list">
+  </mat-input-container>
+  <!-- <mat-form-field class="has-chip-list">
       <mat-chip-list [tabIndex]="tabIndex" #chipList1 required>
         <mat-chip  *ngFor="let person of people" [color]="color" [selectable]="selectable"
                  [removable]="removable" (remove)="remove(person)">
@@ -24,6 +23,6 @@
           [matChipInputAddOnBlur]="false"
           (matChipInputTokenEnd)="add($event)" />
       </mat-chip-list>
-    </mat-form-field>
+  </mat-form-field> -->
   <mat-spinner [class.show]="searching" [diameter]="30" [strokeWidth]="3"></mat-spinner>
 </div>

@@ -1,20 +1,25 @@
 <div class="dashboard-grid large-12 columns">
-  <masonry id="container">
-    <masonry-brick class="brick" *ngFor="let item of createRange(15)">
-      <div class="timeline-wrapper">
-        <div class="timeline-item">
-          <div class="animated-background">
-              <div class="background-masker image"></div>
-              <div class="background-masker header-bottom"></div>
-              <div class="background-masker paragraph1-bottom"></div>
-              <div class="background-masker paragraph2-bottom"></div>
-              <div class="background-masker paragraph3-bottom"></div>
-              <div class="background-masker paragraph4-bottom"></div>
-              <div class="background-masker paragraph5-bottom"></div>
-              <div class="background-masker paragraph6-bottom"></div>
-          </div>
-        </div>
+  <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+  <!-- <td-search-box class="push-left push-right" placeholder="search" [alwaysVisible]="true" ></td-search-box> -->
+  <mat-divider></mat-divider>
+  <ng-template tdLoading="books.list">
+    <mat-list class="will-load">
+      <div class="mat-padding" *ngIf="tableData?.length === 0" layout="row" layout-align="center center">
+        <!-- <div class="mat-padding" *ngIf=true layout="row" layout-align="center center"> -->
+        <h3>No Books to Display.</h3>
       </div>
-    </masonry-brick>
-  </masonry>
+      <ng-template let-column let-last="last" ngFor [ngForOf]="tableData">
+        <mat-list-item layout-align="row" [routerLink]="['/bookstore/book/', column.uuid]">
+          <mat-icon mat-list-avatar>book</mat-icon>
+          <h3 mat-line> {{ column.name }} </h3>
+          <span hide-xs hide-sm hide-md flex-gt-xs="90" flex-xs="80" layout-gt-xs="row">
+            <div class="mat-caption tc-grey-500" flex-gt-xs="70"> {{ column.created_at }} </div>
+            <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ column.public }}</div>
+          </span>
+        </mat-list-item>
+        <mat-divider *ngIf="!last" mat-inset></mat-divider>
+      </ng-template>
+    </mat-list>
+  </ng-template>
+  </mat-card>
 </div>

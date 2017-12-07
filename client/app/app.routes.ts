@@ -39,17 +39,18 @@ export const appRoutes = [
         path: 'job',
         loadChildren: './job/job.module#JobModule',
         canActivate: [AuthGuard]
-      }
+      },
+      {
+        path: 'bookstore',
+        loadChildren: './bookstore/bookstore.module#BookstoreModule',
+        canActivate: [AuthGuard]
+      },
     ]
   },
   {
     path: 'user',
     loadChildren: './user/user.module#UserModule'
   },
-  {
-    path: 'bookstore',
-    loadChildren: './bookstore/bookstore.module#BookstoreModule',
-    canActivate: [AuthGuard]
-  },
+
   { path: '**', component: NotFoundComponent }
 ];

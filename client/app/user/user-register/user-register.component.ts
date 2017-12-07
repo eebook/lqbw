@@ -1,3 +1,5 @@
+import { MatSnackBar } from '@angular/material';
+import { TdLoadingService } from '@covalent/core';
 import { Component, OnInit, Input, Injector} from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,94 +10,69 @@ import { FieldBase, Textbox, Image } from '../../common/dynamic-form/form-field'
 import { fadeIn } from '../../animations/fade-in';
 import { HttpService } from '../../common/http.service';
 
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.scss'],
-  animations: [ fadeIn ],
-  providers: [ HttpService ]
+  // animations: [ fadeIn ],
 })
 
 export class UserRegisterComponent implements OnInit {
-  githubClientId = 'd14320cfeb8f9c399e59';
   submitting = false;
-  public form: FormGroup;
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+    Validators.pattern(EMAIL_REGEX)
+  ]);
+  usernameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  signUpFormControl = new FormGroup({
+    emailFormControl: this.emailFormControl,
+    passwordFormControl: this.passwordFormControl
+  })
 
   constructor(
     private injector: Injector,
-    private http: HttpService,
-    // public http: Http,
-    private activateRoute: ActivatedRoute,
-    private router: Router,
+    private _http: HttpService,
+    private _activateRoute: ActivatedRoute,
+    private _router: Router,
+    private _snackBar: MatSnackBar,
+    private _loadingService: TdLoadingService
   ) {
   }
 
-  @Input() fields: FieldBase<any>[] = [
-    new Textbox({
-      label: 'username',
-      id: 'username',
-      key: 'username',
-      validators: [Validators.required]
-    }),
-    new Textbox({
-      label: 'email',
-      id: 'email',
-      key: 'email',
-      validators: [Validators.required, Validators.email]
-    }),
-    new Textbox({
-      label: 'password',
-      type: 'password',
-      id: 'password',
-      key: 'password',
-      validators: [Validators.required]
-    })
-  ];
-
   ngOnInit() {
-    this.form = this.toFormGroup(this.fields);
-
-    this.activateRoute.params.subscribe(
-      params => {
-        console.log('User registering, activateRoute params: ', params);
-      }
-    );
   }
 
   protected get injectorInstance() {
     return this.injector;
   }
 
-  get registerDisabled() {
-    return !this.form.valid || this.submitting;
-  }
-
-  toFormGroup(fields: FieldBase<any>[]) {
-    const group: any = {};
-
-    fields.forEach(field => {
-      group[field.key] = new FormControl(field.value || null, field.validators);
-    });
-    console.log(fields);
-    return new FormGroup(group);
-  }
-
-  register() {
+  signUpUser(email: string, username: string, password: string) {
     console.log('Registering...');
-    if (this.registerDisabled) {
-      return;
-    }
     this.submitting = true;
-    this.http.request('/auth/register', {
+
+    this._loadingService.register('user.register');
+    this._http.request('/ajax/auth/register', {
       method: 'POST',
-      body: this.form.value
+      body: {'username': username, 'email': email, 'password': password}
     }).then(() => {
       console.log('Successfully registerd...');
-      return this.router.navigate(['register']);
+      this._loadingService.resolve('user.register');
+      return this._router.navigate(['user/register-success']);
     }).catch(errors => {
       if (errors instanceof Array) {
-        console.log(errors);
+        this._loadingService.resolve('user.register');
+        this._snackBar.open(errors[0].message, 'Error', {
+          duration: 5000,
+        });
       }
     }).then(() => {
       console.log('Submitting is false now');
@@ -107,13 +84,13 @@ export class UserRegisterComponent implements OnInit {
     console.log('The user is landing...');
     this.submitting = true;
 
-    this.http.request('/auth/github', {
+    this._http.request('/auth/github', {
       method: 'GET',
     }).then(({ result }) => {
       console.log('Login result: ', result);
       console.log('Successfully login...');
       localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
-      return this.router.navigate(['bookstore']);
+      return this._router.navigate(['bookstore']);
     }).catch(errors => {
       if (errors instanceof Array) {
         console.log(errors);
