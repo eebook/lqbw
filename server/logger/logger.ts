@@ -1,16 +1,16 @@
 import * as pathLib from 'path';
 import * as log4js from 'log4js';
-import * as lodash from 'lodash';
-
+import * as _ from 'lodash';
 import config from '../../config';
 
 
-const defaultDevLogConfig = require('./default_conf/dev.json');
-const defaultProdLogConfig = require('./default_conf/prod.json');
+import { default as defaultDevLogConfig } from './default_conf/log_dev.config';
+import { default as defaultProdLogConfig } from './default_conf/log_prod.config';
 
 class EEBookLogger {
     customConfig: any;
     public logger: any;
+
     constructor(config = {}) {
         this.customConfig = config;
         log4js.configure(this.getEnvConfig());
@@ -26,9 +26,9 @@ class EEBookLogger {
         };
 
         if (process.env.NODE_ENV !== 'production') {
-            envConfig = lodash.cloneDeep(defaultDevLogConfig);
+            envConfig = _.cloneDeep(defaultDevLogConfig);
         } else {
-            envConfig = lodash.cloneDeep(defaultProdLogConfig);
+            envConfig = _.cloneDeep(defaultProdLogConfig);
         }
         envConfig.appenders.forEach(setAppenderPath);
         return envConfig;

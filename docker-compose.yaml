@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  lqbw:
+    image: $LQBW_IMAGE
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile.multistage
+    # command: ["npm", "run", "dev"]
+    tty: true
+    entrypoint: ["sh"]
+    ports:
+      - "18084:18084"
+    environment:
+      - API_URL=gryu
+      - API_VERSION=v1
+      - REDIS_HOST=192.168.199.218
+      - REDIS_PORT=6379

@@ -16,3 +16,6 @@ export function getDecAse192(str, secret = 'lqbw') {
   return dec;
 }
 
+export function getEnv(name: string, defaultValue: any = '') {
+  return _.trim(_.get(process.env, name.toLocaleUpperCase(), defaultValue));
+}

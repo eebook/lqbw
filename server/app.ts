@@ -4,7 +4,7 @@ import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as session from 'express-session';
 import * as passport from 'passport';
-import ENVVARS from './env';
+import { getEnv } from './common/util';
 const methodOverride = require('method-override');
 const RedisStore = require('connect-redis')(session);
 
@@ -31,6 +31,7 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../public'));
+logger.info('view path???', path.join(__dirname, '../public'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 
@@ -41,6 +42,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, '..', 'public')));
+logger.info('view static???', path.join(__dirname, '..', 'public'));
 
 
 app.use(session({
@@ -48,8 +50,8 @@ app.use(session({
   // TODO: dont store in redis?
   store: new RedisStore(
     {
-      'host': ENVVARS.REDIS_HOST,
-      'port': ENVVARS.REDIS_PORT
+      'host': getEnv('REDIS_HOST'),
+      'port': getEnv('REDIS_PORT')
     }
   ),
   resave: false,

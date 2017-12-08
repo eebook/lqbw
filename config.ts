@@ -21,7 +21,7 @@ const config = {
     // The port that the program runs.
     PORT: 18084,
     // Domain name
-    HOST: 'localhost',
+    HOST: '0.0.0.0',
 
     // config for github.
     GITHUB_OAUTH: {
