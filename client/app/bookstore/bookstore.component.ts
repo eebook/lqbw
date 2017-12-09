@@ -13,7 +13,6 @@ export class BookstoreComponent implements OnInit {
   pins: any[];
 
   currentPage = 1;
-  pageSize = 50;
   selectedRows: any[] = [];
   tableData: any[];
 
@@ -43,11 +42,27 @@ export class BookstoreComponent implements OnInit {
     }
   }
 
-  createRange(len= 20) {
-    let arr = [];
-    for (let i = 0; i < len ; i++) {
-      arr.push(i);
+  async publicClicked(event, book) {
+    console.log('Public clicked')
+    try {
+      this._loadingService.register('books.list');
+      const response = await this._bookService.makeBookPublic(book.uuid).toPromise();
+    } catch (error) {
+    } finally {
+      this._loadingService.resolve('books.list');
+      this.load()
     }
-    return arr;
+  }
+
+  async privateClicked(event, book) {
+    console.log('Private clicked')
+    try {
+      this._loadingService.register('books.list');
+      const response = await this._bookService.makeBookPrivate(book.uuid).toPromise();
+    } catch (error) {
+    } finally {
+      this._loadingService.resolve('books.list');
+      this.load()
+    }
   }
 }

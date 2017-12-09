@@ -31,7 +31,6 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../public'));
-logger.info('view path???', path.join(__dirname, '../public'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 
@@ -42,7 +41,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, '..', 'public')));
-logger.info('view static???', path.join(__dirname, '..', 'public'));
 
 
 app.use(session({

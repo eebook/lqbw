@@ -28,16 +28,16 @@
             </button>
             <mat-menu x-position="before" #menu="matMenu">
               <a mat-menu-item (click)="startClicked($event, column)">
-                <mat-icon>delete</mat-icon> Start
+                <mat-icon>cached</mat-icon> Start
               </a>
               <a mat-menu-item (click)="deleteClicked($event, column)">
                 <mat-icon>delete</mat-icon> Delete
               </a>
               <a mat-menu-item target="_blank" href="{{ repoHref(column) }}">
-                <mat-icon>delete</mat-icon> Source Code
+                <mat-icon>code</mat-icon> Source Code
               </a>
               <a mat-menu-item target="_blank" href="https://hub.docker.com/r/{{ column.image_name}}">
-                <mat-icon>delete</mat-icon> Image
+                <mat-icon>toc</mat-icon> Image
               </a>
             </mat-menu>
           </span>

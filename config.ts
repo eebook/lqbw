@@ -30,7 +30,7 @@ const config = {
         callbackURL: 'http://localhost:3001/auth/github/callback'
     },
 
-    API_SERVER_URL: 'http://192.168.199.218:18083/',
+    API_SERVER_URL: 'http://192.168.199.218:18083',
     API_VERSION: 'v1',
 
     LOGGERCONFIG:  {

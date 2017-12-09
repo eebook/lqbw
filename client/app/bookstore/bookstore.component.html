@@ -16,6 +16,19 @@
             <div class="mat-caption tc-grey-500" flex-gt-xs="70"> {{ column.created_at }} </div>
             <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ column.public }}</div>
           </span>
+          <span>
+            <button mat-icon-button [mat-menu-trigger-for]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu x-position="before" #menu="matMenu">
+              <a mat-menu-item (click)="publicClicked($event, column)">
+                <mat-icon>lock_open</mat-icon> Make it Public
+              </a>
+              <a mat-menu-item (click)="privateClicked($event, column)">
+                <mat-icon>lock</mat-icon> Make it Private
+              </a>
+            </mat-menu>
+          </span>
         </mat-list-item>
         <mat-divider *ngIf="!last" mat-inset></mat-divider>
       </ng-template>

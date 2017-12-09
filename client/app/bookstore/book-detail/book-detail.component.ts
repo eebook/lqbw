@@ -5,7 +5,7 @@ import { BookService } from './../book.service';
 import { Component, OnInit } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { ResponseContentType } from '@angular/http';
-
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-book-detail',
@@ -20,6 +20,7 @@ export class BookDetailComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _bookService: BookService,
     private _http: Http,
+    private _snackBarService: MatSnackBar,
     private _router: Router,
   ) { }
 
@@ -38,7 +39,19 @@ export class BookDetailComponent implements OnInit {
       .subscribe(data => {
         console.log('book detail: ', data.json().result)
         this.bookDetail = data.json().result;
-      });
+      },
+      (error) => {
+        console.log("error???", error.json());
+        if (error.json().errors[0].code === "book_not_exist") {
+          this._snackBarService.open("The book does not exist", 'Error', {
+            duration: 5000,
+          })
+        }
+        this._bookService.deleteABook(bookID).toPromise();
+        // TODO: back to where you come from
+        this._router.navigate(['/bookstore']);
+      }
+    );
   }
 
   private downloadFile() {

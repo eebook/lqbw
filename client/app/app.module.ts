@@ -48,7 +48,6 @@ import { CovalentHighlightModule } from '@covalent/highlight';
 import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { MainComponent } from './main/main.component';
-import { AboutComponent } from './about/about.component';
 // import { ParticlesModule } from 'angular-particle';
 // import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 // import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -68,7 +67,6 @@ import { schema } from './db';
     FormControlComponent,
     AccountComponent,
     MainComponent,
-    AboutComponent,
     // SignInComponent
     // ConfirmBoxComponent,
   ],

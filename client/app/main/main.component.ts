@@ -13,31 +13,38 @@ import { CovalentSearchModule } from '@covalent/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, AfterContentInit {
-  routes: Object[] = [{
-    title: 'Home',
-    route: '/',
-    icon: 'search',
-  }, {
-    title: 'Bookstore',
-    route: '/bookstore',
-    icon: 'view_quilt',
-  }, {
-    title: 'Config',
-    route: '/job/config/list',
-    icon: 'perm_data_setting',
-  }, {
-    title: 'History',
-    route: '/job/history/list',
-    icon: 'change_history',
-  }, {
-    title: 'Settings',
-    route: '/settings',
-    icon: 'settings',
-  }, {
-    title: 'About',
-    route: '/about',
-    icon: 'info'
-  }];
+  routes: Object[] = [
+    {
+      title: 'Home',
+      route: '/',
+      icon: 'search',
+    },
+    {
+      title: 'Bookstore',
+      route: '/bookstore',
+      icon: 'view_quilt',
+    },
+    {
+      title: 'Config',
+      route: '/job/config/list',
+      icon: 'perm_data_setting',
+    },
+    {
+      title: 'History',
+      route: '/job/history/list',
+      icon: 'change_history',
+    },
+    // {
+    //   title: 'Settings',
+    //   route: '/settings',
+    //   icon: 'settings',
+    // },
+    {
+      title: 'About',
+      route: '/about',
+      icon: 'info'
+    }
+  ];
   public currentUser: User;
   returnUrl: string;
 
