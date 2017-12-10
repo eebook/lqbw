@@ -1,3 +1,4 @@
+import { AboutService } from './about.service';
 import { AboutRoutes } from './about.routes';
 import { AboutComponent } from './about.component';
 import { NgModule } from '@angular/core';
@@ -24,6 +25,7 @@ import { CovalentMarkdownModule } from '@covalent/markdown';
     // extra
   ],
   providers: [
+    AboutService
   ],
 })
 export class AboutModule {}

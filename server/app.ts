@@ -15,6 +15,7 @@ import * as index from './routes/index';
 import * as people from './routes/people';
 // import * as auth from './routes/auth';
 import * as auth from './routes/auth';
+import * as about from './routes/about';
 import * as book from './routes/books';
 import * as job_configs from './routes/job_configs';
 import * as job from './routes/jobs';
@@ -76,6 +77,7 @@ app.use('/ajax/jobs', job);
 app.use('/ajax/search', search);
 app.use('/ajax/url_metadata', url_metadata);
 app.use('/ajax/user', user);
+app.use('/ajax/about', about)
 app.use('/ajax', root);
 app.use('*', index);
 
