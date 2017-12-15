@@ -6,6 +6,7 @@ import { JobDetail } from './../../model/job-model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-job-history-detail',
@@ -21,6 +22,7 @@ export class JobHistoryDetailComponent implements OnInit, OnDestroy {
   public jobDetail: JobDetail = new JobDetail();
   jobID: string;
   logs: any[];
+  timeCost: any;
 
   constructor(
     public _activatedRoute: ActivatedRoute,
@@ -39,6 +41,7 @@ export class JobHistoryDetailComponent implements OnInit, OnDestroy {
     this._jobService.getJobDetail(this.jobID)
       .subscribe(data => {
         this.jobDetail = data.json();
+        this.timeCost = this._calculateTimeCost();
         this._startPolling();
       });
   }
@@ -77,16 +80,25 @@ export class JobHistoryDetailComponent implements OnInit, OnDestroy {
     const params = {
 
     };
-    console.log('created_at???', this.jobDetail.created_at);
     params['start_time'] = this._dateStrToTimestamp(this.jobDetail.created_at) - 1800;
 
     if (this.jobDetail.ended_at) {
-      console.log('ended_at???', this.jobDetail.ended_at);
       params['end_time'] = this._dateStrToTimestamp(this.jobDetail.ended_at) + 3600;
     } else {
       params['end_time'] = params['start_time'] + 3600 * 10;
     }
     return params;
+  }
+
+  // Duplicate with list, TODO: move to util
+  private _calculateTimeCost() {
+    if (this.jobDetail.started_at && this.jobDetail.ended_at) {
+      const startedAt = moment(this.jobDetail.started_at);
+      const endedAt = moment(this.jobDetail.ended_at);
+      return +endedAt - +startedAt;
+    } else {
+      return -1;
+    }
   }
 
   async _pollLogs() {

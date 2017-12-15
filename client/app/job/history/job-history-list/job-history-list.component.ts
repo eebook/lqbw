@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { JobService } from './../../job.service';
 // import { ModalService } from './../../../shared/modal/modal.service';
 import { ChangeDetectionStrategy, Component, Input, OnInit, OnDestroy } from '@angular/core';
+import * as moment from 'moment';
 
 interface JobListResponse {
     items: string[];
@@ -48,7 +49,6 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
       const response = await this._jobService.getJobList(100, 1).toPromise();
       this.jobs = response.json()['results'];
       this.filteredJobs = this.jobs;
-      console.log('jobs ???', this.jobs);
     } catch (error) {
       console.log('error');
     } finally {
@@ -56,9 +56,18 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
     }
   }
 
+  public calculateTimeCost(jobDetail) {
+    if (jobDetail.started_at && jobDetail.ended_at) {
+      const startedAt = moment(jobDetail.started_at);
+      const endedAt = moment(jobDetail.ended_at);
+      return +endedAt - +startedAt;
+    } else {
+      return -1;
+    }
+  }
+
   deletClicked(event, jobUUID: string): void {
     event.stopPropagation();
-    console.log('delete job???', jobUUID);
     this._dialogService
       .openConfirm({message: 'Are you sure to delete this job history'})
       .afterClosed().toPromise().then((confirm: boolean) => {
@@ -86,6 +95,5 @@ export class JobHistoryListComponent implements OnInit, OnDestroy {
   }
 
   itemClicked(jobUUID: string): void {
-    console.log('item ???', jobUUID);
   }
 }

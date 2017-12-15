@@ -1,3 +1,4 @@
+import { PipesModule } from './../shared/pipes/index';
 import { BookService } from './book.service';
 import { BookstoreComponent } from './bookstore.component';
 import { bookstoreRoutes } from './bookstore.routes';
@@ -27,6 +28,7 @@ import { MatCardModule } from '@angular/material';
     CovalentCommonModule,
     MasonryModule,
     MatCardModule,
+    PipesModule,
     RouterModule.forChild(bookstoreRoutes),
   ],
   declarations: [

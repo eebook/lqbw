@@ -19,8 +19,8 @@
           <mat-icon mat-list-avatar>settings</mat-icon>
           <h3 mat-line> {{ column.config_name }} </h3>
           <span hide-xs hide-sm hide-md flex-gt-xs="90" flex-xs="80" layout-gt-xs="row">
-            <div class="mat-caption tc-grey-500" flex-gt-xs="70"> {{ column.created_at }} </div>
-            <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ column.image_name}}</div>
+            <div class="mat-caption tc-grey-500" flex-gt-xs="70"> {{ column.created_at | formatUtcStr }} </div>
+            <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ column.image_name }}</div>
           </span>
           <span>
             <button mat-icon-button [mat-menu-trigger-for]="menu" (click)="$event.stopPropagation()">

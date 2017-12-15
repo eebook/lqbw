@@ -11,28 +11,30 @@
       <div class="static-field">
         <label>Started At</label>
         <div>
-          <span>{{jobDetail.started_at}}</span>
+          <span>{{jobDetail.started_at | formatUtcStr}}</span>
         </div>
       </div>
 
       <div class="static-field">
         <label>Ended At</label>
         <div>
-          <span>{{jobDetail.ended_at}}</span>
+          <span>{{jobDetail.ended_at | formatUtcStr}}</span>
         </div>
       </div>
 
       <div class="static-field">
         <label>Image</label>
         <div>
-          <span>https://hub.docker.com/r/{{jobDetail.image_name}}</span>
+          <span>
+            <a target="_blank" href="https://hub.docker.com/r/{{jobDetail.image_name}}">{{jobDetail.image_name}}</a>
+          </span>
         </div>
       </div>
 
       <div class="static-field">
-        <label>Cost</label>
+        <label>Cost Time</label>
         <div>
-          <span>TODO</span>
+          <span>{{timeCost | duration}} </span>
         </div>
       </div>
 

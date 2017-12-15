@@ -33,7 +33,6 @@ export class BookstoreComponent implements OnInit {
       this._loadingService.register('books.list');
       const response = await this._bookService.getBookList().toPromise();
       this.tableData = response.json()['results'];
-      console.log('tableData????', this.tableData);
     } catch (error) {
       console.log(error)
       console.log(error.status)

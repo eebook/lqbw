@@ -11,19 +11,21 @@
         <div class="static-field">
           <label>Name: </label>
           <div>
-            <span>{{jobConfig.config_name}}</span>
+            <span>{{ jobConfig.config_name }}</span>
           </div>
         </div>
         <div class="static-field">
           <label>Image: </label>
           <div>
-            <span>{{jobConfig.image_name}}:{{jobConfig.image_tag}}</span>
+              <span>
+                <a target="_blank" href="https://hub.docker.com/r/{{jobConfig.image_name}}">{{jobConfig.image_name}}</a>
+              </span>
           </div>
         </div>
         <div class="static-field">
           <label>Created At: </label>
           <div>
-            <span>{{jobConfig.created_at}}</span>
+            <span>{{ jobConfig.created_at | formatUtcStr }}</span>
           </div>
         </div>
       </div>
@@ -35,6 +37,41 @@
       <mat-tab label="Jobs">
         <ng-template tdLoading="jobConfig.jobs">
           <div class="lqbw-log-container" id="content">
+            <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+              <!-- <td-search-box class="push-left push-right" placeholder="search" [alwaysVisible]="true" ></td-search-box> -->
+              <mat-divider></mat-divider>
+              <ng-template tdLoading="job.history">
+                <mat-list class="will-load">
+                  <div class="mat-padding" *ngIf="filteredJobs?.length === 0" layout="row" layout-align="center center">
+                    <!-- <div class="mat-padding" *ngIf=true layout="row" layout-align="center center"> -->
+                    <h3>No History to Display.</h3>
+                  </div>
+                  <ng-template let-job let-last="last" ngFor [ngForOf]="filteredJobs">
+                    <mat-list-item layout-align="row" [routerLink]="['/job/history/detail', job.job_uuid]">
+                      <mat-icon mat-list-avatar>history</mat-icon>
+                      <h3 mat-line> {{ job.config_name }}</h3>
+                      <!-- <span flex=10></span> -->
+                      <span hide-xs hide-sm hide-md flex-gt-xs="90" flex-xs="80" layout-gt-xs="row">
+                        <div class="mat-caption tc-grey-500" flex-gt-xs="50"> {{ job.created_at | formatUtcStr }} </div>
+                        <div class="mat-caption tc-grey-500" flex-gt-xs="20"> {{ job.status }} </div>
+                        <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ calculateTimeCost(job) | duration }}</div>
+                      </span>
+                      <span>
+                        <button mat-icon-button [mat-menu-trigger-for]="menu" (click)="$event.stopPropagation()">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu x-position="before" #menu="matMenu">
+                          <a mat-menu-item (click)="deletClicked($event, job.job_uuid)">
+                            <mat-icon>delete</mat-icon> Delete
+                          </a>
+                        </mat-menu>
+                      </span>
+                    </mat-list-item>
+                    <mat-divider *ngIf="!last" mat-inset></mat-divider>
+                  </ng-template>
+                </mat-list>
+              </ng-template>
+              </mat-card>
           </div>
         </ng-template>
       </mat-tab>

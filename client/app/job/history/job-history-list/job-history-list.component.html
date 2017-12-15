@@ -13,7 +13,7 @@
     <mat-list class="will-load">
       <div class="mat-padding" *ngIf="filteredJobs?.length === 0" layout="row" layout-align="center center">
       <!-- <div class="mat-padding" *ngIf=true layout="row" layout-align="center center"> -->
-        <h3>No history to Display.</h3>
+        <h3>No History to Display.</h3>
       </div>
       <ng-template let-job let-last="last" ngFor [ngForOf]="filteredJobs">
         <mat-list-item layout-align="row" [routerLink]="['../detail', job.job_uuid]">
@@ -21,9 +21,9 @@
           <h3 mat-line> {{ job.config_name }}</h3>
           <!-- <span flex=10></span> -->
           <span hide-xs hide-sm hide-md flex-gt-xs="90" flex-xs="80" layout-gt-xs="row">
-            <div class="mat-caption tc-grey-500" flex-gt-xs="50"> TODO: pipes{{ job.created_at }} </div>
+            <div class="mat-caption tc-grey-500" flex-gt-xs="50"> {{ job.created_at | formatUtcStr }} </div>
             <div class="mat-caption tc-grey-500" flex-gt-xs="20"> {{ job.status}} </div>
-            <div class="mat-caption tc-grey-500" flex-gt-xs="30"> TODO: cost </div>
+            <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ calculateTimeCost(job) | duration }}</div>
           </span>
           <span>
             <button mat-icon-button [mat-menu-trigger-for]="menu" (click)="$event.stopPropagation()">

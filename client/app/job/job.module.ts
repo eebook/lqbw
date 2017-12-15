@@ -29,6 +29,7 @@ import {
   DefaultWidgetRegistry,
   StringWidget
 } from 'angular2-schema-form';
+import { PipesModule } from '../shared/pipes';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {
     CovalentCommonModule,
     CovalentExpansionPanelModule,
     MatTabsModule,
+    PipesModule,
     RouterModule.forChild(jobRoutes),
   ],
   declarations: [
