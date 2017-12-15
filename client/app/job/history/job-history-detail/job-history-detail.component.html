@@ -6,13 +6,36 @@
 </mat-toolbar>
 
 <mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
-  <td-expansion-panel label="Basic information" expand="false">
+  <td-expansion-panel label="Basic information {{jobDetail.config_name}}'s job" expand="true">
     <div class="mat-padding">
-      <h3 class="mat-subhead">mat-padding class</h3>
-      <div>Demo 1</div>
-      <div>Demo 2</div>
-      <div>Demo 3</div>
-      <div>Demo 4</div>
+      <div class="static-field">
+        <label>Started At</label>
+        <div>
+          <span>{{jobDetail.started_at}}</span>
+        </div>
+      </div>
+
+      <div class="static-field">
+        <label>Ended At</label>
+        <div>
+          <span>{{jobDetail.ended_at}}</span>
+        </div>
+      </div>
+
+      <div class="static-field">
+        <label>Image</label>
+        <div>
+          <span>https://hub.docker.com/r/{{jobDetail.image_name}}</span>
+        </div>
+      </div>
+
+      <div class="static-field">
+        <label>Cost</label>
+        <div>
+          <span>TODO</span>
+        </div>
+      </div>
+
     </div>
   </td-expansion-panel>
 </mat-card>

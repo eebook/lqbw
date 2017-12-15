@@ -123,7 +123,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
 
   private repoHref(config) {
     const result = _.filter(config.envvars, function(o) {
-      return o.name === "repo";
+      return o.name === "REPO";
     })[0];
     // TODO: result value could be none, found by e2e
     return result['value'];

@@ -161,17 +161,16 @@ export class JobConfigCreateComponent implements OnInit {
         name: 'URL',
         value: url
       }, {
-        name: 'repo',
+        name: 'REPO',
         value: this.repo
+      }, {
+        name: 'ES_INDEX',
+        value: this.metaData.result.name
       }]
     }
-    console.log('create job');
-    console.log('url???%s, name???%s', url, name);
-    console.log('this.value???', this.value);
     for (var key in this.value) {
       payload.envvars.push({name: key, value: this.value[key]});
     }
-    console.log('payload????', payload);
     this._loadingService.register('create.job');
     this._jobService.createConfig(payload)
       .subscribe(

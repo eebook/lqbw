@@ -16,6 +16,8 @@
 
 * https://github.com/dschnelldavis/angular2-json-schema-form or github.com/makinacorpus/angular2-schema-form
 
+* pm2 startup, move pm2 conf to ./.pm2  https://wohugb.gitbooks.io/pm2/content/features/quick-start.html
+
 ### Roadmap
 
 * Use Angular5
