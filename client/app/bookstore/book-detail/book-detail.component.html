@@ -26,7 +26,7 @@
       <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
         <button mat-button color="accent" class="text-upper" (click)="goBack()">Back</button>
         <span flex></span>
-        <button mat-button color="primary" class="text-upper" (click)="downloadFile()">download</button>
+        <button mat-button color="primary" class="text-upper" [disabled]="isDownloading" (click)="downloadFile()">{{btnMessage}}</button>
       </section>
     </mat-card-actions>
   </td-layout-card-over>

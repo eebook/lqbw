@@ -20,7 +20,6 @@ export function Request(option) {
 }
 
 export function EEBookRequest(ctx: any, method, path, args?) {
-  logger.info('api url???', getEnv('API_URL'));
   const option = {
     url: getEnv('API_URL') + '/' + getEnv('API_VERSION') + path,
     json: true,

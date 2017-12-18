@@ -15,6 +15,9 @@ import { MatSnackBar } from '@angular/material';
 export class BookDetailComponent implements OnInit {
   bookDetail: Book = new Book();
   bookID: string;
+  item: any;
+  downloading = false;
+  btnMessage = 'Download';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -41,7 +44,6 @@ export class BookDetailComponent implements OnInit {
         this.bookDetail = data.json().result;
       },
       (error) => {
-        console.log("error???", error.json());
         if (error.json().errors[0].code === "book_not_exist") {
           this._snackBarService.open("The book does not exist", 'Error', {
             duration: 5000,
@@ -57,15 +59,32 @@ export class BookDetailComponent implements OnInit {
   private downloadFile() {
     console.log('Download file');
     console.log('download url: ', this.bookDetail.download_url);
-    // this._http.get('http://localhost:19000/books/ee-bookorg-%E9%98%AE%E4%B8%80%E5%B3%B0%E7%9A%84%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97-rss-2017-10-01.epub?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=DFEEHK4IPJQAXDW8M7A9%2F20171005%2F%2Fs3%2Faws4_request&X-Amz-Date=20171005T063745Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=6e6df38027073f488befa21abd077791bf996ce5a5787610b7b69f46234958aa', {responseType: ResponseContentType.Blob}).subscribe(
-    this._http.get(this.bookDetail.download_url,
+    this.downloading = true;
+    this.btnMessage = 'Downloading';
+    this._http.get(
+      this.bookDetail.download_url,
       {responseType: ResponseContentType.Blob}).subscribe(
         (response) => {
           const mediaType = 'application/epub+zip';
           const blob = new Blob([response.blob()], {type: mediaType});
           const filename = this.bookDetail.title;
           saveAs(blob, filename);
-        });
+        },
+        (error) => {
+            this._snackBarService.open("Network issue", 'Error', {
+              duration: 5000,
+            })
+        },
+        () => {
+          this.downloading = false;
+          this.btnMessage = 'Download';
+        }
+      );
+
+  }
+
+  get isDownloading() {
+    return this.downloading;
   }
 
   private goBack() {

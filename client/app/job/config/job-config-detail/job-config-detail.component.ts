@@ -67,7 +67,6 @@ export class JobConfigDetailComponent implements OnInit {
         this.envvars = this.jobConfig.envvars.filter(el => {
           return el.name !== "repo";
         });
-        console.log('jobconfig???', this.jobConfig)
       });
   }
 

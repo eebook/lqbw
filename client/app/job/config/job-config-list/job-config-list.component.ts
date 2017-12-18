@@ -64,7 +64,6 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       if (error.status === 401) {
         console.log('TODO: auth!!!!');
       }
-      console.log('unknown???');
     } finally {
       this._loadingService.resolve('job.list');
     }
