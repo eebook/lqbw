@@ -40,6 +40,35 @@
 
 <div *ngIf="!currentUser?.userName">
   <!-- <button mat-raised-button color="primary" (click)="signInUpDialog()">Auth</button> -->
-  <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
-  <router-outlet></router-outlet>
+  <!-- <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button> -->
+  <!-- <router-outlet></router-outlet> -->
+
+  <td-layout #layout>
+    <td-navigation-drawer flex sidenavTitle="EEBook" name="{{currentUser?.userName}}">
+      <mat-nav-list>
+        <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
+      </mat-nav-list>
+    </td-navigation-drawer>
+
+    <td-layout-nav>
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span [routerLink]="['/']" class="cursor-pointer">EEBook</span>
+        <span flex></span>
+        <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
+      </div>
+
+      <router-outlet></router-outlet>
+
+      <td-layout-footer>
+        <div layout="row" layout-align="start center">
+          <span class="mat-caption">Copyright &copy; 2017 knarfeh. All rights reserved</span>
+        </div>
+        <!-- <div>{{ 'HELLO' | translate:param }}</div> -->
+      </td-layout-footer>
+
+    </td-layout-nav>
+  </td-layout>
 </div>

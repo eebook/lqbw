@@ -22,6 +22,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 export class UserLoginComponent implements OnInit {
   login = 'Login';
   submitting = false;
+  returnUrl: string;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -42,6 +43,7 @@ export class UserLoginComponent implements OnInit {
   constructor(
     private _http: HttpService,
     private _router: Router,
+    private _activateRoute: ActivatedRoute,
     private _dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private _loadingService: TdLoadingService,
@@ -49,10 +51,10 @@ export class UserLoginComponent implements OnInit {
 
 
   ngOnInit() {
+    this.returnUrl = this._activateRoute.snapshot.queryParams['returnUrl'] || '/';
   }
 
   signInUser(email: string, password: string, source?: string) {
-    console.log('The user is landing...');
     this.submitting = true;
 
     this._loadingService.register('user.login');
@@ -65,7 +67,7 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('currentUser', JSON.stringify({'userName': result.username}));
       // TODO: return returnUrl
       this._loadingService.resolve('user.login');
-      return this._router.navigate(['']);
+      return this._router.navigate([this.returnUrl]);
     }).catch(errors => {
       if (errors instanceof Array) {
         this._loadingService.resolve('user.login');

@@ -17,7 +17,7 @@ export class AuthService {
         console.log(errors);
       }
     }).then(() => {
-        console.log('logout, emmmmmmm');
+      console.log('logout, emmmmmmm');
     });
   }
 }
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
     if (localStorage.getItem('currentUser')) {
       return true;
     }
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+    this.router.navigate(['/user/login'], { queryParams: { returnUrl: state.url }});
     return false;
   }
 }

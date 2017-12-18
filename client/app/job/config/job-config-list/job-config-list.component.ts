@@ -70,8 +70,8 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   }
 
   startClicked(event, jobConfig) {
-    console.log('Start clicked: ', jobConfig);
-    this._startJob(jobConfig['config_name']);
+    console.log(this.tableData);
+    // this._startJob(jobConfig['config_name']);
   }
 
   // updateClicked(jobConfig) {
