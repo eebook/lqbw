@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { MatSnackBar } from '@angular/material';
@@ -5,6 +6,7 @@ import { ModalService } from './../../../shared/modal/modal.service';
 import { JobService } from './../../job.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 import {
   TdDataTableService,
   TdDataTableSortingOrder,
@@ -35,6 +37,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     { name: 'url', label: 'URL' },
     { name: 'last_run_time', label: 'Last Run Time' },
   ];
+  startJobResult: any;
 
   constructor(
     private _titleService: Title,
@@ -43,7 +46,8 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     private _loadingService: TdLoadingService,
     private _dialogService: TdDialogService,
     private _snackBarService: MatSnackBar,
-    private _translate: TranslateService
+    private _translate: TranslateService,
+    private _router: Router,
   ) {
   }
 
@@ -68,13 +72,21 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   }
 
   startClicked(event, jobConfig) {
-    console.log(this.tableData);
-    // this._startJob(jobConfig['config_name']);
+    console.log("tabledata", this.tableData);
+    const historiesToday = _.filter(this.tableData, function(item) {
+      if (!_.isEmpty(item.last_job)
+        && item.last_job.status==="SUCCEEDED"
+        && moment().diff(moment(moment.utc(item.last_job.started_at).valueOf()), 'days') === 0) {
+        return true
+      }
+      return false
+    })
+    console.log('historiesToday', historiesToday);
+    if (historiesToday.length > 0) {
+      this._snackBarService.open('Ops! You have run successfully today, check your bookstore', 'Error', {duration: 3000, politeness: 'polite'});
+    }
+    this._startJob(jobConfig['config_name']);
   }
-
-  // updateClicked(jobConfig) {
-  //   console.log('Update clicked: ', jobConfig);
-  // }
 
   deleteClicked(event, jobConfig) {
     console.log('Delete clicked: ', jobConfig);
@@ -94,12 +106,12 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       const payload = {
         'config_name': name
       };
-      await this._jobService.startJob(payload);
+      this.startJobResult = await this._jobService.startJob(payload);
     } catch (error) {
       this._snackBarService.open(error[0].message, 'Error', {duration: 3000, politeness: 'polite'});
     } finally {
       this._loadingService.resolve('job.list');
-      console.log('TODO: jump jump');
+      this._router.navigateByUrl('/job/history/detail/' + this.startJobResult.result['job_uuid']);
     }
   }
 
