@@ -33,6 +33,7 @@ import { JobConfigDetailComponent } from './job/config/job-config-detail/job-con
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
 import { AccountComponent } from './account/account.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgxMasonryModule } from 'ngx-masonry';
 
@@ -54,12 +55,18 @@ import { MainComponent } from './main/main.component';
 // import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 // import { AppReducer } from './shared/ngrx/index';
-import { TranslateLoader } from '@ngx-translate/core';
 import { CoreModule } from './core/core.module';
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
 import { DBModule } from '@ngrx/db';
 import { schema } from './db';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 
 @NgModule({
   declarations: [
@@ -89,8 +96,16 @@ import { schema } from './db';
     //   useFactory: (translateLoaderFactory)
     // }]),
     // StoreModule.provideStore(AppReducer),
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    }),
     SchemaFormModule,
     ComponentsModule,
+    HttpClientModule,
     // StoreModule.provideStore(rootReducer),
     // Note that you must instrument after importing StoreModule
     // StoreDevtoolsModule.instrumentOnlyWithExtension({
@@ -110,7 +125,8 @@ import { schema } from './db';
 
   ],
   providers: [
-    // HttpClient,
+    HttpClient,
+
     AuthService,
     HttpService,
     JobService,

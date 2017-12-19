@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { MatSnackBar } from '@angular/material';
 import { ModalService } from './../../../shared/modal/modal.service';
@@ -9,7 +10,8 @@ import {
   TdDataTableSortingOrder,
   ITdDataTableColumn,
   TdDialogService,
-  TdLoadingService } from '@covalent/core';
+  TdLoadingService
+} from '@covalent/core';
 
 @Component({
   selector: 'app-job-config-list',
@@ -41,6 +43,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
     private _loadingService: TdLoadingService,
     private _dialogService: TdDialogService,
     private _snackBarService: MatSnackBar,
+    private _translate: TranslateService
   ) {
   }
 
@@ -59,11 +62,6 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
       const response = await this._jobService.getConfigList(100, 1).toPromise();
       this.tableData = response.json()['results'];
     } catch (error) {
-      console.log(error);
-      console.log(error.status);
-      if (error.status === 401) {
-        console.log('TODO: auth!!!!');
-      }
     } finally {
       this._loadingService.resolve('job.list');
     }

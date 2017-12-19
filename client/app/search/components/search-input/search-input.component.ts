@@ -1,4 +1,5 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { OnInit, Component, Output, Input, EventEmitter } from '@angular/core';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -23,7 +24,7 @@ export interface DemoColor {
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.scss']
 })
-export class SearchInputComponent {
+export class SearchInputComponent implements OnInit {
   @Input() query = '';
   @Input() searching = false;
   @Input() error = '';
@@ -52,6 +53,16 @@ export class SearchInputComponent {
     { name: 'Accent', color: 'accent' },
     { name: 'Warn', color: 'warn' }
   ];
+
+  constructor(
+    private _translate: TranslateService,
+  ) {
+
+  }
+
+  ngOnInit() {
+
+  }
 
   displayMessage(message: string): void {
     this.message = message;

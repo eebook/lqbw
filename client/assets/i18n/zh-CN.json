@@ -1,3 +1,4 @@
 {
-  "HELLO": "你好 {{value}}"
+  "HELLO": "你好 {{value}}",
+  "SEARCH_BOOKS": "搜索书..."
 }

@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -22,6 +23,7 @@ import { searchRoutes } from './search.routes';
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
     MatInputModule,
     MatCardModule,

@@ -5,7 +5,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user/model/user-model';
 import { CovalentSearchModule } from '@covalent/core';
-// import {TranslateService} from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main',
@@ -55,10 +55,10 @@ export class MainComponent implements OnInit, AfterContentInit {
     private _router: Router,
     private _route: ActivatedRoute,
     public dialog: MatDialog,
-    // private translate: TranslateService
+    private _translate: TranslateService
   ) {
-    // translate.setDefaultLang('en');
-    // translate.use('en');
+    this._translate.setDefaultLang('en');
+    this._translate.use('en');
   }
 
   ngOnInit() {
@@ -97,6 +97,18 @@ export class MainComponent implements OnInit, AfterContentInit {
     dialogRefRegister.afterClosed().subscribe(result => {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     });
+  }
+
+  get currentLang(): string {
+    return this._translate.currentLang;
+  }
+
+  get otherLang(): string {
+    return this.currentLang === 'en' ? 'zh-CN': 'en';
+  }
+
+  switchLanguage = (lang: string) => {
+    this._translate.use(this.otherLang);
   }
 
   // changeLang(lang: string): void {

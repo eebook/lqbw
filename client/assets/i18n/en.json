@@ -1,3 +1,4 @@
 {
-  "HELLO": "hello {{value}}"
+  "HELLO": "hahaha hello {{value}}",
+  "SEARCH_BOOKS": "Search Books..."
 }

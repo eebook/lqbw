@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,6 +34,7 @@ export const COMPONENTS = [
 
 @NgModule({
   imports: [
+    SharedModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,

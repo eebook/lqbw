@@ -4,10 +4,10 @@ import { ModalService } from './modal/modal.service';
 import { MatDialogRef } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ComponentsModule } from './components/components.module';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
-// import {TranslateModule} from '@ngx-translate/core';
 // import { MultilingualModule } from './i18n/index';
 import {
   CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
@@ -46,6 +46,7 @@ const COVALENT_MODULES: any[] = [
 ];
 
 
+
 @NgModule({
   declarations: [
     SignInUpComponent,
@@ -53,6 +54,7 @@ const COVALENT_MODULES: any[] = [
   imports: [
     CommonModule,
     ComponentsModule,
+    TranslateModule,
     // MultilingualModule,
     ANGULAR_MODULES,
     MATERIAL_MODULES,
@@ -62,7 +64,7 @@ const COVALENT_MODULES: any[] = [
     SignInUpComponent,
     CommonModule,
     ComponentsModule,
-    // TranslateModule,
+    TranslateModule,
     // MultilingualModule,
     ANGULAR_MODULES,
     MATERIAL_MODULES,
