@@ -17,7 +17,7 @@ router.get('/book', function(req, res, next) {
   EEBookRequest(req, 'GET', '/search/book', req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
-    throw err;
+    return next(err);
   });
 });
 

@@ -19,7 +19,7 @@ router.get('/about', function(req, res, next) {
   EEBookRequest(req, 'GET', '/about').then(function (result) {
     res.send(result);
   }).catch(function (err) {
-    throw err;
+    return next(err);
   });
 });
 

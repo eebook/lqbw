@@ -13,6 +13,7 @@ import { JobConfigListComponent } from './config/job-config-list/job-config-list
 import { JobConfigCreateComponent } from './config/job-config-create/job-config-create.component';
 // import { MdTabsModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
+import { Http } from '@angular/http';
 import {
   CovalentLoadingModule,
   CovalentDialogsModule,
@@ -30,7 +31,7 @@ import {
   StringWidget
 } from 'angular2-schema-form';
 import { PipesModule } from '../shared/pipes';
-
+import { AuthenticatedHttpService } from './../shared/services/http/http.service';
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import { PipesModule } from '../shared/pipes';
   entryComponents: [MyStringWidget],
   providers: [
     JobService,
-    {provide: WidgetRegistry, useClass: MyWidgetRegistry},
+    { provide: WidgetRegistry, useClass: MyWidgetRegistry},
+    { provide: Http, useClass: AuthenticatedHttpService },
   ]
 })
 export class JobModule { }

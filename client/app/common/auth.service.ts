@@ -11,13 +11,11 @@ export class AuthService {
     this.http.request('/ajax/auth/logout', {
       method: 'get'
     }).then(({ result }) => {
-      console.log('Logout result: ', result);
     }).catch(errors => {
       if (errors instanceof Array) {
         console.log(errors);
       }
     }).then(() => {
-      console.log('logout, emmmmmmm');
     });
   }
 }

@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
   EEBookRequest(req, 'GET', '/books/?page_size=1000', req).then(function (result) {
     res.send(result);
   }).catch(function (err) {
-    throw err;
+    return next(err);
   });
 });
 

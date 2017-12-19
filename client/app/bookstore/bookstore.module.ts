@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { PipesModule } from './../shared/pipes/index';
 import { BookService } from './book.service';
 import { BookstoreComponent } from './bookstore.component';
@@ -15,6 +16,7 @@ import {
   CovalentCommonModule
 } from '@covalent/core';
 import { MatCardModule } from '@angular/material';
+import { AuthenticatedHttpService } from './../shared/services/http/http.service';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { MatCardModule } from '@angular/material';
   ],
   providers: [
     BookService,
+    { provide: Http, useClass: AuthenticatedHttpService },
   ]
 })
 export class BookstoreModule { }

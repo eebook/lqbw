@@ -6,7 +6,10 @@ export const AboutRoutes = [
   {
     path: '',
     children: [
-      { path: '', component: AboutComponent, canActivate: [AuthGuard]},
+      {
+        path: '',
+        component: AboutComponent
+      },
     ]
   }
 ];

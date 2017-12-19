@@ -46,7 +46,9 @@
   <td-layout #layout>
     <td-navigation-drawer flex sidenavTitle="EEBook" name="{{currentUser?.userName}}">
       <mat-nav-list>
-        <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
+        <div class="login-container">
+          <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
+        </div>
       </mat-nav-list>
     </td-navigation-drawer>
 

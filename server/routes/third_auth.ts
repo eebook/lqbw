@@ -20,7 +20,7 @@ router.post('/register', function(req, res, next) {
   EEBookRequest(req, 'POST', '/auth/register', {'data': req.body}).then(function (result) {
     res.send({'result': result });
   }).catch(function (err) {
-    throw err;
+    return next(err);
   });
 });
 

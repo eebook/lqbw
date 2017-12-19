@@ -32,7 +32,6 @@ router.get('/:captchaString', function(req, res, next) {
 
 router.get('*', function(req, res, next) {
   req.user = req.session.user;
-  LOGGER.info('user???' + req.user);
   if (req.user === null) {
     LOGGER.info('user is null');
     res.render('index', { title: 'Express' });
