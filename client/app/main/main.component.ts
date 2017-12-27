@@ -69,7 +69,6 @@ export class MainComponent implements OnInit, AfterContentInit {
       console.log('currentUser: ' + this.currentUser.userName);
     }
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
-    console.log('returnUrl???' + this.returnUrl);
   }
 
   public ngAfterContentInit() {
