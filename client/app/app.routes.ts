@@ -22,10 +22,6 @@ export const appRoutes = [
         path: '',
         loadChildren: './search/search.module#BooksModule',
       },
-      {
-        path: 'about',
-        loadChildren: './about/about.module#AboutModule',
-      },
       // {
       //   path: 'settings',
       //   loadChildren: './settings/settings.module#SettingsModule',
@@ -38,6 +34,10 @@ export const appRoutes = [
         canActivate: [AuthGuard]
       },
     ]
+  },
+  {
+    path: 'about',
+    loadChildren: './about/about.module#AboutModule',
   },
   {
     path: 'user',
