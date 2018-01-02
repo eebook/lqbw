@@ -5,7 +5,7 @@ import { FieldBase } from './form-field';
 
 
 @Component({
-  selector: 'form-control',
+  selector: 'app-form-control',
   templateUrl: 'form-control.component.html'
 })
 

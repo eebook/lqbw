@@ -71,7 +71,7 @@ export class JobHistoryDetailComponent implements OnInit, OnDestroy {
   private resetPollingTimer() {
     clearTimeout(this.pollingInterval);
     this.pollingTimer = setTimeout(() => {
-      this._startPolling()
+      this._startPolling();
     }, this.pollingInterval);
   }
 

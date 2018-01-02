@@ -28,9 +28,12 @@ RUN npm cache clear --force
 WORKDIR /lqbw/
 COPY ./package.json ./
 COPY ./package-lock.json ./
-RUN npm i --verbose
+RUN npm i typescript -g
+RUN npm i
 
 COPY . /lqbw/
+RUN npm run lintclient
+RUN npm run lintserver
 RUN npm run build
 RUN ./node_modules/typescript/bin/tsc -p ./server
 

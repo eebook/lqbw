@@ -103,7 +103,7 @@ export class MainComponent implements OnInit, AfterContentInit {
   }
 
   get otherLang(): string {
-    return this.currentLang === 'en' ? 'zh-CN': 'en';
+    return this.currentLang === 'en' ? 'zh-CN' : 'en';
   }
 
   switchLanguage = (lang: string) => {

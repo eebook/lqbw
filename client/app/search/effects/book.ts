@@ -56,7 +56,7 @@ export class BookEffects {
       if (query === '') {
         return empty();
       }
-      console.log('query string???', query)
+      console.log('query string???', query);
 
       const nextSearch$ = this._actions$.ofType(book.SEARCH).skip(1);
 

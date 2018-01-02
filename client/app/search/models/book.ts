@@ -1,11 +1,11 @@
 
-interface tags {
+interface Tags {
   count: number;
   name: string;
   title: string;
 }
 
-interface images {
+interface Images {
   large: string;
   medium: string;
   small: string;
@@ -27,8 +27,8 @@ export class Book {
   type: string;
   url: string;
   image?: string;
-  tag: tags[];
-  images?: images;
+  tag: Tags[];
+  images?: Images;
   created_by?: string;
   alt?: string;
 }

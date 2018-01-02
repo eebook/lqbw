@@ -22,7 +22,8 @@ import * as fromRouter from '@ngrx/router-store';
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
-  // routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+  routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+  // empty:string;
 }
 
 /**

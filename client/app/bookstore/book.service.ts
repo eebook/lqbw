@@ -9,7 +9,7 @@ export class BookService {
   constructor(private _http: Http) {}
 
   public getBookList(): Observable<Response> {
-    return this._http.get('/ajax/books/')
+    return this._http.get('/ajax/books/');
   }
 
   public getBookDetail(bookUUID): Observable<Response> {
@@ -21,10 +21,10 @@ export class BookService {
   }
 
   public makeBookPublic(bookUUID): Observable<Response> {
-    return this._http.put('/ajax/books/detail/' + bookUUID, {"is_public": true});
+    return this._http.put('/ajax/books/detail/' + bookUUID, {'is_public': true});
   }
 
   public makeBookPrivate(bookUUID): Observable<Response> {
-    return this._http.put('/ajax/books/detail/' + bookUUID, {"is_public": false});
+    return this._http.put('/ajax/books/detail/' + bookUUID, {'is_public': false});
   }
 }

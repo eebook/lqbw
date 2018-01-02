@@ -21,8 +21,8 @@
     "dev": "concurrently \"tsc -w -p server\" \"nodemon dist/server/app.js\" \"ng serve --proxy-config proxy.conf.json \"",
     "dev:prod": "concurrently \"tsc -w -p server\" \"nodemon dist/server/app.js\" \"ng build --watch \"",
     "test": "ng test",
-    "lint": "ng lint",
-    "lintbe": "tslint server/**/**.ts{,x}",
+    "lintclient": "ng lint",
+    "lintserver": "tslint server/**/**.ts{,x}",
     "e2e": "ng e2e",
     "i18n": "ng xi18n --i18nFormat=xlf  --outFile=./assets/i18n/messages.xlf"
   },

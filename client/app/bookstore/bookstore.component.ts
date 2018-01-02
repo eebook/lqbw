@@ -34,34 +34,34 @@ export class BookstoreComponent implements OnInit {
       const response = await this._bookService.getBookList().toPromise();
       this.tableData = response.json()['results'];
     } catch (error) {
-      console.log(error)
-      console.log(error.status)
+      console.log(error);
+      console.log(error.status);
     } finally {
       this._loadingService.resolve('books.list');
     }
   }
 
   async publicClicked(event, book) {
-    console.log('Public clicked')
+    console.log('Public clicked');
     try {
       this._loadingService.register('books.list');
       const response = await this._bookService.makeBookPublic(book.uuid).toPromise();
     } catch (error) {
     } finally {
       this._loadingService.resolve('books.list');
-      this.load()
+      this.load();
     }
   }
 
   async privateClicked(event, book) {
-    console.log('Private clicked')
+    console.log('Private clicked');
     try {
       this._loadingService.register('books.list');
       const response = await this._bookService.makeBookPrivate(book.uuid).toPromise();
     } catch (error) {
     } finally {
       this._loadingService.resolve('books.list');
-      this.load()
+      this.load();
     }
   }
 }

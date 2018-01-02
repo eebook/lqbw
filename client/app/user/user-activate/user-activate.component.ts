@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-activate.component.html',
   styleUrls: ['./user-activate.component.scss']
 })
-export class UserActivate implements OnInit {
+export class UserActivateComponent implements OnInit {
   code: string;
 
   constructor(
@@ -20,14 +20,14 @@ export class UserActivate implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._loadingService.register('activate.success')
+    this._loadingService.register('activate.success');
     this.code = this._route.snapshot.params['code'];
-    this._http.request('/ajax/auth/activate/'+this.code, {
+    this._http.request('/ajax/auth/activate/' + this.code, {
       method: 'PUT',
     }).then((result) => {
-      this._loadingService.resolve('activate.success')
+      this._loadingService.resolve('activate.success');
     }).catch((errors: any[]) => {
-      this._loadingService.resolve('activate.success')
+      this._loadingService.resolve('activate.success');
       console.log('errors???', errors);
       if (errors[0].code === 'invalid_args') {
         this._snackBar.open(errors[0].fields[0].captcha[0], 'Error', {
@@ -37,5 +37,4 @@ export class UserActivate implements OnInit {
     }).then(() => {
     });
   }
-
 }

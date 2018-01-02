@@ -167,9 +167,11 @@ export class JobConfigCreateComponent implements OnInit {
         name: 'ES_INDEX',
         value: this.metaData.result.name
       }]
-    }
-    for (var key in this.value) {
-      payload.envvars.push({name: key, value: this.value[key]});
+    };
+    for (const key in Object.keys(this.value)) {
+      if (this.value.hasOwnProperty(key)) {
+        payload.envvars.push({name: key, value: this.value[key]});
+      }
     }
     this._loadingService.register('create.job');
     this._jobService.createConfig(payload)

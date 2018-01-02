@@ -4,7 +4,7 @@ import { jobRoutes } from './job.routes';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MyWidgetRegistry } from './widget/widgetregistry';
-import { MyStringWidget } from './widget/string/string.widget';
+import { StringWidgetComponent } from './widget/string/string.widget';
 import { SharedModule } from '../shared/shared.module';
 import { JobHistoryListComponent } from './history/job-history-list/job-history-list.component';
 import { JobHistoryDetailComponent } from './history/job-history-detail/job-history-detail.component';
@@ -57,9 +57,9 @@ import { AuthenticatedHttpService } from './../shared/services/http/http.service
     JobHistoryListComponent,
     JobHistoryDetailComponent,
     JobComponent,
-    MyStringWidget,
+    StringWidgetComponent,
   ],
-  entryComponents: [MyStringWidget],
+  entryComponents: [StringWidgetComponent],
   providers: [
     JobService,
     { provide: WidgetRegistry, useClass: MyWidgetRegistry},

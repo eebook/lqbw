@@ -13,8 +13,8 @@ export class DurationPipe implements PipeTransform {
       const minutes = duration.minutes();
       const seconds = duration.seconds();
 
-      message += days ? days + ' day ': '';
-      message += hours ? hours + ' hour ': '';
+      message += days ? days + ' day ' : '';
+      message += hours ? hours + ' hour ' : '';
       message += minutes ? minutes + ' minute ' : '';
       message += seconds ? seconds + ' second ' : '';
     } else if (milliseconds > 0) {

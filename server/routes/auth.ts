@@ -50,7 +50,7 @@ router.put('/activate/:code', function(req, res, next) {
   }).catch(function (err) {
     return next(err);
   });
-})
+});
 
 router.post('/auth/github', function(req, res, next){
 

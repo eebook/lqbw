@@ -22,12 +22,10 @@ import * as moment from 'moment';
 })
 export class JobConfigDetailComponent implements OnInit {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  DECIMAL_FORMAT: (v: any) => any = (v: number) => v.toFixed(2);
   columns: ITdDataTableColumn[] = [
     { name: 'name',  label: 'Name' },
     { name: 'value', label: 'Value' },
   ];
-  public jobConfig: JobConfig = new JobConfig();
 
   envvars: any;
   alive = true;
@@ -38,6 +36,8 @@ export class JobConfigDetailComponent implements OnInit {
   jobConfigName: string;
   jobs: any[];
   filteredJobs: any[];
+  public jobConfig: JobConfig = new JobConfig();
+  DECIMAL_FORMAT: (v: any) => any = (v: number) => v.toFixed(2);
 
   constructor(
     public _activatedRoute: ActivatedRoute,
@@ -65,7 +65,7 @@ export class JobConfigDetailComponent implements OnInit {
       .subscribe(data => {
         this.jobConfig = data.json();
         this.envvars = this.jobConfig.envvars.filter(el => {
-          return el.name !== "repo";
+          return el.name !== 'repo';
         });
       });
   }

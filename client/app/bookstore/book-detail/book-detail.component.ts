@@ -40,14 +40,14 @@ export class BookDetailComponent implements OnInit {
     this._bookService
       .getBookDetail(bookID)
       .subscribe(data => {
-        console.log('book detail: ', data.json().result)
+        console.log('book detail: ', data.json().result);
         this.bookDetail = data.json().result;
       },
       (error) => {
-        if (error.json().errors[0].code === "book_not_exist") {
-          this._snackBarService.open("The book does not exist", 'Error', {
+        if (error.json().errors[0].code === 'book_not_exist') {
+          this._snackBarService.open('The book does not exist', 'Error', {
             duration: 5000,
-          })
+          });
         }
         this._bookService.deleteABook(bookID).toPromise();
         // TODO: back to where you come from
@@ -71,9 +71,9 @@ export class BookDetailComponent implements OnInit {
           saveAs(blob, filename);
         },
         (error) => {
-            this._snackBarService.open("Network issue", 'Error', {
+            this._snackBarService.open('Network issue', 'Error', {
               duration: 5000,
-            })
+            });
         },
         () => {
           this.downloading = false;

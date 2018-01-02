@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { UserResetPasswordComponent } from './user-reset-password/user-reset-password.component';
 import { ResetPasswordCompleteComponent } from './reset-password-complete/reset-password-complete.component';
 import { UserRegisterSuccessComponent } from './user-register-success/user-register-success.component';
-import { UserActivate } from './user-activate/user-activate.component';
+import { UserActivateComponent } from './user-activate/user-activate.component';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import { UserActivate } from './user-activate/user-activate.component';
     UserResetPasswordComponent,
     ResetPasswordCompleteComponent,
     UserRegisterSuccessComponent,
-    UserActivate
+    UserActivateComponent
   ],
   providers: [
     AuthService

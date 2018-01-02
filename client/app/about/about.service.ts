@@ -9,6 +9,6 @@ export class AboutService {
   constructor(private _http: Http) {}
 
   public getAbout(): Observable<Response> {
-    return this._http.get('/ajax/about/')
+    return this._http.get('/ajax/about/');
   }
 }

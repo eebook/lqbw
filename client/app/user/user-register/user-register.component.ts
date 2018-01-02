@@ -36,7 +36,7 @@ export class UserRegisterComponent implements OnInit {
   signUpFormControl = new FormGroup({
     emailFormControl: this.emailFormControl,
     passwordFormControl: this.passwordFormControl
-  })
+  });
 
   constructor(
     private injector: Injector,

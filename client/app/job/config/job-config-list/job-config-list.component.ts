@@ -22,7 +22,6 @@ import {
 })
 
 export class JobConfigListComponent implements OnInit, OnDestroy {
-  // alive = true;
   searchTerm = '';
   fromRow = 1;
   currentPage = 1;
@@ -72,18 +71,19 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
   }
 
   startClicked(event, jobConfig) {
-    console.log("tabledata", this.tableData);
+    console.log('tabledata', this.tableData);
     const historiesToday = _.filter(this.tableData, function(item) {
       if (!_.isEmpty(item.last_job)
-        && item.last_job.status==="SUCCEEDED"
+        && item.last_job.status === 'SUCCEEDED'
         && moment().diff(moment(moment.utc(item.last_job.started_at).valueOf()), 'days') === 0) {
-        return true
+        return true;
       }
-      return false
-    })
+      return false;
+    });
     console.log('historiesToday', historiesToday);
     if (historiesToday.length > 0) {
-      this._snackBarService.open('Ops! You have run successfully today, check your bookstore', 'Error', {duration: 3000, politeness: 'polite'});
+      this._snackBarService.open('Ops! You have run successfully today, check your bookstore',
+      'Error', {duration: 3000, politeness: 'polite'});
     }
     this._startJob(jobConfig['config_name']);
   }
@@ -132,7 +132,7 @@ export class JobConfigListComponent implements OnInit, OnDestroy {
 
   private repoHref(config) {
     const result = _.filter(config.envvars, function(o) {
-      return o.name === "REPO";
+      return o.name === 'REPO';
     })[0];
     // TODO: result value could be none, found by e2e
     return result['value'];

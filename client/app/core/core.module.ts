@@ -13,7 +13,7 @@ import { SearchBooksService } from './services/search.service';
 
 export const COMPONENTS = [
   NotFoundComponent,
-]
+];
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [SearchBooksService]
-    }
+    };
   }
 }
 

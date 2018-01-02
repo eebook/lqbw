@@ -6,7 +6,7 @@ import { UserForgetPasswordComponent } from './user-forget-password/user-forget-
 import { RouterModule } from '@angular/router';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserLoginComponent } from './user-login/user-login.component';
-import { UserActivate } from './user-activate/user-activate.component';
+import { UserActivateComponent } from './user-activate/user-activate.component';
 
 export const userRoutes = [
   {
@@ -40,7 +40,7 @@ export const userRoutes = [
       },
       {
         path: 'activate/:code',
-        component: UserActivate
+        component: UserActivateComponent
       }
     ]
   }

@@ -38,10 +38,10 @@ export class BookPreviewComponent {
   }
 
   get hasDetail() {
-    if (this.book.type == "eebook") {
+    if (this.book.type === 'eebook') {
       return true;
     }
-    return false
+    return false;
   }
 
   get url() {

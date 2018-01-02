@@ -30,13 +30,13 @@ export class SearchInputComponent implements OnInit {
   @Input() error = '';
   @Output() search = new EventEmitter<string>();
 
-  tabIndex: number = 0;
-  visible: boolean = true;
-  color: string = '';
-  selectable: boolean = true;
-  removable: boolean = true;
-  addOnBlur: boolean = true;
-  message: string = '';
+  tabIndex = 0;
+  visible = true;
+  color = '';
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  message = '';
 
   // Enter, comma, semi-colon
   separatorKeysCodes = [ENTER, COMMA, 186];
@@ -53,6 +53,8 @@ export class SearchInputComponent implements OnInit {
     { name: 'Accent', color: 'accent' },
     { name: 'Warn', color: 'warn' }
   ];
+  selectedColors: any[] = ['Primary', 'Warn'];
+  selectedColor = 'Accent';
 
   constructor(
     private _translate: TranslateService,
@@ -69,8 +71,8 @@ export class SearchInputComponent implements OnInit {
   }
 
   add(event: MatChipInputEvent): void {
-    let input = event.input;
-    let value = event.value;
+    const input = event.input;
+    const value = event.value;
 
     // Add our person
     if ((value || '').trim()) {
@@ -82,11 +84,11 @@ export class SearchInputComponent implements OnInit {
       input.value = '';
     }
     console.log('this.people????', this.people);
-    this.search.emit('eebook')
+    this.search.emit('eebook');
   }
 
   remove(person: Person): void {
-    let index = this.people.indexOf(person);
+    const index = this.people.indexOf(person);
 
     if (index >= 0) {
       this.people.splice(index, 1);
@@ -110,6 +112,5 @@ export class SearchInputComponent implements OnInit {
   toggleVisible(): void {
     this.visible = false;
   }
-  selectedColors: any[] = ['Primary', 'Warn'];
-  selectedColor = 'Accent';
+
 }

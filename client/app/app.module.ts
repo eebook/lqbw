@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Config } from './shared/utils/config';
 import { UserModule } from './user/user.module';
 import { SignInUpComponent } from './shared/modal/sign-in-up/sign-in-up.component';
 import { ComponentsModule } from './shared/components/components.module';
