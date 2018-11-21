@@ -63,3 +63,4 @@ dist/
 dump.rdb
 
 .env
+notes.md

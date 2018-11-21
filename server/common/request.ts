@@ -40,5 +40,6 @@ export function EEBookRequest(ctx: any, method, path, args?) {
     option['body'] = args.data;
   }
   logger.debug('Request option:', option);
+  console.log(option);
   return Request(option);
 }
