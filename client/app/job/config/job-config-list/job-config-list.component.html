@@ -1,0 +1,54 @@
+<mat-toolbar>
+  <button mat-icon-button td-menu-button tdLayoutManageListToggle>
+    <mat-icon>menu</mat-icon>
+  </button>
+  Job Config
+</mat-toolbar>
+
+<mat-card class="push-botton-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+  <!-- <td-search-box class="push-left push-right" placeholder="search" [alwaysVisible]="true" ></td-search-box> -->
+  <mat-divider></mat-divider>
+  <ng-template tdLoading="job.list">
+    <mat-list class="will-load">
+      <div class="mat-padding" *ngIf="tableData?.length === 0" layout="row" layout-align="center center">
+        <!-- <div class="mat-padding" *ngIf=true layout="row" layout-align="center center"> -->
+        <h3>No Config to Display.</h3>
+      </div>
+      <ng-template let-column let-last="last" ngFor [ngForOf]="tableData">
+        <mat-list-item layout-align="row" [routerLink]="['/job/config/detail', column.config_name]">
+          <mat-icon mat-list-avatar>settings</mat-icon>
+          <h3 mat-line> {{ column.config_name }} </h3>
+          <span hide-xs hide-sm hide-md flex-gt-xs="90" flex-xs="80" layout-gt-xs="row">
+            <div class="mat-caption tc-grey-500" flex-gt-xs="70"> {{ column.created_at | formatUtcStr }} </div>
+            <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ column.image_name }}</div>
+          </span>
+          <span>
+            <button mat-icon-button [mat-menu-trigger-for]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu x-position="before" #menu="matMenu">
+              <a mat-menu-item (click)="startClicked($event, column)">
+                <mat-icon>cached</mat-icon> Start
+              </a>
+              <a mat-menu-item (click)="deleteClicked($event, column)">
+                <mat-icon>delete</mat-icon> Delete
+              </a>
+              <a mat-menu-item target="_blank" href="{{ repoHref(column) }}">
+                <mat-icon>code</mat-icon> Source Code
+              </a>
+              <a mat-menu-item target="_blank" href="https://hub.docker.com/r/{{ column.image_name}}">
+                <mat-icon>toc</mat-icon> Docker Image
+              </a>
+            </mat-menu>
+          </span>
+        </mat-list-item>
+        <mat-divider *ngIf="!last" mat-inset></mat-divider>
+      </ng-template>
+    </mat-list>
+  </ng-template>
+</mat-card>
+
+
+<a mat-fab color="accent" class="mat-fab-bottom-right fixed" routerLink="../create">
+  <mat-icon>add</mat-icon>
+</a>

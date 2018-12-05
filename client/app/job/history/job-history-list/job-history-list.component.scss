@@ -1,0 +1,19 @@
+/* TODO: rm this */
+mat-icon.mat-icon.mat-list-avatar.material-icons {
+  /* -webkit-box-align: center; */
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.04)
+}
+
+mat-list-item:hover {
+  background-color: #eff5f8;
+  cursor: pointer;
+}

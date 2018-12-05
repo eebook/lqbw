@@ -1,0 +1,73 @@
+<td-layout-card-over cardTitle="Create Job" cardSubtitle="Fill form to create a job config">
+  <ng-template tdLoading="create.job">
+    <mat-card-content class="push-bottom-none">
+      <h3><a target="_blank" href="https://github.com/eebook/catalog/tree/knarfeh-dev/json">Supported Website</a></h3>
+      <td-steps>
+        <td-step #step1 label="Basic" [active]="step1Active" [state]="stateStep1" (activated)="activeStep1Event()" (deactivated)="deactiveStep1Event()">
+          <ng-template td-step-label><span>Basic</span></ng-template>
+          <form [formGroup]="basicInfoControlGroup">
+          <div layout="row" class="push-top">
+            <mat-input-container flex>
+              <input matInput
+                #urlElement
+                type="text"
+                [formControl]="urlFormControl"
+                placeholder="URL"
+                name="URL"
+                required="true">
+              <mat-hint align="start">
+                <span [hidden]="urlFormControl.pristine" class="tc-red-600">
+                  <span [hidden]="!urlFormControl.hasError('required')">Required</span>
+                </span>
+              </mat-hint>
+            </mat-input-container>
+          </div>
+          <div layout="row">
+            <mat-input-container flex>
+              <input matInput
+                #jobNameElement
+                type="text"
+                [formControl]="jobNameFormControl"
+                placeholder="Name"
+                name="jobName"
+                required="true">
+              <mat-hint>
+                <span [hidden]="jobNameFormControl.pristine" class="tc-red-600">
+                  <span [hidden]="!jobNameFormControl.hasError('required')">Required</span>
+                </span>
+              </mat-hint>
+            </mat-input-container>
+            <ng-template td-step-actions>
+              <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <span flex></span>
+                <button mat-raised-button color="primary" [disabled]="!basicInfoControlGroup.valid" (click)="inputBasicInfo(urlElement.value, jobNameElement.value)" class="text-upper">Next</button>
+                <button mat-button (click)="goBack()" class="text-upper">Cancel</button>
+              </section>
+            </ng-template>
+          </div>
+          </form>
+        </td-step>
+        <td-step #step2 label="Config" sublabel="" [state]="stateStep2" [disabled]="step2Disabled" disableRipple [active]="step2Active">
+          <sf-form [schema]="urlSchema" (onChange)="value=$event.value"></sf-form>
+          <ng-template td-step-actions>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+              <span flex></span>
+              <button mat-raised-button color="primary" (click)="create(urlElement.value, jobNameElement.value)" class="text-upper">Create</button>
+              <button mat-button (click)="step2.active = false" class="text-upper">Cancel</button>
+            </section>
+          </ng-template>
+        </td-step>
+      </td-steps>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions>
+      <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+        <!-- <button mat-button [disabled]="!userForm.form.valid" color="primary" (click)="create()">CREATE</button> -->
+        <button mat-button (click)="goBack()">CANCEL</button>
+        <span flex></span>
+      </section>
+    </mat-card-actions>
+  </ng-template>
+</td-layout-card-over>

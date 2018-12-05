@@ -1,0 +1,17 @@
+<td-layout-manage-list opened="true" mode="side">
+  <mat-toolbar td-sidenav-content>Jobs</mat-toolbar>
+  <div td-sidenav-content>
+    <mat-nav-list td-sidenav-content>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="navMenu">
+        <a mat-list-item [routerLink]="[item.route]">
+          <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+          {{item.title}}
+        </a>
+      </ng-template>
+    </mat-nav-list>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</td-layout-manage-list>
+

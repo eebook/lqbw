@@ -1,0 +1,77 @@
+$interval: 20px;
+$remark-color: #a1a1a1;
+$highlight-color: #24a7e3;
+
+.mat-padding {
+  margin-top: $interval;
+  background-color: #fff;
+  padding: $interval $interval / 2;
+
+  ::ng-deep {
+    .mat-tab-body {
+      padding-top: 32px;
+    }
+
+    .static-field {
+      display: flex;
+      padding-bottom: 18px;
+
+      .link-text, {
+        color: $highlight-color;
+        cursor: pointer;
+      }
+
+      > label, > div {
+        line-height: 32px;
+        display: flex;
+        align-items: center;
+      }
+
+      > label {
+        font-weight: normal;
+        flex-basis: 180px;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding-right: 16px;
+        color: #a1a1a1;
+      }
+
+      > div {
+        flex: 1;
+
+        > span {
+          word-break: break-all;
+        }
+
+        button + button {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .form-field-label {
+      width: 180px;
+      color: $remark-color;
+    }
+  }
+}
+
+/* TODO: rm this */
+mat-icon.mat-icon.mat-list-avatar.material-icons {
+  /* -webkit-box-align: center; */
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.04)
+}
+
+mat-list-item:hover {
+  background-color: #eff5f8;
+  cursor: pointer;
+}

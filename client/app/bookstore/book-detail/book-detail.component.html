@@ -1,0 +1,33 @@
+<td-layout-nav>
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <!-- <span *ngIf="bookDetail">Bookstore > Book</span> -->
+    <span flex></span>
+  </div>
+  <td-layout-card-over  *ngIf="bookDetail">
+    <mat-card-title>{{bookDetail.title}}</mat-card-title>
+    <!-- <mat-card-subtitle>TODO description: {{bookDetail.description}}</mat-card-subtitle> -->
+    <mat-divider></mat-divider>
+    <mat-list>
+      <ng-template let-item ngFor [ngForOf]=bookDetail.tags>
+        <mat-list-item layout-align="row">
+          <mat-icon mat-list-avatar> receipt </mat-icon>
+          <h3 mat-line> {{item.name}} </h3>
+          <p mat-line> activity description </p>
+        </mat-list-item>
+      </ng-template>
+      <mat-list-item layout-align="row">
+        <mat-icon mat-list-avatar> receipt </mat-icon>
+          <h3 mat-line> {{bookDetail.url}} </h3>
+          <p mat-line> activity description </p>
+      </mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+        <button mat-button color="accent" class="text-upper" (click)="goBack()">Back</button>
+        <span flex></span>
+        <button mat-button color="primary" class="text-upper" [disabled]="isDownloading" (click)="downloadFile()">{{btnMessage}}</button>
+      </section>
+    </mat-card-actions>
+  </td-layout-card-over>
+</td-layout-nav>

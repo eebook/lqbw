@@ -1,0 +1,51 @@
+<a [routerLink]="hasDetail? ['/bookstore/book', id]: []" *ngIf="hasDetail">
+  <mat-card [style.backgroundColor]="">
+    <mat-card-title-group>
+      <img mat-card-sm-image *ngIf="thumbnail" [src]="thumbnail"/>
+      <mat-card-title>{{ title | bcEllipsis:35 }}</mat-card-title>
+      <!-- <mat-card-title>{{ title }}</mat-card-title> -->
+      <mat-card-subtitle *ngIf="subtitle">{{ subtitle | bcEllipsis:40 }}</mat-card-subtitle>
+      <!-- <mat-card-subtitle *ngIf="subtitle">{{ subtitle }}</mat-card-subtitle> -->
+    </mat-card-title-group>
+    <mat-card-content>
+      <p *ngIf="description">{{ description | bcEllipsis }}</p>
+      <!-- <p *ngIf="description">{{ description }}</p> -->
+      <!-- <img height="16" width="16" src="https://img3.doubanio.com/pics/douban-icons/favicon_16x16.png"> -->
+      <!-- <mat-divider> -->
+        <!-- <a href="https://baidu.com"><p>baidu</p></a> -->
+      <!-- </mat-divider> -->
+    </mat-card-content>
+    <mat-card-footer>
+      <!-- <img height="16" width="16" src="https://img3.doubanio.com/pics/douban-icons/favicon_16x16.png"> -->
+      <app-book-authors [book]="book"></app-book-authors>
+    </mat-card-footer>
+    <mat-card-actions align="end">
+      <a href="{{ alt }}" *ngIf="!hasDetail">douban</a>
+    </mat-card-actions>
+  </mat-card>
+</a>
+
+<mat-card [style.backgroundColor]="" *ngIf="!hasDetail">
+  <mat-card-title-group>
+    <img mat-card-sm-image *ngIf="thumbnail" [src]="thumbnail"/>
+    <mat-card-title>{{ title | bcEllipsis:35 }}</mat-card-title>
+    <!-- <mat-card-title>{{ title }}</mat-card-title> -->
+    <mat-card-subtitle *ngIf="subtitle">{{ subtitle | bcEllipsis:40 }}</mat-card-subtitle>
+    <!-- <mat-card-subtitle *ngIf="subtitle">{{ subtitle }}</mat-card-subtitle> -->
+  </mat-card-title-group>
+  <mat-card-content>
+    <p *ngIf="description">{{ description | bcEllipsis }}</p>
+    <!-- <p *ngIf="description">{{ description }}</p> -->
+    <!-- <img height="16" width="16" src="https://img3.doubanio.com/pics/douban-icons/favicon_16x16.png"> -->
+    <!-- <mat-divider> -->
+      <!-- <a href="https://baidu.com"><p>baidu</p></a> -->
+    <!-- </mat-divider> -->
+  </mat-card-content>
+  <mat-card-footer>
+    <!-- <img height="16" width="16" src="https://img3.doubanio.com/pics/douban-icons/favicon_16x16.png"> -->
+    <app-book-authors [book]="book"></app-book-authors>
+  </mat-card-footer>
+  <mat-card-actions align="end">
+    <a href="{{ alt }}" *ngIf="!hasDetail" target="_blank">douban</a>
+  </mat-card-actions>
+</mat-card>

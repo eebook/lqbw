@@ -1,0 +1,80 @@
+<div *ngIf="currentUser?.userName">
+  <td-layout #layout>
+    <td-navigation-drawer flex sidenavTitle="EEBook" name="{{currentUser?.userName}}">
+      <mat-nav-list>
+        <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+          <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()">
+            <mat-icon>{{item.icon}}</mat-icon>
+          {{item.title}}</a>
+        </ng-template>
+        <a mat-list-item (click)="doLogout(layout)"><mat-icon>people</mat-icon>Logout</a>
+      </mat-nav-list>
+    </td-navigation-drawer>
+
+    <td-layout-nav>
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span [routerLink]="['/']" class="cursor-pointer">EEBook</span>
+        <span flex></span>
+        <!-- <td-search-box placeholder=" " alwaysVisible=false></td-search-box> -->
+        <!-- <a mat-icon-button mdTooltip="Github" href="https://github.com/ee-book/ee-book" target="_blank"><mat-icon svgIcon="assets:github"></mat-icon></a> -->
+        <!-- <li class="mr-3"><a (click)="changeLang('zh')">zh</a></li>
+        <li class="mr-3"><a (click)="changeLang('en-US')">en-US</a></li> -->
+        <!-- <lang-switcher></lang-switcher> -->
+      </div>
+
+      <router-outlet></router-outlet>
+
+      <td-layout-footer>
+        <div layout="row" layout-align="start center">
+          <span class="mat-caption">Copyright &copy; 2017 <a target="_blank" href="https://github.com/knarfeh">knarfeh</a>. All rights reserved <i class="fa fa-globe fa-lg" aria-hidden="true" (click)="switchLanguage('zh-CN')"></i></span>
+          <span flex></span>
+          <span><a [routerLink]="['/about']">About</a></span>
+          <span><a [routerLink]="['/TODO']">Code</a></span>
+        </div>
+      </td-layout-footer>
+
+    </td-layout-nav>
+  </td-layout>
+</div>
+
+<div *ngIf="!currentUser?.userName">
+  <!-- <button mat-raised-button color="primary" (click)="signInUpDialog()">Auth</button> -->
+  <!-- <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button> -->
+  <!-- <router-outlet></router-outlet> -->
+
+  <td-layout #layout>
+    <td-navigation-drawer flex sidenavTitle="EEBook" name="{{currentUser?.userName}}">
+      <mat-nav-list>
+        <div class="login-container">
+          <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
+        </div>
+      </mat-nav-list>
+    </td-navigation-drawer>
+
+    <td-layout-nav>
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span [routerLink]="['/']" class="cursor-pointer">EEBook</span>
+        <span flex></span>
+        <button mat-raised-button color="primary" [routerLink]="['/user/login']">Login</button>
+      </div>
+
+      <router-outlet></router-outlet>
+
+      <td-layout-footer>
+        <div layout="row" layout-align="start center">
+          <span class="mat-caption">Copyright &copy; 2017 <a target="_blank" href="https://github.com/knarfeh">knarfeh</a>. All rights reserved <i class="fa fa-globe fa-lg" aria-hidden="true" (click)="switchLanguage('zh-CN')"></i></span>
+          <span flex></span>
+          <span><a [routerLink]="['/about']">About</a> </span>
+          <span><a [routerLink]="['/#TODO']">Code</a> </span>
+        </div>
+      </td-layout-footer>
+
+    </td-layout-nav>
+  </td-layout>
+</div>

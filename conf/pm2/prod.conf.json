@@ -1,0 +1,15 @@
+{
+  "apps": [{
+    "name": "lqbw",
+    "script": "./dist/server/app.js",
+    "instances": 3,
+    "args": ["slave"],
+    "max_memory_restart": "1G",
+    "exec_mode": "fork",
+    "source_map_support": true,
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }]
+}

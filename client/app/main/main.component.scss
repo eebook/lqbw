@@ -1,0 +1,66 @@
+.mat-icon-ux {
+    width: 100px;
+}
+.icon {
+  font-size: 48px;
+}
+.chart-height {
+  height: 300px;
+}
+
+
+.navbar {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+
+.app-toolbar-menu {
+  padding: 0 14px 0 14px;
+  color: white;
+}
+
+
+.side-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-button {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  line-height: 45px !important;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #ccc;
+  color: grey;
+}
+
+.login-container {
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+i {
+  margin-left: 0.3em;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+span{
+  margin-right: 10px;
+}

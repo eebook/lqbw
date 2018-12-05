@@ -1,0 +1,112 @@
+$log-hover-background-color: #465155;
+$log-context-background-color: #121B1B;
+
+
+.lqbw-log-container {
+  position: relative;
+
+  .clear-button {
+    position: absolute;
+    bottom: 15px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(74, 85, 90, .95);
+    // color: $button-primary-text-color;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 100%;
+
+    // &:hover {
+    //   color: $status-color-in-process;
+    // }
+  }
+}
+
+.lqbw-log-list, .lqbw-log-list-placeholder {
+  font-family: "Monaco", "DejaVu Sans Mono", "Liberation Mono", monospace;
+  font-size: 13px;
+  color: #e1e6e6;
+  background-color: #263238;
+  max-height: 600px;
+  min-height: 400px;
+  overflow: auto;
+  > li {
+    list-style: none;
+    line-height: 20px;
+    padding: 4px 8px;
+    &:hover {
+      background-color: $log-hover-background-color;
+    }
+    > span {
+      margin-right: 4px;
+    }
+  }
+  .lqbw-log-item .log-message {
+    white-space: pre-wrap;
+    word-break: break-word;
+    // &.log-error {
+    //   color: $status-color-error;
+    // }
+  }
+}
+
+$interval: 20px;
+$remark-color: #a1a1a1;
+$highlight-color: #24a7e3;
+
+.mat-padding {
+  margin-top: $interval;
+  background-color: #fff;
+  padding: $interval $interval / 2;
+
+  ::ng-deep {
+    .mat-tab-body {
+      padding-top: 32px;
+    }
+
+    .static-field {
+      display: flex;
+      padding-bottom: 18px;
+
+      .link-text, {
+        color: $highlight-color;
+        cursor: pointer;
+      }
+
+      > label, > div {
+        line-height: 32px;
+        display: flex;
+        align-items: center;
+      }
+
+      > label {
+        font-weight: normal;
+        flex-basis: 180px;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding-right: 16px;
+        color: #a1a1a1;
+      }
+
+      > div {
+        flex: 1;
+
+        > span {
+          word-break: break-all;
+        }
+
+        button + button {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .form-field-label {
+      width: 180px;
+      color: $remark-color;
+    }
+  }
+}
+
+
