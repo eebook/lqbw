@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material';
 
 import { TdDialogService, TdLoadingService, StepState } from '@covalent/core';
 
-import 'rxjs/add/operator/toPromise';
+
 
 @Component({
   selector: 'app-job-config-create',

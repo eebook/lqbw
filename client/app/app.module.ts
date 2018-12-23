@@ -14,7 +14,7 @@ import {
   PreloadAllModules
 } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer,
@@ -30,9 +30,9 @@ import { HttpService, SimpleRequest } from './common/http.service';
 import { JobService } from './job/job.service';
 import { JobConfigDetailComponent } from './job/config/job-config-detail/job-config-detail.component';
 import { ConfirmBoxComponent } from './shared/components/confirm-box/confirm-box.component';
-import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
+import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'ngx-schema-form';
 import { AccountComponent } from './account/account.component';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+// import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 // import { MasonryModule } from 'angular2-masonry';
 // import { NgxMasonryModule } from 'ngx-masonry';
 
@@ -60,10 +60,10 @@ import { reducers, metaReducers } from './reducers';
 import { DBModule } from '@ngrx/db';
 import { schema } from './db';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  // return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 
@@ -95,13 +95,13 @@ export function createTranslateLoader(http: HttpClient) {
     //   useFactory: (translateLoaderFactory)
     // }]),
     // StoreModule.provideStore(AppReducer),
-    TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient]
-      }
-    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //       provide: TranslateLoader,
+    //       useFactory: (createTranslateLoader),
+    //       deps: [HttpClient]
+    //   }
+    // }),
     SchemaFormModule,
     ComponentsModule,
     HttpClientModule,
@@ -118,9 +118,9 @@ export function createTranslateLoader(http: HttpClient) {
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
     // Note that you must instrument after importing StoreModule (config is optional)
-    StoreDevtoolsModule.instrument({
-      maxAge: 25 //  Retains last 25 states
-    })
+    // StoreDevtoolsModule.instrument({
+    //   maxAge: 25 //  Retains last 25 states
+    // })
 
   ],
   providers: [

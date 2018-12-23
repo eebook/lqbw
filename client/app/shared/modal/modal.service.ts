@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { ConfirmBoxComponent } from '../components/confirm-box/confirm-box.component';
 // import { } from '../components'
 import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';

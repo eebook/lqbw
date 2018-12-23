@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { JobService } from './../../job.service';
 import { JobDetail } from './../../model/job-model';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
+import { Observable } from 'rxjs';
+
 import * as moment from 'moment';
 
 @Component({

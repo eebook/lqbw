@@ -1,8 +1,9 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Request, XHRBackend, RequestOptions, Response, Http, RequestOptionsArgs, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+
+
 
 
 @Injectable()
@@ -19,7 +20,7 @@ export class AuthenticatedHttpService extends Http {
                 localStorage.removeItem('currentUser');
                 window.location.href = window.location.href;
             }
-            return Observable.throw(error);
+            return observableThrowError(error);
         });
   }
 }

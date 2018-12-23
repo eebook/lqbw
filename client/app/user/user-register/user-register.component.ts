@@ -4,7 +4,7 @@ import { Component, OnInit, Input, Injector} from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { FieldBase, Textbox, Image } from '../../common/dynamic-form/form-field';
 import { fadeIn } from '../../animations/fade-in';

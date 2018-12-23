@@ -1,8 +1,8 @@
 import { TranslateService } from '@ngx-translate/core';
 import { OnInit, Component, Output, Input, EventEmitter } from '@angular/core';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/distinctUntilChanged';
+
+
+
 
 import {ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';

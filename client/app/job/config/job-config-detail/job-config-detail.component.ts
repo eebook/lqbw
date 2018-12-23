@@ -1,14 +1,8 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { JobConfig } from './../../model/job-model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../../job.service';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/takeWhile';
 import { MatSnackBar } from '@angular/material';
 import { ITdDataTableColumn } from '@covalent/core';
 import { TdLoadingService, TdDialogService } from '@covalent/core';
@@ -114,11 +108,11 @@ export class JobConfigDetailComponent implements OnInit {
   getPage(page: number) {
     this.loading = true;
     this.asyncJobs = this._jobService.getJobList(5, page, this.jobConfigName)
-      .do(res => {
-        this.total = res.json()['count'];
-        this.p = page;
-        this.loading = false;
-      })
+      // .do(res => {
+      //   this.total = res.json()['count'];
+      //   this.p = page;
+      //   this.loading = false;
+      // })
       .map(res => res.json()['results']);
   }
 

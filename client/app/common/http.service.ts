@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestMethod, RequestOptionsArgs, URLSearchParams, Response } from '@angular/http';
-import { TimeoutError } from 'rxjs/util/TimeoutError';
-import 'rxjs/add/operator/timeout';
-import 'rxjs/add/operator/toPromise';
+import { TimeoutError } from 'rxjs';
 
 const TIMEOUT_IN_MS = 30000;   // 30 seconds
 
@@ -31,31 +29,22 @@ function safeErrorResponseJson(response: Response): { errors: [any] } {
 
 @Injectable()
 export class HttpService {
-  static buildURLSearchParams(params: any): URLSearchParams {
-    const urlSearchParams = new URLSearchParams();
-    Object.entries(params).forEach(([key, value]) => {
-      urlSearchParams.set(key, value);
-    });
-    return urlSearchParams;
-  }
+  // static buildURLSearchParams(params: any): URLSearchParams {
+  //   const urlSearchParams = new URLSearchParams();
+  //   Object.entries(params).forEach(([key, value]) => {
+  //     urlSearchParams.set(key, value);
+  //   });
+  //   return urlSearchParams;
+  // }
 
   constructor(
     public _http: Http,
   ) {
   }
 
-  /**
-   * Wraps Angular http service:
-   *   - Add new headers
-   *   - Handle exceptions
-   *   - Handle timeout
-   * @param url
-   * @param options
-   * @returns {Promise<any>}
-   */
   public request(url: string, options: RequestOptionsArgs = { method: 'GET' }): Promise<any> {
     return this._http.request(url, options)
-      .timeout(TIMEOUT_IN_MS)
+      // .timeout(TIMEOUT_IN_MS)
       .toPromise()
       .then(res => {
         return res.text() ? res.json() : {};

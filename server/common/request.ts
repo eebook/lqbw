@@ -24,7 +24,7 @@ export function EEBookRequest(ctx: any, method, path, args?) {
     url: getEnv('API_URL') + '/' + getEnv('API_VERSION') + path,
     json: true,
     headers: {
-        'User-Agent': 'eebookorg/v1.0',
+        'User-Agent': 'lqbw/v1.0',
         'Content-Type': 'application/json'
     },
     method: method,

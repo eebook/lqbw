@@ -4,7 +4,7 @@
  */
 
 const PATH = require('path');
-const EEBOOK_COMPONENT = 'eebookorg';
+const EEBOOK_COMPONENT = 'lqbw';
 
 const config = {
     DEBUG: true,

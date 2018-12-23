@@ -1,7 +1,7 @@
 // import 'rxjs/add/operator/take';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import * as fromBooks from '../../reducers';
 import * as BookActions from '../../actions/book';

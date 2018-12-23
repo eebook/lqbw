@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './user/model/user-model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
-import {TranslateService} from '@ngx-translate/core';
+// import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
